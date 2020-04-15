@@ -10,7 +10,7 @@
         <BootButton OnClick="@(()=>collapsePanel.Toggle())">
             点击呈现内容
         </BootButton>
-        <BootCollapse @ref="collapsePanel" CssClass="mt-3 border p-3">
+        <BootCollapse @ref="collapsePanel" AdditionalCssClass="mt-3 border p-3">
             这里是伸缩才能看见的内容
         </BootCollapse>
     </RunTemplate>
@@ -20,7 +20,7 @@
 <BootButton OnClick=""@(() => collapsePanel.Toggle())"">
 点击呈现内容
 </BootButton>
-<BootCollapse @ref=""collapsePanel"" CssClass=""mt-3 border p-3"">
+<BootCollapse @ref=""collapsePanel"" AdditionalCssClass=""mt-3 border p-3"">
 这里是伸缩才能看见的内容
 </BootCollapse>
 ```
@@ -44,13 +44,13 @@ BootCollapse collapsePanel = new BootCollapse();
         <BootButton OnClick="@(()=>panel1.Toggle())">
             点击第一个伸缩面板
         </BootButton>
-        <BootCollapse @ref="panel1" CssClass="mt-3 border p-3">
+        <BootCollapse @ref="panel1" AdditionalCssClass="mt-3 border p-3">
             伸缩面板1
         </BootCollapse>
         <BootButton OnClick="@(()=>panel2.Toggle())">
             点击第二个伸缩面板
         </BootButton>
-        <BootCollapse @ref="panel2" CssClass="mt-3 border p-3">
+        <BootCollapse @ref="panel2" AdditionalCssClass="mt-3 border p-3">
             伸缩面板2
         </BootCollapse>
     </RunTemplate>
@@ -60,13 +60,13 @@ BootCollapse collapsePanel = new BootCollapse();
 <BootButton Text=""点击第一个伸缩面板"" OnClick=""@(() => panel1.Toggle())"">
 点击第一个伸缩面板
 </BootButton>
-<BootCollapse @ref=""panel1"" CssClass=""mt-3 border p-3"">
+<BootCollapse @ref=""panel1"" AdditionalCssClass=""mt-3 border p-3"">
 伸缩面板1
 </BootCollapse>
 <BootButton Text=""点击第二个伸缩面板"" OnClick=""@(()=>panel2.Toggle())"">
 点击第二个伸缩面板
 </BootButton>
-<BootCollapse @ref=""panel2"" CssClass=""mt-3 border p-3"">
+<BootCollapse @ref=""panel2"" AdditionalCssClass=""mt-3 border p-3"">
 伸缩面板2
 </BootCollapse>
 ```

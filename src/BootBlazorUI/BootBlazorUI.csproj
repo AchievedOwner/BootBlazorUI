@@ -7,7 +7,7 @@
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.6</Version>
+    <Version>0.7</Version>
     <Authors>William Chow</Authors>
     <Description>BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。</Description>
     <PackageProjectUrl>https://gitee.com/mikpro/BootBlazorUI</PackageProjectUrl>
@@ -15,9 +15,14 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>【新增】表单组件，包括单行文本框、多行文本框、单选按钮、多选按钮、日期选择、下拉框等组件
-【新增】表单验证组件，可以结合 BootButton 对提交的表单形成交互性
-【优化】表单按钮的交互功能，并将按钮移动到 Forms 命名空间</PackageReleaseNotes>
+    <PackageReleaseNotes>【新增】AdditionalCssClass 属性，用于追加组件默认样式以外的其他 class 类名称
+【新增】AdditionalStyle 属性，用于追加组件默认样式以为的其他 style 样式
+【新增】OverrideCssClass 属性，用于覆盖组件的 class 类名称
+【新增】OverrideStyle 属性，用于覆盖组件的 style 样式
+【新增】BootSpinner 组件
+【修复】BootBadge 组件命名错误
+【优化】BaseComponent 重命名为 BootComponentBase
+【优化】BootButton 默认提交时的文本增加 BootSpinner 组件</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -49,9 +54,6 @@
     <Content Remove="Tables\**" />
     <EmbeddedResource Remove="Tables\**" />
     <None Remove="Tables\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="wwwroot\components.scss" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="wwwroot\bootstrap.min.css" />

@@ -26,15 +26,15 @@ namespace BootBlazorUI.Forms
             builder.AddAttribute(sequence++, "rows", Rows);
         }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             if (ReadOnly && ReadOnlyAsText)
             {
-                classList.Add("form-control-plaintext");
+                collection.Add("form-control-plaintext");
             }
             else
             {
-                classList.Add("form-control");
+                collection.Add("form-control");
             }
         }
 

@@ -8,7 +8,7 @@ namespace BootBlazorUI.Forms
     /// <summary>
     /// 呈现一个将 <see cref="EditContext"/> 级联到后代的表单元素。可配合 <see cref="BootButton"/> 组件提升提交时的交互性。
     /// </summary>
-    public class BootEditForm : BaseComponent
+    public class BootEditForm : BootComponentBase
     {
         private EditContext _fixedEditContext;
 
@@ -67,7 +67,7 @@ namespace BootBlazorUI.Forms
             builder.OpenRegion(_fixedEditContext.GetHashCode());
 
             builder.OpenElement(0, "form");
-            builder.AddMultipleAttributes(1, Attributes);
+            builder.AddMultipleAttributes(1, AdditionalAttributes);
             builder.OpenComponent<CascadingValue<EditContext>>(2);
             builder.AddAttribute(3, "Value", _fixedEditContext);
             builder.AddAttribute(4, "IsFixed", true);

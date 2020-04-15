@@ -1,6 +1,6 @@
-﻿@inherits BaseComponent
-<div id="@Id" class="progress" style="@GetStyles()" @attributes="Attributes">
-    <div class="@GetCssClass()" style="width:@(Percentage)%" role="progressbar" aria-valuenow="@Value" aria-valuemin="@Min" aria-valuemax="@Max">
+﻿@inherits BootComponentBase
+<div id="@Id" class="progress" style="@BuildStylesString()" @attributes="AdditionalAttributes">
+    <div class="@BuildCssClassString()" style="width:@(Percentage)%" role="progressbar" aria-valuenow="@Value" aria-valuemin="@Min" aria-valuemax="@Max">
         @if (Template == null)
         {
             @ChildContent

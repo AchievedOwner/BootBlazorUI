@@ -6,26 +6,26 @@
 
 <PresentationPart Title="简单示例">
     <RunTemplate>
-        <Badge Color="Color.Primary">Primary</Badge>
-        <Badge Color="Color.Secondary">Secondary</Badge>
-        <Badge Color="Color.Info">Info</Badge>
-        <Badge Color="Color.Success">Success</Badge>
-        <Badge Color="Color.Warning">Warning</Badge>
-        <Badge Color="Color.Danger">Danger</Badge>
-        <Badge Color="Color.Light">Light</Badge>
-        <Badge Color="Color.Dark">Dark</Badge>
+        <BootBadge Color="Color.Primary">Primary</BootBadge>
+        <BootBadge Color="Color.Secondary">Secondary</BootBadge>
+        <BootBadge Color="Color.Info">Info</BootBadge>
+        <BootBadge Color="Color.Success">Success</BootBadge>
+        <BootBadge Color="Color.Warning">Warning</BootBadge>
+        <BootBadge Color="Color.Danger">Danger</BootBadge>
+        <BootBadge Color="Color.Light">Light</BootBadge>
+        <BootBadge Color="Color.Dark">Dark</BootBadge>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Badge Color=""Color.Primary"">Primary</Badge>
-<Badge Color=""Color.Secondary"">Secondary</Badge>
-<Badge Color=""Color.Info"">Info</Badge>
-<Badge Color=""Color.Success"">Success</Badge>
-<Badge Color=""Color.Warning"">Warning</Badge>
-<Badge Color=""Color.Danger"">Danger</Badge>
-<Badge Color=""Color.Light"">Light</Badge>
-<Badge Color=""Color.Dark"">Dark</Badge>
+<BootBadge Color=""Color.Primary"">Primary</BootBadge>
+<BootBadge Color=""Color.Secondary"">Secondary</BootBadge>
+<BootBadge Color=""Color.Info"">Info</BootBadge>
+<BootBadge Color=""Color.Success"">Success</BootBadge>
+<BootBadge Color=""Color.Warning"">Warning</BootBadge>
+<BootBadge Color=""Color.Danger"">Danger</BootBadge>
+<BootBadge Color=""Color.Light"">Light</BootBadge>
+<BootBadge Color=""Color.Dark"">Dark</BootBadge>
 ```
 ")
     </CodeTemplate>
@@ -36,14 +36,14 @@
     <RunTemplate>
         <BootButton>
             消息盒子
-            <Badge Color="Color.Light">20</Badge>
+            <BootBadge Color="Color.Light">20</BootBadge>
         </BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootButton>
-    <Badge Color=""Color.Light"">20</Badge>
+    <BootBadge Color=""Color.Light"">20</BootBadge>
 </BootButton>
 ```
 ")
@@ -53,29 +53,29 @@
 
 <PresentationPart Title="药丸样式">
     <Description>
-        设置 <code>Pills="true"</code> 属性以呈现为药丸的样式。
+        设置 <code>Pill="true"</code> 属性以呈现为药丸的样式。
     </Description>
     <RunTemplate>
-        <Badge Color="Color.Primary" Pills="true">Primary</Badge>
-        <Badge Color="Color.Secondary" Pills="true">Secondary</Badge>
-        <Badge Color="Color.Info" Pills="true">Info</Badge>
-        <Badge Color="Color.Success" Pills="true">Success</Badge>
-        <Badge Color="Color.Warning" Pills="true">Warning</Badge>
-        <Badge Color="Color.Danger" Pills="true">Danger</Badge>
-        <Badge Color="Color.Light" Pills="true">Light</Badge>
-        <Badge Color="Color.Dark" Pills="true">Dark</Badge>
+        <BootBadge Color="Color.Primary" Pill="true">Primary</BootBadge>
+        <BootBadge Color="Color.Secondary" Pill="true">Secondary</BootBadge>
+        <BootBadge Color="Color.Info" Pill="true">Info</BootBadge>
+        <BootBadge Color="Color.Success" Pill="true">Success</BootBadge>
+        <BootBadge Color="Color.Warning" Pill="true">Warning</BootBadge>
+        <BootBadge Color="Color.Danger" Pill="true">Danger</BootBadge>
+        <BootBadge Color="Color.Light" Pill="true">Light</BootBadge>
+        <BootBadge Color="Color.Dark" Pill="true">Dark</BootBadge>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<Badge Color=""Color.Primary"" Pills=""true"">Primary</Badge>
-<Badge Color=""Color.Secondary"" Pills=""true"">Secondary</Badge>
-<Badge Color=""Color.Info"" Pills=""true"">Info</Badge>
-<Badge Color=""Color.Success"" Pills=""true"">Success</Badge>
-<Badge Color=""Color.Warning"" Pills=""true"">Warning</Badge>
-<Badge Color=""Color.Danger"" Pills=""true"">Danger</Badge>
-<Badge Color=""Color.Light"" Pills=""true"">Light</Badge>
-<Badge Color=""Color.Dark"" Pills=""true"">Dark</Badge>
+<BootBadge Color=""Color.Primary"" Pill=""true"">Primary</BootBadge>
+<BootBadge Color=""Color.Secondary"" Pill=""true"">Secondary</BootBadge>
+<BootBadge Color=""Color.Info"" Pill=""true"">Info</BootBadge>
+<BootBadge Color=""Color.Success"" Pill=""true"">Success</BootBadge>
+<BootBadge Color=""Color.Warning"" Pill=""true"">Warning</BootBadge>
+<BootBadge Color=""Color.Danger"" Pill=""true"">Danger</BootBadge>
+<BootBadge Color=""Color.Light"" Pill=""true"">Light</BootBadge>
+<BootBadge Color=""Color.Dark"" Pill=""true"">Dark</BootBadge>
 ```
 ")
     </CodeTemplate>
@@ -83,7 +83,7 @@
 
 <ArgumentDescriptionTable Title="属性">
     <tr>
-        <td>Pills</td>
+        <td>Pill</td>
         <td>Boolean</td>
         <td>设置一个布尔值，表示是否使用药丸样式。</td>
     </tr>

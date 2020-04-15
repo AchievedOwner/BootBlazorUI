@@ -12,7 +12,7 @@ namespace BootBlazorUI
        
 
         /// <summary>
-        /// 设置包含 <see cref="BootTabPage"/> 的标签页。
+        /// 设置包含 <see cref="BootTabControlPage"/> 的标签页。
         /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -20,12 +20,12 @@ namespace BootBlazorUI
         /// <summary>
         /// 表示启用页面。
         /// </summary>
-        internal BootTabPage ActivedPage { get; set; }
+        internal BootTabControlPage ActivedPage { get; set; }
 
         /// <summary>
         /// 获取所有的页面。
         /// </summary>
-        List<BootTabPage> Pages { get; set; } = new List<BootTabPage>();
+        List<BootTabControlPage> Pages { get; set; } = new List<BootTabControlPage>();
 
         /// <summary>
         /// 设置一个布尔值，表示标签页是否使用药丸样式。
@@ -45,7 +45,7 @@ namespace BootBlazorUI
         /// 添加一个标签页面。
         /// </summary>
         /// <param name="page">要添加的标签页面。</param>
-        internal void AddPage(BootTabPage page)
+        internal void AddPage(BootTabControlPage page)
         {
             Pages.Add(page);
             if (Pages.Count == 1)
@@ -60,7 +60,7 @@ namespace BootBlazorUI
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        string GetActiveClass(BootTabPage page)
+        string GetActiveClass(BootTabControlPage page)
         {
             return ActivedPage == page ? "active" : string.Empty;
         }
@@ -70,32 +70,34 @@ namespace BootBlazorUI
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        async Task ActivePage(BootTabPage page)
+        async Task ActivePage(BootTabControlPage page)
         {
             await page.OnActived.InvokeAsync(page);
             ActivedPage = page;
         }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            classList.Add("nav");
+            collection.Add("nav");
 
             if (Pills)
             {
-                classList.Add("nav-pills");
+                collection.Add("nav-pills");
             }
             else
             {
-                classList.Add("nav-tabs");
+                collection.Add("nav-tabs");
             }
         }
 
-        protected override void BuildStyles(List<string> styleList)
+        protected override void CreateComponentStyle(ICollection<string> collection)
         {
             if (!string.IsNullOrWhiteSpace(MinHeight))
             {
-                styleList.Add($"min-height:{MinHeight}");
+                collection.Add($"min-height:{MinHeight}");
             }
+
+            
         }
     }
 }

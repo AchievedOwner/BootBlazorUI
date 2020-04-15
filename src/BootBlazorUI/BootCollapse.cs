@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
     /// <summary>
-    /// 表示一个折叠面板。
+    /// 呈现可进行折叠的 div 元素。
     /// </summary>
-    partial class BootCollapse
+    public class BootCollapse:BootComponentBase
     {
         /// <summary>
-        /// 设置伸缩面板的内容。
+        /// 设置面板的内容。
         /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -68,10 +69,22 @@ namespace BootBlazorUI
             }
         }
 
-
-        protected override void BuildCssClass(List<string> classList)
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            classList.Add("collapse");
+            builder.OpenElement(0, "div");
+            AddCommonAttributes(builder);
+            builder.AddContent(1, ChildContent);
+            builder.CloseElement();
+        }
+
+        protected override void CreateComponentCssClass(ICollection<string> collection)
+        {
+            collection.Add("collapse");
+            collection.Add("fade");
+            if (IsExpand)
+            {
+                collection.Add("show");
+            }
         }
     }
 }

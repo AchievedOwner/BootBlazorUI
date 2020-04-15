@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
     /// <summary>
-    /// 表示一个警告消息框控件。
+    /// 呈现 div 的元素并且带有警告消息框的组件。
     /// </summary>
-    public partial class BootAlert
+    public class BootAlert : BootComponentBase
     {
         /// <summary>
         /// 初始化 <see cref="BootAlert"/> 类的新实例。
@@ -33,12 +34,12 @@ namespace BootBlazorUI
         /// 设置一个布尔值，表示是否在右侧显示一个关闭的“X”按钮，点击后则会隐藏该警告框。
         /// </summary>
         [Parameter]
-        public bool Closable { get; set; }
+        public bool Dismisable { get; set; }
 
         /// <summary>
         /// 获取一个布尔值，表示消息框的是否为显示状态。默认是 <c>true</c>。
         /// </summary>
-        public bool IsShown { get;private set; } = true;
+        public bool IsShown { get; private set; } = true;
 
         /// <summary>
         /// 设置警告消息框显示前触发的事件。
@@ -72,15 +73,48 @@ namespace BootBlazorUI
             StateHasChanged();
         }
 
-        protected override void BuildCssClass(List<string> classList)
+        /// <summary>
+        /// 创建 alert 元素的 css 的名称。
+        /// </summary>
+        /// <param name="collection">样式集合。</param>
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            classList.Add("alert");
-            classList.Add(ComponentUtil.GetColorCssClass(Color,"alert-"));
-
-            if (Closable)
+            collection.Add("alert");
+            collection.Add(ComponentUtil.GetColorCssClass(Color, "alert-"));
+            collection.Add("fade");
+            if (IsShown)
             {
-                classList.Add("alert-dismissible");
+                collection.Add("show");
             }
+
+            if (Dismisable)
+            {
+                collection.Add("alert-dismissible");
+            }
+        }
+        /// <summary>
+        /// 构造组件树。
+        /// </summary>
+        /// <param name="builder"><see cref="RenderTreeBuilder"/> 实例。</param>
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            builder.OpenElement(0, "div");
+            AddCommonAttributes(builder);
+
+            builder.AddContent(1, ChildContent);
+            if (Dismisable)
+            {
+                builder.AddContent(2, child =>
+                {
+                    child.OpenElement(3, "button");
+                    child.AddAttribute(4, "type", "button");
+                    child.AddAttribute(5, "class", "close");
+                    child.AddAttribute(6, "onclick", EventCallback.Factory.Create(this, () => Hide()));
+                    child.AddMarkupContent(7, "<span aria-hidden=\"true\">&times;</span>");
+                    child.CloseElement();
+                });
+            }
+            builder.CloseElement();
         }
     }
 }

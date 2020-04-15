@@ -80,21 +80,21 @@ namespace BootBlazorUI
         [Parameter]
         public EventCallback<bool> OnHidden { get; set; }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             if (Centered)
             {
-                classList.Add("modal-dialog-centered");
+                collection.Add("modal-dialog-centered");
             }
 
             if (Size != Size.Default)
             {
-                classList.Add(ComponentUtil.GetSizeCssClass(Size,"modal-"));
+                collection.Add(ComponentUtil.GetSizeCssClass(Size,"modal-"));
             }
 
             if (Scrollable)
             {
-                classList.Add("modal-dialog-scrollable");
+                collection.Add("modal-dialog-scrollable");
             }
         }
 

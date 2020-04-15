@@ -134,14 +134,14 @@ namespace BootBlazorUI
             base.OnInitialized();
         }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            classList.Add("pagination");
+            collection.Add("pagination");
 
 
             if (Size != Size.Default)
             {
-                classList.Add(ComponentUtil.GetSizeCssClass(Size, "pagination-"));
+                collection.Add(ComponentUtil.GetSizeCssClass(Size, "pagination-"));
             }
         }
 

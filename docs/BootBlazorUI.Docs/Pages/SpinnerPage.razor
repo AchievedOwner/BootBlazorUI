@@ -1,0 +1,158 @@
+﻿@page "/spinner"
+
+<PageTitle Title="旋转容器（BootSpinner）">
+    旋转容器一般用于表示当前的状态是进行中。
+</PageTitle>
+
+<PresentationPart Title="一般示例">
+    <Description>
+        有两种样式来呈现旋转，设置 <code>Grow</code> 可以切换2种不同的样式。
+    </Description>
+    <RunTemplate>
+        <BootSpinner />
+        <BootSpinner Grow="true" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootSpinner />
+<BootSpinner Grow=""true"" />
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="主题颜色">
+    <Description>
+        设置 <code>Color</code> 可以呈现不同的主题颜色。
+    </Description>
+    <RunTemplate>
+        <div class="mb-2">
+            <BootSpinner Color="Color.Primary" />
+            <BootSpinner Color="Color.Secondary" />
+            <BootSpinner Color="Color.Info" />
+            <BootSpinner Color="Color.Warning" />
+            <BootSpinner Color="Color.Success" />
+            <BootSpinner Color="Color.Danger" />
+            <BootSpinner Color="Color.Light" />
+            <BootSpinner Color="Color.Dark" />
+        </div>
+        <div class="mb-2">
+            <BootSpinner Color="Color.Primary" Grow="true" />
+            <BootSpinner Color="Color.Secondary" Grow="true" />
+            <BootSpinner Color="Color.Info" Grow="true" />
+            <BootSpinner Color="Color.Warning" Grow="true" />
+            <BootSpinner Color="Color.Success" Grow="true" />
+            <BootSpinner Color="Color.Danger" Grow="true" />
+            <BootSpinner Color="Color.Light" Grow="true" />
+            <BootSpinner Color="Color.Dark" Grow="true" />
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""mb-2"">
+    <BootSpinner Color=""Color.Primary"" />
+    <BootSpinner Color=""Color.Secondary"" />
+    <BootSpinner Color=""Color.Info"" />
+    <BootSpinner Color=""Color.Warning"" />
+    <BootSpinner Color=""Color.Success"" />
+    <BootSpinner Color=""Color.Danger"" />
+    <BootSpinner Color=""Color.Light"" />
+    <BootSpinner Color=""Color.Dark"" />
+</div>
+<div class=""mb-2"">
+    <BootSpinner Color=""Color.Primary"" Grow=""true"" />
+    <BootSpinner Color=""Color.Secondary"" Grow=""true"" />
+    <BootSpinner Color=""Color.Info"" Grow=""true"" />
+    <BootSpinner Color=""Color.Warning"" Grow=""true"" />
+    <BootSpinner Color=""Color.Success"" Grow=""true"" />
+    <BootSpinner Color=""Color.Danger"" Grow=""true"" />
+    <BootSpinner Color=""Color.Light"" Grow=""true"" />
+    <BootSpinner Color=""Color.Dark"" Grow=""true"" />
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="尺寸">
+    <Description>
+        设置 <code>Size</code> 来改变尺寸。
+    </Description>
+    <RunTemplate>
+        <BootSpinner Size="Size.LG" />
+        <BootSpinner />
+        <BootSpinner Size="Size.SM" />
+        <BootSpinner Size="Size.LG" Grow="true"/>
+        <BootSpinner Grow="true"/>
+        <BootSpinner Size="Size.SM" Grow="true"/>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootSpinner Size=""Size.LG"" />
+<BootSpinner />
+<BootSpinner Size=""Size.SM"" />
+<BootSpinner Size=""Size.LG"" Grow=""true""/>
+<BootSpinner Grow=""true""/>
+<BootSpinner Size=""Size.SM"" Grow=""true""/>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="Flex 布局">
+    <RunTemplate>
+        <div class="d-flex justify-content-center">
+            <BootSpinner/>
+        </div>
+        <div class="d-flex align-items-center">
+            <strong>加载中...</strong>
+            <BootSpinner AdditionalCssClass="ml-auto"/>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""d-flex justify-content-center"">
+    <BootSpinner/>
+</div>
+<div class=""d-flex align-items-center"">
+    <strong>加载中...</strong>
+    <BootSpinner AdditionalCssClass=""ml-auto""/>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="流式布局">
+    <RunTemplate>
+        <div class="clearfix">
+            <BootSpinner AdditionalCssClass="float-right"/>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""clearfix"">
+    <BootSpinner AdditionalCssClass=""float-right""/>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>Grow</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否使用 Grow 样式。</td>
+    </tr>
+    <tr>
+        <td>Color</td>
+        <td>Nullable&lt;Color></td>
+        <td>设置旋转容器的主题颜色。</td>
+    </tr>
+    <tr>
+        <td>Size</td>
+        <td>Size</td>
+        <td>设置旋转容器的尺寸。</td>
+    </tr>
+</ArgumentDescriptionTable>

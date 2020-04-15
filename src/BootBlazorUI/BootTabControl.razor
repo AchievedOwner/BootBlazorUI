@@ -1,6 +1,6 @@
-﻿@inherits BaseComponent
+﻿@inherits BootComponentBase
 
-<ul id="@Id" class="@GetCssClass()" role="tablist" @attributes="Attributes">
+<ul id="@Id" class="@BuildCssClassString()" role="tablist" @attributes="AdditionalAttributes">
     @for (int i = 0; i < Pages.Count; i++)
     {
         var page = Pages[i];
@@ -12,7 +12,7 @@
     }
 </ul>
 
-<div class="tab-content pt-2" style="@(GetStyles())">
+<div class="tab-content pt-2" style="@(BuildStylesString())">
     <CascadingValue Value="this">
         @ChildContent
     </CascadingValue>

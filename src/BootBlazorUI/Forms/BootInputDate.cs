@@ -87,12 +87,12 @@ namespace BootBlazorUI.Forms
             }
         }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            classList.Add("form-control");
+            collection.Add("form-control");
             if(Size!= Size.Default)
             {
-                classList.Add(ComponentUtil.GetSizeCssClass(Size, "form-control-"));
+                collection.Add(ComponentUtil.GetSizeCssClass(Size, "form-control-"));
             }
         }
 

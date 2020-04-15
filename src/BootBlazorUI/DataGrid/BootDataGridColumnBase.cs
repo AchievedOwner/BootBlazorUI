@@ -8,7 +8,7 @@ namespace BootBlazorUI.DataGrid
     /// <summary>
     /// 表示 DataGrid 列的基类，这是一个抽象类。
     /// </summary>
-    public abstract class BootDataGridColumnBase:BaseComponent
+    public abstract class BootDataGridColumnBase:BootComponentBase
     {
         /// <summary>
         /// 设置列的标题。
@@ -53,7 +53,7 @@ namespace BootBlazorUI.DataGrid
             }
         }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
 
         }

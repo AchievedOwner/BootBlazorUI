@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace BootBlazorUI.Forms
+namespace BootBlazorUI
 {
+    using Forms;
     /// <summary>
-    /// 呈现一个按钮元素。若配合 <see cref="BootEditForm"/> 组件可实现表单验证和提交的交互模式。
+    /// 呈现 button 的按钮元素。可配合 <see cref="BootEditForm"/> 组件可实现表单验证和提交的交互模式。
     /// </summary>
-    public class BootButton : BaseComponent
+    public class BootButton : BootComponentBase
     {
         private readonly Func<Task> _handleSubmitDelegate;
 
@@ -138,6 +139,14 @@ namespace BootBlazorUI.Forms
         /// </summary>
         public bool IsSubmitting { get; private set; }
 
+        protected override void OnParametersSet()
+        {
+            if (OnSubmitTemplate != null && NonSubmitTemplate==null)
+            {
+                throw new InvalidOperationException($"若设置了 {nameof(OnSubmitTemplate)} 属性，则必须要设置 {nameof(NonSubmitTemplate)} 来代替 {nameof(ChildContent)} 属性");
+            }
+        }
+
         #region BuildRenderTree
         /// <summary>
         /// 构建按钮的 DOM 树形结构。
@@ -145,15 +154,13 @@ namespace BootBlazorUI.Forms
         /// <param name="builder"></param>
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            var id = Id;
-            builder.OpenRegion(id.GetHashCode());
             builder.OpenElement(0, "button");
-            builder.AddAttribute(1, "id", id);
+            AddIdAttribute(builder, 1);
             builder.AddAttribute(2, "type", $"{Type.ToString().ToLower()}");
             builder.AddAttribute(3, "disabled", Disabled);
-            builder.AddAttribute(4, "class", GetCssClass());
-            builder.AddAttribute(5, "style", GetStyles());
-            builder.AddMultipleAttributes(6, base.Attributes);
+            AddCssClassAttribute(builder, 4);
+            AddStyleAttribute(builder, 5);
+            AddAddtionalAttributes(builder, 6);
 
             if (CascadedEditContext == null)
             {
@@ -171,7 +178,14 @@ namespace BootBlazorUI.Forms
             {
                 if (OnSubmitTemplate == null)
                 {
-                    builder.AddContent(8, (MarkupString)OnSubmitText);
+                    builder.AddContent(8, content=>
+                    {
+                        content.OpenComponent<BootSpinner>(12);
+                        content.AddAttribute(13, nameof(Size), Size.SM);
+                        content.AddAttribute(14, nameof(AdditionalCssClass), "mr-1");
+                        content.CloseComponent();
+                        content.AddContent(15, OnSubmitText);
+                    });
                 }
                 else
                 {
@@ -192,39 +206,30 @@ namespace BootBlazorUI.Forms
 
 
             builder.CloseElement();
-            builder.CloseRegion();
         }
         #endregion
-
-        protected override void OnParametersSet()
-        {
-            if (OnSubmitTemplate != null && NonSubmitTemplate==null)
-            {
-                throw new InvalidOperationException($"若设置了 {nameof(OnSubmitTemplate)} 属性，则必须要设置 {nameof(NonSubmitTemplate)} 来代替 {nameof(ChildContent)} 属性");
-            }
-        }
 
         /// <summary>
         /// 构建按钮的 class 名称。
         /// </summary>
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            classList.Add("btn");
+            collection.Add("btn");
 
             if (Blocked)
             {
-                classList.Add("btn-block");
+                collection.Add("btn-block");
             }
 
-            classList.Add(string.Format(" btn{0}-{1}", (Outline ? "-outline" : string.Empty), ComponentUtil.GetColorCssClass(Color)));
+            collection.Add(string.Format(" btn{0}-{1}", (Outline ? "-outline" : string.Empty), ComponentUtil.GetColorCssClass(Color)));
             if (Size != Size.Default)
             {
-                classList.Add(ComponentUtil.GetSizeCssClass(Size, "btn-"));
+                collection.Add(ComponentUtil.GetSizeCssClass(Size, "btn-"));
             }
 
             if (Actived)
             {
-                classList.Add("active");
+                collection.Add("active");
             }
         }
 

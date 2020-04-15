@@ -67,10 +67,10 @@
 </PresentationPart>
 <PresentationPart Title="关闭按钮">
     <Description>
-        @Code.GetCode("设置 `Closable` 为 `true` 时，则会在右侧显示一个“X”，点击后可关闭消息框。关闭后，只能通过代码才能将其再次显示。")
+        @Code.GetCode("设置 `Dismisable` 为 `true` 时，则会在右侧显示一个“X”，点击后可关闭消息框。关闭后，只能通过代码才能将其再次显示。")
     </Description>
     <RunTemplate>
-        <BootAlert Color="Color.Danger" Closable="true">
+        <BootAlert Color="Color.Danger" Dismisable="true">
             对不起，您填写的信息有误"
         </BootAlert>
     </RunTemplate>
@@ -78,7 +78,7 @@
 
         @Code.GetCode(@"
 ```html
-<BootAlert Color=""Color.Danger"" Closable=""true"">
+<BootAlert Color=""Color.Danger"" Dismisable=""true"">
 对不起，您填写的信息有误
 </BootAlert>
 ```
@@ -93,14 +93,14 @@
     <RunTemplate>
         <BootButton Color="Color.Success" OnClick="@(()=>alertShowHide.Show())">显示</BootButton>
         <BootButton Color="Color.Danger" OnClick="@(()=>alertShowHide.Hide())">隐藏</BootButton>
-        <BootAlert CssClass="mt-3" Color="Color.Info" @ref="alertShowHide">我是一个可爱的对话框</BootAlert>
+        <BootAlert AdditionalCssClass="mt-3" Color="Color.Info" @ref="alertShowHide">我是一个可爱的对话框</BootAlert>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootButton Color=""Color.Success"" OnClick=""@(() => alertShowHide.Show())"">显示</BootButton>
 <BootButton Color=""Color.Danger"" OnClick=""@(()=>alertShowHide.Hide())"">隐藏</BootButton>
-<BootAlert CssClass=""mt-3"" Color=""Color.Info"" @ref=""alertShowHide"">我是一个可爱的对话框</BootAlert>
+<BootAlert AdditionalCssClass=""mt-3"" Color=""Color.Info"" @ref=""alertShowHide"">我是一个可爱的对话框</BootAlert>
 ```
 ```cs
 @code{
@@ -121,7 +121,7 @@ BootAlert alertShowHide = new BootAlert();
         <td>设置消息框的主题颜色。默认是 <code>Primary</code>。</td>
     </tr>
     <tr>
-        <td>Closable</td>
+        <td>Dismisable</td>
         <td>Boolean</td>
         <td>
             设置一个布尔值，表示是否在右侧显示一个关闭的“X”按钮，点击后则会隐藏该警告框。

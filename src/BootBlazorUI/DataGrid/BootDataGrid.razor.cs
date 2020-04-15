@@ -134,33 +134,33 @@ namespace BootBlazorUI.DataGrid
         /// <returns>若已加载完成，返回 <c>true</c>；否则返回 <c>false</c>。</returns>
         public bool IsCompleted { get; private set; }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            classList.Add("table");
+            collection.Add("table");
 
             if (Striped)
             {
-                classList.Add("table-striped");
+                collection.Add("table-striped");
             }
             if (Bordered)
             {
-                classList.Add("table-bordered");
+                collection.Add("table-bordered");
             }
             if (Borderless)
             {
-                classList.Add("table-borderless");
+                collection.Add("table-borderless");
             }
             if (Dark)
             {
-                classList.Add("table-dark");
+                collection.Add("table-dark");
             }
             if (Hover)
             {
-                classList.Add("table-hover");
+                collection.Add("table-hover");
             }
             if (Small)
             {
-                classList.Add("table-sm");
+                collection.Add("table-sm");
             }
         }
     }

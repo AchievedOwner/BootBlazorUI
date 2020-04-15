@@ -1,8 +1,8 @@
-﻿@inherits BaseComponent
+﻿@inherits BootComponentBase
 
 
     <nav class="d-flex justify-content-center">
-        <ul class="@GetCssClass()" @attributes="Attributes">
+        <ul class="@BuildCssClassString()" @attributes="AdditionalAttributes" style="@BuildStylesString()">
             @if (CurrentPage <= 1)
             {
                 if (!HideOrDisable)

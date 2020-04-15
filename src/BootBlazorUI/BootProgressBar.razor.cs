@@ -89,21 +89,21 @@ namespace BootBlazorUI
             }
         }
 
-        protected override void BuildCssClass(List<string> classList)
+        protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            classList.Add(ComponentUtil.GetColorCssClass(Color,"bg-"));
-            classList.Add("progress-bar");
+            collection.Add(ComponentUtil.GetColorCssClass(Color,"bg-"));
+            collection.Add("progress-bar");
             if (Striped)
             {
-                classList.Add("progress-bar-striped");
+                collection.Add("progress-bar-striped");
             }
         }
 
-        protected override void BuildStyles(List<string> styleList)
+        protected override void CreateComponentStyle(ICollection<string> collection)
         {
             if (Height.HasValue)
             {
-                styleList.Add($"height:{Height}px");
+                collection.Add($"height:{Height}px");
             }
         }
 

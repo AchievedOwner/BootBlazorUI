@@ -21,7 +21,7 @@ namespace BootBlazorUI.Docs
 
         public static string GetVersion(bool full = false)
         {
-            var version = typeof(BaseComponent).Assembly.GetName().Version;
+            var version = typeof(BootComponentBase).Assembly.GetName().Version;
             if (version == null)
             {
                 return string.Empty;

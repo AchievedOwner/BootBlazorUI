@@ -67,27 +67,31 @@ namespace BootBlazorUI.Forms
         /// <summary>
         /// 构建组件内置的 class 样式。
         /// </summary>
-        protected virtual void BuildCssClass(List<string> classList) { }
+        protected virtual void CreateComponentCssClass(ICollection<string> collection) { }
 
         /// <summary>
         /// 构建组件内置的 style 样式。
         /// </summary>
-        protected virtual void BuildStyles(List<string> styleList) { }
+        protected virtual void CreateComponentStyle(ICollection<string> collection) { }
 
         /// <summary>
         /// 获取用空格分割的 class 样式。
         /// </summary>
         /// <returns>用空格分割的样式字符串。</returns>
-        public string GetCssClass()
+        public string BuildCssClassString()
         {
-            var classList = new List<string>();
+            var collection = new List<string>();
             if (!string.IsNullOrWhiteSpace(CssClass))
             {
-                classList.Add(CssClass);
+                collection.Add(CssClass);
             }
 
-            BuildCssClass(classList);
-            return string.Join(" ", classList);
+            CreateComponentCssClass(collection);
+            if (collection.Any())
+            {
+                return string.Join(" ", collection);
+            }
+            return null;
         }
 
         /// <summary>
@@ -96,15 +100,15 @@ namespace BootBlazorUI.Forms
         /// <returns>用分号隔开的 style 样式。</returns>
         public string GetStyles()
         {
-            var styleList = new List<string>();
+            var collection = new List<string>();
             if (!string.IsNullOrWhiteSpace(Styles))
             {
-                styleList.Add(Styles);
+                collection.Add(Styles);
             }
-            BuildStyles(styleList);
-            if (styleList.Any())
+            CreateComponentStyle(collection);
+            if (collection.Any())
             {
-                return string.Join(";", styleList);
+                return string.Join(";", collection);
             }
             return null;
         }
@@ -135,7 +139,7 @@ namespace BootBlazorUI.Forms
             builder.AddAttribute(sequence++, "name", Name);
             BuildValueBindingAttribute(builder, sequence);
             builder.AddAttribute(sequence++, "onchange", BuildChangeEventCallback());
-            builder.AddAttribute(sequence++, "class", GetCssClass());
+            builder.AddAttribute(sequence++, "class", BuildCssClassString());
             builder.AddAttribute(sequence++, "style", GetStyles());
             builder.AddAttribute(sequence++, "placeholder", Placeholder);
             builder.AddAttribute(sequence++, "readonly", ReadOnly);

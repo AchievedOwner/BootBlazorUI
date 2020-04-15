@@ -15,11 +15,10 @@
 * 组件分为基础组件和集成组件。集成组件是将多个基础组件组合起来，形成更为强大的组件，并且更注重交互性和实用性；
 ")
 </PageTitle>
-
     <BootTabControl MinHeight="auto" Pills="true">
 
-        <BootTabPage Title="进度">
-            <small>当前版本：<Badge>v@(Program.GetVersion())</Badge></small>
+        <BootTabControlPage Title="进度">
+            <small>当前版本：<BootBadge>v@(Program.GetVersion())</BootBadge></small>
             <ul>
                 <li><s>警告消息框（BootAlert）</s></li>
                 <li><s>徽章（BootBadge）</s></li>
@@ -40,9 +39,18 @@
                 <li>提示框（Tooltip）</li>
                 <li>栅格（Grid）</li>
             </ul>
-        </BootTabPage>
-        <BootTabPage Title="更新日志">
+        </BootTabControlPage>
+        <BootTabControlPage Title="更新日志">
             @Code.GetCode(@"
+#### 0.7
+*【新增】AdditionalCssClass 属性，用于追加组件默认样式以外的其他 class 类名称
+*【新增】AdditionalStyle 属性，用于追加组件默认样式以为的其他 style 样式
+*【新增】OverrideCssClass 属性，用于覆盖组件的 class 类名称
+*【新增】OverrideStyle 属性，用于覆盖组件的 style 样式
+*【新增】BootSpinner 组件
+*【修复】BootBadge 组件命名错误
+*【优化】BaseComponent 重命名为 BootComponentBase
+*【优化】BootButton 默认提交时的文本增加 BootSpinner 组件
 #### 0.6
 * 【新增】表单组件，包括单行文本框、多行文本框、单选按钮、多选按钮、日期选择、下拉框等组件
 * 【新增】表单验证组件，可以结合 BootButton 对提交的表单形成交互性
@@ -69,15 +77,15 @@
 #### 0.1
 * 初始化项目和基本的组件
 ")
-        </BootTabPage>
-        <BootTabPage Title="支持环境">
+        </BootTabControlPage>
+        <BootTabControlPage Title="支持环境">
             @Code.GetCode(@"
 - .NET CORE 3.1+
 - .NET Standard 2.0+
 - [浏览器支持](https://v4.bootcss.com/docs/getting-started/browsers-devices/)
 ")
-        </BootTabPage>
-        <BootTabPage Title="安装与使用">
+        </BootTabControlPage>
+        <BootTabControlPage Title="安装与使用">
             @Code.GetCode(@"
 * 使用 Nuget Package Manager 安装包：`> Install-Package BootBlazorUI`；
 * 引入内置的 bootstrap 样式 `<link href=""_content/BootBlazorUI/bootstrap.min.css"" rel=""stylesheet""/>` ，或你也可以自己引入 bootstrap 的样式；
@@ -85,5 +93,5 @@
 * 引入组件脚本：`<script src=""_content/BootBlazorUI/components.js""></script>`；
 * 使用 `@using BootBlazorUI` 引入命名空间，你可以在 `_Import.cshtml`(Mvc/Razor Page) | `_Import.razor`(Blazor) 中引入全局命名空间，或在某个页面中引入命名空间；
 ")
-        </BootTabPage>
+        </BootTabControlPage>
     </BootTabControl>

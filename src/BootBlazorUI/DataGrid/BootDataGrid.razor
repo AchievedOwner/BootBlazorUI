@@ -1,8 +1,8 @@
-﻿@inherits BaseComponent
+﻿@inherits BootComponentBase
 @using System.Collections
 <div class="row table-responsive bootblazor-datagrid">
     <div class="grid-header" style="@(FixHeader?"position:relative;top:0":string.Empty)">
-        <table class="@GetCssClass()" style="@GetStyles()">
+        <table class="@BuildCssClassString()" style="@BuildStylesString()">
             <thead>
                 <tr>
                     @if (RowNumber)
@@ -20,7 +20,7 @@
         </table>
     </div>
     <div class="grid-row" style="@GetRowStyle()">
-        <table class="@GetCssClass()" style="@GetStyles()">
+        <table class="@BuildCssClassString()" style="@BuildStylesString()">
             <tbody>
                 @if (IsCompleted)
                 {
@@ -38,18 +38,18 @@
                             }
                             @foreach (var col in Columns)
                             {
-                                <td class="@col.GetCssClass()" style="@(col.GetWidthStyleString())">
-                                    @{ 
-                                        if(col is BootDataGridFieldColumn fieldColumn)
+                                <td class="@col.BuildCssClassString()" style="@(col.GetWidthStyleString())">
+                                    @{
+                                        if (col is BootDataGridFieldColumn fieldColumn)
                                         {
                                             var value = item.GetValue(fieldColumn.Field);
                                             if (!string.IsNullOrWhiteSpace(fieldColumn.Format))
                                             {
-                                                value = string.Format(fieldColumn.Format,value);
+                                                value = string.Format(fieldColumn.Format, value);
                                             }
                                             @value;
                                         }
-                                        if(col is BootDataGridTemplateColumn templateColumn)
+                                        if (col is BootDataGridTemplateColumn templateColumn)
                                         {
                                             @templateColumn.ChildContent(item)
                                         }
@@ -58,7 +58,7 @@
                             }
                         </tr>
                     }
-                                            }
+                }
                 else
                 {
                     <tr>
@@ -73,10 +73,9 @@
     <div class="grid-footer border-top bg-light pt-3 flex-row align-content-between" style="@(FixFooter?"position:relative;bottom:0":"")">
 
         @if (ShowPagination)
-                                        {
-                                            if (FootTemplate == null)
-                                            {
-
+        {
+            if (FootTemplate == null)
+            {
                 <BootPagination Size="Size.SM" PageSize="PageSize" CurrentPage="CurrentPage" TotalCount="TotalRecordCount" OnPageChanged="LoadPaginationData" PageNumberCount="PageNumberCount" FirstPageText="<" LastPageText=">" PreviousPageText="<<" NextPageText=">>" />
             }
             else

@@ -39,14 +39,14 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         private string GetRowStyle()
         {
-            var styleList = new List<string>();
+            var collection = new List<string>();
 
             if (FixRowHeight.HasValue)
             {
-                styleList.Add($"height:{FixRowHeight.Value}px;overflow-y:scroll");
+                collection.Add($"height:{FixRowHeight.Value}px;overflow-y:scroll");
             }
 
-            return string.Join(";", styleList);
+            return string.Join(";", collection);
         }
 
         /// <summary>

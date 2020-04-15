@@ -142,10 +142,10 @@
 </PresentationPart>
 <PresentationPart Title="动画演示">
     <Description>
-        下面演示一个进度条加载的动画，点击按钮后，进度条开始运行，按钮呈现禁用状态；当到达 100% 后停止加载并将按钮重置为可点击状态。
+        下面演示一个进度条加载的动画，点击按钮后，进度条开始运行，按钮呈现禁用状态；当到达 100% 后停止加载并将按钮重置为可点击状态。<strong>要设置 Id 值才会有效果</strong>。
     </Description>
     <RunTemplate>
-        <BootProgressBar @ref="pb">
+        <BootProgressBar @ref="pb" Id="progress">
             <Template>
                 @(context.Percentage)%
             </Template>
@@ -164,7 +164,7 @@
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootProgressBar @ref=""pb"">
+<BootProgressBar @ref=""pb"" Id=""progress"">
 <Template>
     @(context.Percentage)%
 </Template>
