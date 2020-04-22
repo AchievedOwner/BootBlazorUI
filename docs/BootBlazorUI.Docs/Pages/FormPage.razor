@@ -599,3 +599,70 @@
 
     UserViewModel userModel = new UserViewModel();
 }
+
+<PresentationPart Title="特定按钮可禁用表单的验证">
+    <Description>
+        如果将 <code>BootButton</code> 放在了 <code>BootEditForm</code> 里时，当点击按钮后，会触发表单验证。
+        某些情况下需要将某些按钮操作不触发表单验证操作，可设置 <code>RelateEditContext="false"</code> 
+        取消相关联的 <code>EditContent</code> 对象。
+    </Description>
+    <RunTemplate>
+        <BootEditForm Model="userModel">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label>姓名</label>
+                <BootInputText @bind-Value="userModel.Name" />
+                <ValidationMessage For="()=>userModel.Name" />
+            </div>
+            <div class="form-group">
+                <BootButton OnValidSubmit="@(_=>_js.InvokeVoidAsync("alert","表单已提交"))">
+                    提交
+                </BootButton>
+                <BootButton Type="BootButton.ButtonType.Reset" Color="Color.Light">
+                    重置
+                </BootButton>
+                <BootButton RelateEditContext="false" Type="BootButton.ButtonType.Reset" Color="Color.Warning">
+                    不验证的重置
+                </BootButton>
+            </div>
+        </BootEditForm>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootEditForm Model=""userModel"">
+    <DataAnnotationsValidator />
+    <div class=""form-group"">
+        <label>姓名</label>
+        <BootInputText @bind-Value=""userModel.Name"" />
+        <ValidationMessage For=""()=>userModel.Name"" />
+    </div>
+    <div class=""form-group"">
+        <BootButton OnValidSubmit=""@(_=>_js.InvokeVoidAsync(""alert"",""表单已提交""))"">
+            提交
+        </BootButton>
+        <BootButton Type=""BootButton.ButtonType.Reset"" Color=""Color.Light"">
+            重置
+        </BootButton>
+        <BootButton RelateEditContext=""false"" Type=""BootButton.ButtonType.Reset"" Color=""Color.Warning"">
+            不验证的重置
+        </BootButton>
+    </div>
+</BootEditForm>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="BootEditForm 的属性">
+    <tr>
+        <td>Model</td>
+        <td>Object</td>
+        <td>指定最上层的表单模型绑定对象。一个新的 <code>EditContext</code> 对象将被该模型构造。若设置了该属性，则不需要再设置 <code>EditContext</code> 属性。</td>
+    </tr>
+    <tr>
+        <td>EditContext</td>
+        <td>EditContext</td>
+        <td>显式地提供表单编辑上下文，若设置了 <code>Model</code> 的值，则不要再设置 <code>EditContext</code> 属性。然后该值将取代 <code>EditContext.Model</code> 的属性。</td>
+    </tr>
+</ArgumentDescriptionTable>

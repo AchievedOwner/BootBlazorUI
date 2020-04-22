@@ -2,13 +2,6 @@
 BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。BootBlazorUI 更偏向于交互和实用性，而不仅仅是静态的组件。
 
 BootBlazorUI 更偏向于交互性和实用性，而不仅仅是静态的组件。
-
-# 特性
-* 依托于 VS 的强大 IDE，如同使用 HTML 组件一样容易使用这些组件；
-* 简单易用，让那些对 UI 并不擅长的程序员也能轻而易举的构建出想要的组件功能，再也不用去记那些 Bootstrap 组件的样式；
-* 教科书般的注释，每一个参数都有很清晰的注释，形成注释即文档（Code As A Document）的风格；
-* 组件分为基础组件和集成组件。集成组件是将多个基础组件组合起来，形成更为强大的组件，并且更注重交互性和实用性；
-
 # 支持环境
 * .NET CORE 3.1+ SDK
 * .NET Standard 2.0+
@@ -17,10 +10,8 @@ BootBlazorUI 更偏向于交互性和实用性，而不仅仅是静态的组件�
 > Install-Package BootBlazorUI
 
 # 快速上手
-* 使用 Nuget Package Manager 安装包：`> Install-Package BootBlazorUI`；
 * 引入内置的 bootstrap 样式 `<link href=_content/BootBlazorUI/bootstrap.min.css" rel="stylesheet/>` ，或你也可以自己引入 bootstrap 的样式；
 * 引入组件样式：`<link href="_content/BootBlazorUI/components.css" rel="stylesheet" />`
-* 引入所需的脚本：`<script src="_content/BootBlazorUI/components.js"></script>`；
 * 使用 `@using BootBlazorUI` 引入命名空间，你可以在 `_Import.cshtml`(Mvc/Razor Page) | `_Import.razor`(Blazor) 中引入全局命名空间，或在某个页面中引入命名空间；
 
 

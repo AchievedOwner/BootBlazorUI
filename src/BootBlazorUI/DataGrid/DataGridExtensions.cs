@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BootBlazorUI.DataGrid
 {
+    /// <summary>
+    /// DataGrid 扩展。
+    /// </summary>
     public static class DataGridExtensions
     {
         /// <summary>

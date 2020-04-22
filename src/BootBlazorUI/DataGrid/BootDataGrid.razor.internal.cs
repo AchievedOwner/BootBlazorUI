@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace BootBlazorUI.DataGrid
@@ -9,21 +10,19 @@ namespace BootBlazorUI.DataGrid
     partial class BootDataGrid
     {
         /// <summary>
+        /// 获取数据源的数据。
+        /// </summary>
+        IReadOnlyList<object> Data { get; set; }
+
+        /// <summary>
         /// 表示数据表格的列。
         /// </summary>
         internal ICollection<BootDataGridColumnBase> Columns { get; private set; } = new HashSet<BootDataGridColumnBase>();
 
-
         /// <summary>
-        /// 获取当前页码。
+        /// 获取一个布尔值，是否固定列头。
         /// </summary>
-        internal int CurrentPage { get; private set; } = 1;
-
-        /// <summary>
-        /// 设置数据源。
-        /// </summary>
-        public IReadOnlyList<object> DataSource { get; private set; }
-
+        internal bool FixHeader => RowHeight.HasValue;
         /// <summary>
         /// 获取每一行的 css 集合。
         /// </summary>
@@ -41,9 +40,9 @@ namespace BootBlazorUI.DataGrid
         {
             var collection = new List<string>();
 
-            if (FixRowHeight.HasValue)
+            if (RowHeight.HasValue)
             {
-                collection.Add($"height:{FixRowHeight.Value}px;overflow-y:scroll");
+                collection.Add($"height:{RowHeight.Value}px;overflow-y:scroll");
             }
 
             return string.Join(";", collection);
@@ -73,26 +72,6 @@ namespace BootBlazorUI.DataGrid
             return colSpan;
         }
 
-
-        /// <summary>
-        /// 加载指定页码的分页数据。
-        /// </summary>
-        /// <param name="page">当前页码。</param>
-        async Task LoadPaginationData(int page)
-        {
-            IsCompleted = false;
-            var dataSource = await Task.Run(() => DataBind(page));
-
-            if(!(dataSource is IEnumerable data))
-            {
-                throw new InvalidOperationException($"数据源必须实现 {nameof(IEnumerable)} 接口");
-            }
-            DataSource = data.Cast<object>().ToList();
-
-            CurrentPage = page;
-            IsCompleted = true;
-            StateHasChanged();
-        }
 
         /// <summary>
         /// 获取行的 css 字符串。

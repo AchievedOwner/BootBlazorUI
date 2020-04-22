@@ -27,8 +27,7 @@ namespace BootBlazorUI.Forms
         public object Model { get; set; }
 
         /// <summary>
-        /// 显式地提供表单编辑上下文，若设置了 <see cref="Model"/> 的值，则不要再设置 <see cref="EditContext"/> 属性。
-        /// 然后该值将取代 <see cref="EditContext.Model"/> 的属性。
+        /// 显式地提供表单编辑上下文，若设置了 <see cref="Model"/> 的值，则不要再设置 <see cref="EditContext"/> 属性。然后该值将取代 <see cref="EditContext.Model"/> 的属性。
         /// </summary>
         [Parameter]
         public EditContext EditContext { get; set; }
@@ -67,6 +66,7 @@ namespace BootBlazorUI.Forms
             builder.OpenRegion(_fixedEditContext.GetHashCode());
 
             builder.OpenElement(0, "form");
+            AddCommonAttributes(builder);
             builder.AddMultipleAttributes(1, AdditionalAttributes);
             builder.OpenComponent<CascadingValue<EditContext>>(2);
             builder.AddAttribute(3, "Value", _fixedEditContext);

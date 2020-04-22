@@ -5,11 +5,17 @@ using Microsoft.AspNetCore.Components;
 namespace BootBlazorUI
 {
     /// <summary>
-    /// 表示标签控件。
+    /// 呈现 ul 元素的标签页面组件。
     /// </summary>
     partial class BootTabControl
     {
-       
+        /// <summary>
+        /// 初始化 <see cref="BootTabControl"/> 类的新实例
+        /// </summary>
+        public BootTabControl()
+        {
+
+        }  
 
         /// <summary>
         /// 设置包含 <see cref="BootTabControlPage"/> 的标签页。

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Markdig;
-using Markdig.Extensions;
 using Markdig.SyntaxHighlighting;
 using Microsoft.AspNetCore.Components;
 

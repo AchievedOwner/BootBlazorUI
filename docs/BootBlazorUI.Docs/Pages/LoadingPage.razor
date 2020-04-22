@@ -1,0 +1,248 @@
+﻿@page "/loading"
+
+<PageTitle Title="加载层(Loading)">
+    根据需要呈现一个带有遮罩层的加载提示，可以很有好滴提供给用户一个进行中的状态体验。
+</PageTitle>
+
+<PresentationPart Title="简单示例">
+    <Description>
+        点击按钮则显示一个带有 Loading 提示的遮罩层，5秒后自动隐藏。
+    </Description>
+    <RunTemplate>
+        <BootButton OnClick="e=>loading.Show()">显示遮罩层</BootButton>
+        <BootLoading @ref="loading" Timeout="5" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButton OnClick=""e=>Show()"">显示遮罩层</BootButton>
+<BootLoading @ref=""loading""  Timeout=""5""/>
+```
+```cs
+BootLoading loading;
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    BootLoading loading;
+    BootLoading loadingInternal;
+}
+
+<PresentationPart Title="局部呈现">
+    <Description>
+        只要在父元素加上 <code>class="position-relative"</code> 样式即可在该组件内部呈现。<strong>记得设置高度。</strong>
+    </Description>
+    <RunTemplate>
+        <div class="position-relative" style="height:200px">
+            我的高度是200px
+            <br />
+            <BootButton OnClick="e=>loadingInternal.Show()">显示遮罩层</BootButton>
+            <BootLoading @ref="loadingInternal" Timeout="5" />
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""position-relative"" style=""height:200px"">
+    我的高度是200px
+    <br />
+    <BootButton OnClick=""e=>loadingInternal.Show()"">显示遮罩层</BootButton>
+    <BootLoading @ref=""loadingInternal"" Timeout=""5"" />
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="配色">
+    <Description>
+        设置 <code>Color</code> 选择背景颜色，并且将自动适配文字的颜色。
+    </Description>
+    <RunTemplate>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Primary" IsShown="true" />
+        </div>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Secondary" IsShown="true" />
+        </div>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Info" IsShown="true" />
+        </div>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Warning" IsShown="true" />
+        </div>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Success" IsShown="true" />
+        </div>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Danger" IsShown="true" />
+        </div>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Light" IsShown="true" />
+        </div>
+        <div class="position-relative" style="height:50px">
+            <BootLoading Color="Color.Dark" IsShown="true" />
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Primary"" IsShown=""true"" />
+</div>
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Secondary"" IsShown=""true"" />
+</div>
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Info"" IsShown=""true"" />
+</div>
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Warning"" IsShown=""true"" />
+</div>
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Success"" IsShown=""true"" />
+</div>
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Danger"" IsShown=""true"" />
+</div>
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Light"" IsShown=""true"" />
+</div>
+<div class=""position-relative"" style=""height:50px"">
+    <BootLoading Color=""Color.Dark"" IsShown=""true"" />
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="自定义文字">
+    <RunTemplate>
+        <div class="position-relative" style="height:100px;">
+            <BootLoading Color="Color.Dark" IsShown="true">我是黑色的背景</BootLoading>
+        </div>
+        <div class="position-relative" style="height:100px;">
+            <BootLoading Color="Color.Success" IsShown="true">Hello World</BootLoading>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""position-relative"" style=""height:100px;"">
+    <BootLoading Color=""Color.Dark"" IsShown=""true"">我是黑色的背景</BootLoading>
+</div>
+<div class=""position-relative"" style=""height:100px;"">
+    <BootLoading Color=""Color.Success"" IsShown=""true"">Hello World</BootLoading>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="透明度">
+    <Description>
+        设置 <code>Opacity</code> 的值设置遮罩层的透明度，范围是 0-1 之间且保留一位小数。默认是 0.5。
+    </Description>
+    <RunTemplate>
+        <div class="position-relative" style="height:50px;">
+            <BootLoading Color="Color.Dark" IsShown="true" Opacity="0.9">不是很透明</BootLoading>
+        </div>
+        <div class="position-relative" style="height:50px;">
+            <BootLoading Color="Color.Danger" IsShown="true" Opacity="0.2">非常透明</BootLoading>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""position-relative"" style=""height:50px;"">
+    <BootLoading Color=""Color.Dark"" IsShown=""true"" Opacity=""0.9"">不是很透明</BootLoading>
+</div>
+<div class=""position-relative"" style=""height:50px;"">
+    <BootLoading Color=""Color.Danger"" IsShown=""true"" Opacity=""0.2"">非常透明</BootLoading>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="纵向对齐方式">
+    <Description>
+        设置 <code>HorizontalAlign</code> 可以使文字顶部（start）、底部（end）或居中（center）对齐。默认是在中间。
+    </Description>
+    <RunTemplate>
+        <div class="position-relative" style="height:100px;">
+            <BootLoading Color="Color.Primary" HorizontalAlign="Flex.Start" IsShown="true">我在顶部</BootLoading>
+        </div>
+        <div class="position-relative" style="height:100px;">
+            <BootLoading Color="Color.Warning" IsShown="true">我在中间</BootLoading>
+        </div>
+        <div class="position-relative" style="height:100px;">
+            <BootLoading Color="Color.Danger" HorizontalAlign="Flex.End" IsShown="true">我在中间</BootLoading>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""position-relative"" style=""height:100px;"">
+    <BootLoading Color=""Color.Primary"" HorizontalAlign=""Flex.Start"" IsShown=""true"">我在顶部</BootLoading>
+</div>
+<div class=""position-relative"" style=""height:100px;"">
+    <BootLoading Color=""Color.Warning"" IsShown=""true"">我在中间</BootLoading>
+</div>
+<div class=""position-relative"" style=""height:100px;"">
+    <BootLoading Color=""Color.Danger"" HorizontalAlign=""Flex.End"" IsShown=""true"">我在中间</BootLoading>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>Color</td>
+        <td>Color</td>
+        <td>设置遮罩层的背景颜色。默认是 <code>Color.Light</code> 。</td>
+    </tr>
+    <tr>
+        <td>Opacity</td>
+        <td>Double</td>
+        <td>设置遮罩层的透明度。默认 0.5。值在0-1之间。</td>
+    </tr>
+    <tr>
+        <td>HorizontalAlign</td>
+        <td>Flex</td>
+        <td>设置遮罩层显示内容的纵向对齐方式。默认是 <code>Flex.Center</code> 居中显示。</td>
+    </tr>
+    <tr>
+        <td>IsShown</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否显示该组件。</td>
+    </tr>
+    <tr>
+        <td>Timeout</td>
+        <td>Nullable&lt;int></td>
+        <td>设置一个超时时间，单位是秒。超过该时间后组件将自动隐藏，null 表示不会自动隐藏。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="方法">
+    <tr>
+        <td>Show</td>
+        <td>Task</td>
+        <td>显示遮罩层。</td>
+    </tr>
+    <tr>
+        <td>Hide</td>
+        <td>Task</td>
+        <td>隐藏遮罩层。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="事件">
+    <tr>
+        <td>OnShown</td>
+        <td>EventCallback&lt;bool></td>
+        <td>设置当组件显示后触发的事件。</td>
+    </tr>
+    <tr>
+        <td>OnHidden</td>
+        <td>EventCallback&lt;bool></td>
+        <td>设置当组件隐藏后触发的事件。</td>
+    </tr>
+</ArgumentDescriptionTable>

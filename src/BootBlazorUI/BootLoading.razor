@@ -1,0 +1,7 @@
+﻿@inherits BootComponentBase
+
+<div class="@BuildCssClassString()" style="@BuildStylesString()">
+    <div class="d-flex flex-row justify-content-center flex-fill @ComponentUtil.GetFlexAlignCssClass(HorizontalAlign, "align-items-") @(ComponentUtil.GetReverseColorCssClass(Color, "text-"))">
+        @ChildContent
+    </div>
+</div>

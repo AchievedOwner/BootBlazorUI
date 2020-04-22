@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components;
 namespace BootBlazorUI
 {
     /// <summary>
-    /// 表示模态对话框。
+    /// 呈现 div 元素的莫泰对话框组件。
     /// </summary>
     partial class BootModal
     {

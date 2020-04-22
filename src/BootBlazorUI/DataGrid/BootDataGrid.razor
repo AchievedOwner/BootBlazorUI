@@ -1,88 +1,93 @@
 ﻿@inherits BootComponentBase
-@using System.Collections
-<div class="row table-responsive bootblazor-datagrid">
-    <div class="grid-header" style="@(FixHeader?"position:relative;top:0":string.Empty)">
-        <table class="@BuildCssClassString()" style="@BuildStylesString()">
-            <thead>
-                <tr>
-                    @if (RowNumber)
-                    {
-                        <th style="width:20px" class="text-center">
-                            #
-                        </th>
-                    }
-                    @foreach (var item in Columns)
-                    {
-                        <th style="@(item.GetWidthStyleString())">@item.GetTitle()</th>
-                    }
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="grid-row" style="@GetRowStyle()">
-        <table class="@BuildCssClassString()" style="@BuildStylesString()">
-            <tbody>
-                @if (IsCompleted)
-                {
 
-                    for (int i = 0; i < DataSource.Count; i++)
-                    {
-                        var item = DataSource[i];
-                        var rowIndex = i;
-                        <tr @key="rowIndex" @onclick="_=>ClickRow(item,rowIndex)" class="@GetRowCssByIndex(rowIndex)">
-                            @if (RowNumber)
-                            {
-                                <td class="text-center" style="width:20px">
-                                    @(i + 1)
-                                </td>
-                            }
-                            @foreach (var col in Columns)
-                            {
-                                <td class="@col.BuildCssClassString()" style="@(col.GetWidthStyleString())">
-                                    @{
-                                        if (col is BootDataGridFieldColumn fieldColumn)
-                                        {
-                                            var value = item.GetValue(fieldColumn.Field);
-                                            if (!string.IsNullOrWhiteSpace(fieldColumn.Format))
-                                            {
-                                                value = string.Format(fieldColumn.Format, value);
-                                            }
-                                            @value;
-                                        }
-                                        if (col is BootDataGridTemplateColumn templateColumn)
-                                        {
-                                            @templateColumn.ChildContent(item)
-                                        }
-                                    }
-                                </td>
-                            }
-                        </tr>
-                    }
-                }
-                else
-                {
+<div class="table-responsive bootblazor-datagrid">
+    <div class="d-flex flex-column flex-fill">
+        <section class="d-flex" style="@(FixHeader?"position:relative;top:0":string.Empty)">
+            <table class="@BuildCssClassString()" style="@BuildStylesString()">
+                <thead>
                     <tr>
-                        <td colspan="@GetColSpan()" class="text-center">
-                            数据加载中...
-                        </td>
+                        @if (RowNumber)
+                        {
+                            <th style="width:20px" class="text-center">
+                                #
+                            </th>
+                        }
+                        @foreach (var item in Columns)
+                        {
+                            <th style="@(item.GetWidthStyleString())">@item.GetTitle()</th>
+                        }
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="grid-footer border-top bg-light pt-3 flex-row align-content-between" style="@(FixFooter?"position:relative;bottom:0":"")">
+                </thead>
+            </table>
+        </section>
 
-        @if (ShowPagination)
-        {
-            if (FootTemplate == null)
-            {
-                <BootPagination Size="Size.SM" PageSize="PageSize" CurrentPage="CurrentPage" TotalCount="TotalRecordCount" OnPageChanged="LoadPaginationData" PageNumberCount="PageNumberCount" FirstPageText="<" LastPageText=">" PreviousPageText="<<" NextPageText=">>" />
-            }
-            else
-            {
-                @FootTemplate
-            }
-        }
+        <section class="d-flex flex-column" style="height:100%;min-height:100px;">
+            <div class="d-flex" style="@GetRowStyle()">
+
+                <table class="@BuildCssClassString()" style="@BuildStylesString()">
+                    <tbody>
+                        @if (IsCompleted)
+                        {
+                            if (!Data.Any())
+                            {
+                                <tr>
+                                    <td colspan="@GetColSpan()" class="text-center">
+                                        @DataEmptyTemplate
+                                    </td>
+                                </tr>
+                            }
+
+                            @for (int i = 0; i < Data.Count; i++)
+                            {
+                                var item = Data[i];
+                                var rowIndex = i;
+                                <tr @key="rowIndex" @onclick="_ => ClickRow(item, rowIndex)" class="@GetRowCssByIndex(rowIndex)">
+                                    @if (RowNumber)
+                                    {
+                                        <td class="text-center" style="width:20px">
+                                            @(i + 1)
+                                        </td>
+                                    }
+                                    @foreach (var col in Columns)
+                                    {
+                                        <td class="@col.BuildCssClassString()" style="@(col.GetWidthStyleString())">
+                                            @{
+                                                if (col is BootDataGridFieldColumn fieldColumn)
+                                                {
+                                                    var value = item.GetValue(fieldColumn.Field);
+                                                    if (!string.IsNullOrWhiteSpace(fieldColumn.Format))
+                                                    {
+                                                        value = string.Format(fieldColumn.Format, value);
+                                                    }
+                                                    @value;
+                                                }
+                                                if (col is BootDataGridTemplateColumn templateColumn)
+                                                {
+                                                    @templateColumn.ChildContent(item)
+                                                }
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="@GetColSpan()">
+                                    <div class="d-flex flex-column flex-fill align-items-center bg-light w-100 overflow-hidden p-2" style="height:100%;line-height:100%;opacity:0.4;left:0;top:0">
+                                        <div class="d-flex flex-row justify-content-center flex-fill align-items-center">
+                                            <BootSpinner Size="Size.SM" AdditionalCssClass="mr-1" />
+                                            数据拼命加载中...
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 </div>
 

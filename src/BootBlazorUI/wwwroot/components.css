@@ -1,24 +1,36 @@
-﻿.bootblazor-datagrid {
-}
-
-    .bootblazor-datagrid table {
-        margin-bottom: 0;
-    }
-
-    .bootblazor-datagrid .grid-header {
-    }
-
-    .bootblazor-datagrid .grid-row {
-    }
-
-    .bootblazor-datagrid .grid-footer {
-    }
-
-.bootblazor-pointer {
+﻿.cursor-pointer {
     cursor: pointer
 }
 .spinner-border-lg, .spinner-grow-lg {
     width: 3rem;
     height: 3rem;
     border-width: .3rem;
+}
+
+.text-size {
+    font-size:1rem!important;
+}
+.text-size-sm{
+    font-size:.8rem!important;
+}
+.text-size-xs{
+    font-size:.6rem!important;
+}
+.text-size-xxs{
+    font-size:.4rem!important;
+}
+.text-size-xxxs{
+    font-size:.2rem!important;
+}
+.text-size-lg{
+    font-size:1.2rem!important;
+}
+.text-size-xl{
+    font-size:1.4rem!important;
+}
+.text-size-xxl{
+    font-size:1.6rem!important;
+}
+.text-size-xxxl{
+    font-size:1.8rem!important;
 }

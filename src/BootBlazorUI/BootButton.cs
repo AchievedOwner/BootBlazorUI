@@ -74,6 +74,14 @@ namespace BootBlazorUI
         public RenderFragment ChildContent { get; set; }
 
         /// <summary>
+        /// 设置一个布尔值，表示当前按钮是否要关联在 <see cref="EditForm"/> 或 <see cref="BootEditForm"/> 的级联 <see cref="EditContext"/> 实例。默认是 <c>true</c>。
+        /// <para>
+        /// 若设置 <c>false</c>，则不能使用 <see cref="OnValidSubmit"/> 或 <see cref="OnInvalidSubmit"/> 事件对表单进行提交操作。
+        /// </para>
+        /// </summary>
+        [Parameter] public bool RelateEditContext { get; set; } = true;
+
+        /// <summary>
         /// 当点击按钮时触发的事件。
         /// </summary>
         [Parameter]
@@ -162,7 +170,7 @@ namespace BootBlazorUI
             AddStyleAttribute(builder, 5);
             AddAddtionalAttributes(builder, 6);
 
-            if (CascadedEditContext == null)
+            if (CascadedEditContext == null || !RelateEditContext)
             {
                 if (OnClick.HasDelegate)
                 {

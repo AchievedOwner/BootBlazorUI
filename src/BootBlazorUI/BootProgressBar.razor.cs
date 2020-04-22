@@ -7,7 +7,7 @@ using Microsoft.JSInterop;
 namespace BootBlazorUI
 {
     /// <summary>
-    /// 表示进度条。
+    /// 呈现一个 div 元素，包含进度条的组件。
     /// </summary>
     public partial class BootProgressBar
     {

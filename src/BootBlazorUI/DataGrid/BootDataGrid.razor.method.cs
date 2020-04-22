@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BootBlazorUI.DataGrid
@@ -23,29 +26,85 @@ namespace BootBlazorUI.DataGrid
                 throw new ArgumentException($"选择行的索引必须大于0，但实际的值是'{index}'", nameof(index));
             }
 
-            await OnRowClick.InvokeAsync(new BootDataGridSelectedRowEventArgs(item, index));
+            await OnRowSelected.InvokeAsync(new BootDataGridRowSelectedEventArgs(item, index));
+
+            if (RowSelectedColor.HasValue)
+            {
+                var bgColorCss = ComponentUtil.GetColorCssClass(RowSelectedColor.Value, "bg-");
+                var textColorCss =ComponentUtil.GetReverseColorCssClass(RowSelectedColor.Value,"text-");
+
+                if (!RowMultipleSelect)
+                {
+                    //如果不能多选行，则点击任意一行则会取消其他行的高亮。
+                    for (int i = 0; i < RowCssList.Count; i++)
+                    {
+                        RemoveRowCss(i, bgColorCss);
+                        RemoveRowCss(i, textColorCss);
+                    }
+                }
+
+                if (HasRowCss(index, bgColorCss))
+                {
+                    RemoveRowCss(index, bgColorCss);
+                    RemoveRowCss(index, textColorCss);
+                }
+                else
+                {
+                    AddRowCss(index, bgColorCss);
+                    AddRowCss(index, textColorCss);
+                }
+            }
         }
 
         /// <summary>
-        /// 向指定行追加指定的 css 类。
+        /// 向指定行添加指定的 css 类。如果类名称已存在，则不会添加。
         /// </summary>
         /// <param name="index">指定的行索引。</param>
-        /// <param name="cssClasses">css 类数组。</param>
-        public void AppendRowCss(int index, params string[] cssClasses)
+        /// <param name="name">css 类名称。</param>
+        /// <returns>若成功添加，则返回 <c>true</c>，否则返回 <c>false</c>。</returns>
+        public bool AddRowCss(int index, string name)
         {
-            if (cssClasses is null)
+            if (HasRowCss(index, name))
             {
-                throw new ArgumentNullException(nameof(cssClasses));
+                return false;
             }
+            var cssList = RowCssList[index];
+            if (!cssList.Contains(name))
+            {
+                cssList.Add(name);
+                return true;
+            }
+            return false;
+        }
 
+        public bool RemoveRowCss(int index,string name)
+        {
             if (!RowCssList.ContainsKey(index))
             {
-                RowCssList.Add(index, new List<string>(cssClasses));
+                return false;
             }
-            else
+
+            var cssList = RowCssList[index];
+            if (cssList == null)
             {
-                RowCssList[index].AddRange(cssClasses);
+                cssList = new List<string>();
             }
+            return cssList.Remove(name);
+        }
+
+        public bool HasRowCss(int index,string name)
+        {
+            if (!RowCssList.ContainsKey(index))
+            {
+                return false;
+            }
+            var cssList = RowCssList[index];
+            if (cssList == null)
+            {
+                cssList = new List<string>();
+            }
+
+            return cssList.Contains(name);
         }
 
         /// <summary>

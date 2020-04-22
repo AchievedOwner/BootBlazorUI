@@ -1,113 +1,135 @@
 ﻿@inherits BootComponentBase
 
 
-    <nav class="d-flex justify-content-center">
-        <ul class="@BuildCssClassString()" @attributes="AdditionalAttributes" style="@BuildStylesString()">
-            @if (CurrentPage <= 1)
+    <nav class="d-flex flex-row flex-fill  align-items-center">
+        <ul class="list-inline d-flex flex-row align-items-center">
+            @if (ShowTotalCount)
             {
-                if (!HideOrDisable)
-                {
-                    if (ShowFirst)
-                    {
-                    <li class="page-item disabled"><span class="page-link">@FirstPageText</span></li>
-                    }
-                    <li class="page-item disabled"><span class="page-link">@PreviousPageText</span></li>
-                }
-            }
-            else
-            {
-                if (ShowFirst)
-                {
-                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToFirst">@FirstPageText</a></li>
-                }
-                <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToPrevious">@PreviousPageText</a></li>
-            }
-
-            @if (ShowPageNumber)
-            {
-                var pageNumberBound = ComputePageNumber();
-
-                for (int i = pageNumberBound.start; i <= pageNumberBound.end; i++)
-                {
-                    int current = i;
-                    @if (CurrentPage == current)
-                    {
-                        <li class="page-item active"><span class="page-link">@i</span></li>
-                    }
-                    else
-                    {
-                        <li class="page-item" @key="current"><a class="page-link" href="javascript:;" @onclick="@(() => NavigateToPage(current))">@current</a></li>
-                    }
-                }
-            }
-
-            @if (CurrentPage >= TotalPages)
-            {
-                if (!HideOrDisable)
-                {
-                        <li class="page-item disabled"><span class="page-link">@NextPageText</span></li>
-                    if (ShowLast)
-                    {
-                        <li class="page-item disabled"><span class="page-link">@LastPageText</span></li>
-                    }
-                }
-            }
-            else
-            {
-                    <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToNext">@NextPageText</a></li>
-                if (ShowLast)
-                {
-                    <li class="page-item"><a class="page-link" href="javascript:;" @onclick="NavigateToLast">@LastPageText</a></li>
-                }
-            }
-
-
-
-            @if (ShowStatusLabel)
-            {
-                <li class="page-item ml-3">
-                    @if (StatusLabelTemplate == null)
-                    {
-                    <small> @(CurrentPage)/@(TotalPages) 页&nbsp;&nbsp;每页 @PageSize 条 &nbsp;&nbsp; 共计 @(TotalCount) 条数据</small>
-                    }
-                    else
-                    {
-                        @StatusLabelTemplate
-                    }
-                </li>
-            }
-
-            @if (ShowNavigateTo)
-            {
-                <li class="page-item ml-3">
-                    @if (NavigateToTemplate == null)
-                    {
-                    <small>
-                        <EditForm Model="model" class="form-inline">
-                            <span>跳转到</span>
-                            <InputText class="form-control form-control-sm text-center w-25" @bind-Value="model.NavigateTo" />
-                            <BootButton Type="BootButton.ButtonType.Submit" Size="Size.SM" OnClick="GoToPage">Go</BootButton>
-                        </EditForm>
-                    </small>
-                    }
-                    else
-                    {
-                        @NavigateToTemplate
-                    }
+                <li class="list-inline-item">
+                    共 @(TotalCount) 条
                 </li>
             }
         </ul>
+        <div class="d-flex flex-row align-items-center ml-1 mr-1">
+            <ul class="@BuildCssClassString()" @attributes="AdditionalAttributes" style="@BuildStylesString()">
+
+                <li class="page-item@(CurrentPage <= 1 ? " disabled" : "")" title="上一页">
+                    <a class="page-link" href="javascript:;" @onclick="NavigateToPrevious">&lt;</a>
+                </li>
+                @if (CurrentPage <= 1)
+                {
+                    <li class="page-item active">
+                        <span class="page-link">1</span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;" @onclick="NavigateToFirst">1</a>
+                    </li>
+                }
+
+                @{
+                    if (CurrentPage > PageNumberCount / 2)
+                    {
+                        var backTo = CurrentPage - 5;
+                        if (backTo <= 1)
+                        {
+                            backTo = 1;
+                        }
+
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:;" @onclick="e => NavigateToPage(backTo)">
+                                ...
+                            </a>
+                        </li>
+                    }
+                }
+
+                @{
+                    var pageNumberBound = ComputePageNumber();
+
+                    @for (int i = pageNumberBound.start + 1; i <= pageNumberBound.end - 1; i++)
+                    {
+                        int current = i;
+                        @if (CurrentPage == current)
+                        {
+                            <li class="page-item active"><span class="page-link">@i</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item" @key="current"><a class="page-link" href="javascript:;" @onclick="@(() => NavigateToPage(current))">@current</a></li>
+                        }
+                    }
+                }
+
+                @if (CurrentPage < TotalPages - PageNumberCount / 2)
+                {
+                    var nextTo = CurrentPage + 5;
+                    if (nextTo >= TotalPages)
+                    {
+                        nextTo = TotalPages;
+                    }
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;" @onclick="e=>NavigateToPage(nextTo)">
+                            ...
+                        </a>
+                    </li>
+                }
+
+                @if (CurrentPage >= TotalPages)
+                {
+                    <li class="page-item active">
+                        <span class="page-link">@TotalPages</span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;" @onclick="NavigateToLast">@TotalPages</a>
+                    </li>
+                }
+
+                <li class="page-item@(CurrentPage >= TotalPages ? " disabled" : "")" title="下一页">
+                    <a class="page-link" href="javascript:;" @onclick="NavigateToNext">></a>
+                </li>
+
+            </ul>
+        </div>
+
+        @if (ShowNavigateTo)
+        {
+            <div class="d-flex flex-row align-items-center ml-1">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <select class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"")" @onchange="e => SelectPageSize(e.Value.ToString())">
+                            @foreach (var item in PageSizeStakeholders)
+                            {
+                                <option value="@item" selected="@(PageSize == item)">@(item) /页</option>
+                            }
+                        </select>
+                    </li>
+                    <li class="list-inline-item text-right">
+                        跳转到
+                    </li>
+                    <li class="list-inline-item">
+                        <input class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"") text-center" style="width:80px" @bind="CurrentPage" />
+                    </li>
+                </ul>
+            </div>
+        }
     </nav>
 @code{
     NavigateToModel model = new NavigateToModel();
-    class NavigateToModel {
+    class NavigateToModel
+    {
         [System.ComponentModel.DataAnnotations.Required]
         public string NavigateTo { get; set; }
     }
 
-    Task GoToPage()
+    async Task GoToPage()
     {
-        if(!int.TryParse(model.NavigateTo,out int page))
+        if (!int.TryParse(model.NavigateTo, out int page))
         {
             page = 1;
         }
@@ -116,6 +138,13 @@
         {
             page = 1;
         }
-        return NavigateToPage(page);
+
+        if (page >= TotalPages)
+        {
+            page = TotalPages;
+        }
+        model.NavigateTo = page.ToString();
+
+        await NavigateToPage(page);
     }
 }

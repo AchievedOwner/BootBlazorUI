@@ -9,7 +9,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示 Boot 组件的基类。这是一个抽象类。
     /// </summary>
-    public abstract class BootComponentBase : ComponentBase, ICssBuilder, IStyleBuilder
+    public abstract class BootComponentBase : ComponentBase
     {
         /// <summary>
         /// 初始化 <see cref="BootComponentBase"/> 类的新实例。
@@ -51,7 +51,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置将该控件或元素中出现的属性进行合并。
         /// </summary>
-        [Parameter]
+        [Parameter(CaptureUnmatchedValues =true)]
         public virtual IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, object>();
 
         /// <summary>
