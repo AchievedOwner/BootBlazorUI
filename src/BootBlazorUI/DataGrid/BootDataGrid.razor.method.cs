@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +8,23 @@ namespace BootBlazorUI.DataGrid
 {
     partial class BootDataGrid
     {
+        /// <summary>
+        /// 加载 <see cref="DataSourceProvider"/> 绑定方法的数据。
+        /// </summary>
+        public async Task LoadData()
+        {
+            IsCompleted = false;
+            var dataSource= DataSourceProvider.Invoke();
+            if(!(dataSource is IEnumerable data))
+            {
+                throw new InvalidOperationException($"{nameof(DataSourceProvider)} 返回的对象不是 {nameof(IEnumerable)} 的实例");
+            }
+            await OnDataLoading.InvokeAsync(null);
+            Data = data.Cast<object>().ToList();
+            await OnDataLoaded.InvokeAsync(Data);
+            IsCompleted = true;
+        }
+
         /// <summary>
         /// 点击指定的行。
         /// </summary>

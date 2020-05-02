@@ -1,0 +1,66 @@
+﻿@page "/datagrid/advantage"
+@using BootBlazorUI.DataGrid
+@code{
+    class User
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+    }
+
+    List<User> dataSource = new List<User>();
+    List<User> list;
+
+    public int TotalCount { get; set; }
+    public int Page { get; set; } = 1;
+    public int Size { get; set; } = 5;
+}
+
+<PresentationPart Title="被动加载数据">
+    <RunTemplate>
+        <BootButton OnClick="e=>GetData()">点击加载</BootButton>
+        <BootDataGrid DataSourceProvider="()=>list" LoadDataAfterRender="false" @ref="grid" OnDataLoaded="e=>SetTotalCount()">
+            <BootDataGridFieldColumn Field="Id" />
+            <BootDataGridFieldColumn Field="Name" />
+            <BootDataGridFieldColumn Field="Birthday" />
+        </BootDataGrid>
+        <BootPagination @bind-CurrentPage="Page" @bind-TotalCount="TotalCount" OnPageChanged="GetData"/>
+    </RunTemplate>
+</PresentationPart>
+@code{
+        BootDataGrid grid;
+
+
+    protected override void OnInitialized()
+    {
+        var random = new Random();
+        for (int i = 0; i < 1000; i++)
+        {
+            dataSource.Add(new User
+            {
+                Id = (i + 1),
+                Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+                Name = random.Next(99999).ToString().PadLeft(5, '0')
+            });
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await GetData();
+        }
+    }
+
+    async Task GetData()
+    {
+        list = dataSource.Skip((Page - 1) * Size).Take(Size).ToList();
+        await grid.LoadData();
+    }
+
+    void SetTotalCount() 
+    {
+        TotalCount = dataSource.Count;
+    }
+}

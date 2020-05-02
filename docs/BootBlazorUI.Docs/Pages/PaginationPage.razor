@@ -5,15 +5,17 @@
 </PageTitle>
 <PresentationPart Title="简单示例">
     <Description>
-        以100条数据为例。使用 <code>CurrentPage</code> 表示当前页码。
+        使用 <code>CurrentPage</code> 表示当前页码。
     </Description>
     <RunTemplate>
-        <BootPagination TotalCount="100" />        
+        <BootPagination TotalCount="5" />
+        <BootPagination TotalCount="100" />
         <BootPagination TotalCount="100" CurrentPage="3" />
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
+<BootPagination TotalCount=""5"" />
 <BootPagination TotalCount=""100"" />        
 <BootPagination TotalCount=""100"" CurrentPage=""3"" />
 ```
@@ -149,6 +151,60 @@ public int TotalCount { get; set; } = 100;
 
 @inject IJSRuntime _js
 
+<PresentationPart Title="对齐方式">
+    <Description>
+        设置 <code>HorizontalAlign</code> 选择横向的对齐方式。
+    </Description>
+    <RunTemplate>
+        <p>
+            <h3>左对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.Start" />
+        </p>
+        <p>
+            <h3>右对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.End" />
+        </p>
+        <p>
+            <h3>环绕对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.Around" />
+        </p>
+        <p>
+            <h3>间隔对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" HorizontalAlign="Flex.Between" />
+        </p>
+        <p>
+            <h3>居中对齐</h3>
+            <BootPagination CurrentPage="3" TotalCount="50" />
+        </p>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<p>
+    <h3>左对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.Start"" />
+</p>
+<p>
+    <h3>右对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.End"" />
+</p>
+<p>
+    <h3>环绕对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.Around"" />
+</p>
+<p>
+    <h3>间隔对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" HorizontalAlign=""Flex.Between"" />
+</p>
+<p>
+    <h3>居中对齐</h3>
+    <BootPagination CurrentPage=""3"" TotalCount=""50"" />
+</p>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
 <ArgumentDescriptionTable Title="属性">
     <tr>
         <td>
@@ -205,6 +261,11 @@ public int TotalCount { get; set; } = 100;
         <td>PageNumberCount</td>
         <td>Int32</td>
         <td>设置显示页码的个数，范围是5-21的奇数。默认是 7 个。</td>
+    </tr>
+    <tr>
+        <td>HorizontalAlign</td>
+        <td>Flex</td>
+        <td>设置水平线上的对齐方式。默认是 <code>Flex.Center</code> 居中。</td>
     </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">

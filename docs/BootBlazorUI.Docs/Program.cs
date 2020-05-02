@@ -19,7 +19,7 @@ namespace BootBlazorUI.Docs
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static string GetVersion(bool full = false)
+        public static string GetVersion(bool full = false,int? preview=default)
         {
             var version = typeof(BootComponentBase).Assembly.GetName().Version;
             if (version == null)
@@ -30,7 +30,7 @@ namespace BootBlazorUI.Docs
             {
                 return version.ToString();
             }
-            return $"{version.Major}.{version.Minor}.{version.Build}";
+            return $"{version.Major}.{version.Minor}.{version.Build}{(preview.HasValue?$"-preview{preview}":"")}";
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

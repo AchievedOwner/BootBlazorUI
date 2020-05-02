@@ -24,7 +24,7 @@
 
 <PresentationPart Title="简单示例">
     <Description>
-        设置 <code>DataSource</code> 获取相关数据，数据源要求实现了 <code>IEnumerable</code> 接口。
+        设置 <code>DataSourceProvider</code> 获取相关数据，数据源要求实现了 <code>IEnumerable</code> 接口。
         <p>示例中采用的数据来自以下代码：</p>
         @Code.GetCode(@"
 ```cs
@@ -46,7 +46,7 @@ List<User> user = new List<User>
 ")
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource=" user">
+        <BootDataGrid DataSourceProvider="() => user">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -55,7 +55,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"">
+<BootDataGrid DataSourceProvider=""() => user"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -70,7 +70,7 @@ List<User> user = new List<User>
         设置 <code>RowNumber="true"</code> 启用行号。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource=" user" RowNumber="true">
+        <BootDataGrid DataSourceProvider="()=> user" RowNumber="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -80,7 +80,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"" RowNumber=""true"">
+<BootDataGrid DataSourceProvider=""() => user"" RowNumber=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -95,7 +95,7 @@ List<User> user = new List<User>
         设置 <code>Striped="true"</code> 可让每行之间有一个间隔颜色。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource=" user" Striped="true">
+        <BootDataGrid DataSourceProvider="() => user" Striped="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -104,7 +104,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"" Striped=""true"">
+<BootDataGrid DataSourceProvider=""() => user"" Striped=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -119,13 +119,13 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <h6>显示边框</h6>
-        <BootDataGrid DataSource=" user" Bordered="true">
+        <BootDataGrid DataSourceProvider="() => user" Bordered="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
         <h6>隐藏边框</h6>
-        <BootDataGrid DataSource=" user" Borderless="true">
+        <BootDataGrid DataSourceProvider="() => user" Borderless="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -134,12 +134,12 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"" Bordered=""true"">
+<BootDataGrid DataSourceProvider=""() => user"" Bordered=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
-        <BootDataGrid DataSource=""user"" Borderless=""true"">
+        <BootDataGrid DataSourceProvider=""() => user"" Borderless=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -153,7 +153,7 @@ List<User> user = new List<User>
         设置 <code>Hover="true"</code> 鼠标悬停行会高亮显示。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource=" user" Hover="true">
+        <BootDataGrid DataSourceProvider="() => user" Hover="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -162,7 +162,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"" Hover=""true"">
+<BootDataGrid DataSourceProvider=""() => user"" Hover=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -176,7 +176,7 @@ List<User> user = new List<User>
         设置 <code>Small="true"</code> 会压缩单元格的空间。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource=" user" Small="true">
+        <BootDataGrid DataSourceProvider="() => user" Small="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -185,7 +185,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"" Small=""true"">
+<BootDataGrid DataSourceProvider=""() => user"" Small=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -199,7 +199,7 @@ List<User> user = new List<User>
         设置 <code>Dark="true"</code> 使用深色背景。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource=" user" Dark="true">
+        <BootDataGrid DataSourceProvider="() => user" Dark="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -208,7 +208,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"" Dark=""true"">
+<BootDataGrid DataSourceProvider=""() => user"" Dark=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -222,7 +222,7 @@ List<User> user = new List<User>
         使用 <code>Format</code> 可以格式化显示的数据。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource=" user">
+        <BootDataGrid DataSourceProvider="() => user">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" Format="{0:yyyy年MM月dd日}" />
@@ -231,10 +231,31 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""user"">
+<BootDataGrid DataSourceProvider=""() => user"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" Format=""{0:yyyy年MM月dd日}""/>
+</BootDataGrid>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="自定义列宽">
+    <RunTemplate>
+        <BootDataGrid DataSourceProvider="() => user">
+            <BootDataGridFieldColumn Title="Id" Field="Id"  Width="150px"/>
+            <BootDataGridFieldColumn Title="姓名" Field="Name" />
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" Width="250px"/>
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataSourceProvider=""() => user"">
+    <BootDataGridFieldColumn Title=""Id"" Field=""Id""  Width=""150px""/>
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" Width=""250px""/>
 </BootDataGrid>
 ```
 ")
@@ -246,7 +267,7 @@ List<User> user = new List<User>
         设置 <code>RowHeight</code> 固定行高度，单位是 px，同时将标题栏会置顶固定。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource="userList" RowHeight="300">
+        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -255,7 +276,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""userList"" RowHeight=""300"">
+<BootDataGrid DataSourceProvider=""() => userList"" RowHeight=""300"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -270,7 +291,7 @@ List<User> user = new List<User>
         当数据行被点击时，会触发 <code>OnRowSelected</code> 事件。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource="userList" RowHeight="300" OnRowSelected="@(e=>_js.InvokeVoidAsync("alert",$"点击了第{e.Index}行"))">
+        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300" OnRowSelected="@(e=>_js.InvokeVoidAsync("alert",$"点击了第{e.Index}行"))">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -279,7 +300,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""userList"" RowHeight=""300"" OnRowSelected=""@(e=>_js.InvokeVoidAsync(""alert"",$""点击了第{e.Index}行""))"">
+<BootDataGrid DataSourceProvider=""() => userList"" RowHeight=""300"" OnRowSelected=""@(e=>_js.InvokeVoidAsync(""alert"",$""点击了第{e.Index}行""))"">
 <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
 <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
 <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -294,7 +315,7 @@ List<User> user = new List<User>
         设置 <code>RowSelectedColor</code> 可使行点击后高亮该行，若再次点击则取消高亮。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource="userList" RowHeight="300" RowSelectedColor="Color.Primary">
+        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300" RowSelectedColor="Color.Primary">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -303,7 +324,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""userList"" RowHeight=""300"" RowSelectedColor=""Color.Primary"">
+<BootDataGrid DataSourceProvider=""() => userList"" RowHeight=""300"" RowSelectedColor=""Color.Primary"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -315,7 +336,7 @@ List<User> user = new List<User>
 <PresentationPart Title="选择多行">
     <Description>设置 <code>RowMultipleSelect="true"</code> 则可以选择多个行的高亮。</Description>
     <RunTemplate>
-        <BootDataGrid DataSource="userList" RowHeight="300" RowSelectedColor="Color.Success" RowMultipleSelect="true">
+        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300" RowSelectedColor="Color.Success" RowMultipleSelect="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -324,7 +345,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""userList"" RowHeight=""300"" RowSelectedColor=""Color.Success"" RowMultipleSelect=""true"">
+<BootDataGrid DataSourceProvider=""() => userList"" RowHeight=""300"" RowSelectedColor=""Color.Success"" RowMultipleSelect=""true"">
     <BootDataGridFieldColumn Title=""Id"" Field=""Id"" />
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
@@ -339,7 +360,7 @@ List<User> user = new List<User>
         增加 <code>BootDataGridTemplateColumn</code> 来自定义列的内容。可以使用 <code>context</code> 作为当前行对象，调用 <code>GetValue</code> 方法并传入一个数据源的字段获取值。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSource="userList" RowHeight="300">
+        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300">
             <BootDataGridTemplateColumn Title="自定义列" Width="20px">
                 <input type="checkbox" value="@(context.GetValue(nameof(User.Id)))" @onchange="@(e=>_js.InvokeVoidAsync("alert",$"选择了Id:{context.GetValue(nameof(User.Id))}的值"))" />
             </BootDataGridTemplateColumn>
@@ -350,7 +371,7 @@ List<User> user = new List<User>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootDataGrid DataSource=""userList"" RowHeight=""400"">
+<BootDataGrid DataSourceProvider=""() => userList"" RowHeight=""400"">
 <BootDataGridTemplateColumn Title=""自定义列"" Width=""20px"">
     <input type=""checkbox"" value=""@(context.GetValue(nameof(User.Id)))"" @onchange=""@(e=>_js.InvokeVoidAsync(""alert"",$""选择了Id:{context.GetValue(nameof(User.Id))}的值""))"" />
 </BootDataGridTemplateColumn>
@@ -367,13 +388,13 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <h5>默认空数据文本</h5>
-        <BootDataGrid DataSource="new List<User>()" Small="true">
+        <BootDataGrid DataSourceProvider="()=>new List<User>()" Small="true">
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
         </BootDataGrid>
         <br />
         <h5>自定义空数据内容</h5>
-        <BootDataGrid DataSource="new List<User>()" Small="true">
+        <BootDataGrid DataSourceProvider="()=>new List<User>()" Small="true">
             <DataEmptyTemplate>
                 <i class="fa fa-list"></i> 自定义没有数据的显示内容！
             </DataEmptyTemplate>
@@ -387,13 +408,13 @@ List<User> user = new List<User>
         @Code.GetCode(@"
 ```html
 <h5>默认空数据文本</h5>
-<BootDataGrid DataSource=""new List<User>()"" Small=""true"">
+<BootDataGrid DataSourceProvider=""new List<User>()"" Small=""true"">
     <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
     <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 <br />
 <h5>自定义空数据内容</h5>
-<BootDataGrid DataSource=""new List<User>()"" Small=""true"">
+<BootDataGrid DataSourceProvider=""new List<User>()"" Small=""true"">
     <DataEmptyTemplate>
         <i class=""fa fa-list""></i> 自定义没有数据的显示内容！
     </DataEmptyTemplate>
@@ -433,9 +454,201 @@ List<User> user = new List<User>
     }
 }
 
+<PresentationPart Title="手动加载数据">
+    <Description>
+        某些场景我们需要通过其他操作来进行数据的加载。需要将 <code>BootDataGrid</code> 组件通过 <code>@@ref</code> 关键字绑定到一个引用对象中，然后调用 <code>LoadData()</code> 方法手动加载数据。
+        如果不希望数据在组件渲染后自动加载，可设置 <code>LoadDataAfterRender="false"</code>。
+    </Description>
+    <RunTemplate>
+        <BootButton OnClick="e=>GetData()">点击加载数据</BootButton>
+        <BootDataGrid DataSourceProvider="()=>dataSource" LoadDataAfterRender="false" @ref="grid">
+            <BootDataGridFieldColumn Field="Id" />
+            <BootDataGridFieldColumn Field="Name" />
+            <BootDataGridFieldColumn Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButton OnClick=""e=>GetData()"">点击加载数据</BootButton>
+<BootDataGrid DataSourceProvider=""()=>dataSource"" LoadDataAfterRender=""false"" @ref=""grid"">
+    <BootDataGridFieldColumn Field=""Id"" />
+    <BootDataGridFieldColumn Field=""Name"" />
+    <BootDataGridFieldColumn Field=""Birthday"" />
+</BootDataGrid>
+```
+```cs
+List<User> dataSource = new List<User>();
+BootDataGrid grid;
+
+async Task GetData()
+{
+    dataSource.Clear();
+    var random = new Random();
+    for (int i = 0; i < 10; i++)
+    {
+        dataSource.Add(new User
+        {
+            Id = random.Next()*i,
+            Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+            Name = random.Next(99999).ToString().PadLeft(5, '0')
+        });
+    }
+    await grid.LoadData();
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+
+    List<User> dataSource = new List<User>();
+    BootDataGrid grid;
+
+    async Task GetData()
+    {
+        dataSource.Clear();
+        var random = new Random();
+        for (int i = 0; i < 10; i++)
+        {
+            dataSource.Add(new User
+            {
+                Id = random.Next()*i,
+                Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+                Name = random.Next(99999).ToString().PadLeft(5, '0')
+            });
+        }
+        await grid.LoadData();
+    }
+}
+
+<PresentationPart Title="与分页组件结合">
+    <Description>
+        使用分页组件 <code>BootPagination</code> 进行配合使用。
+    </Description>
+    <RunTemplate>
+        <BootDataGrid DataSourceProvider="()=>list" @ref="paginationGrid" OnDataLoaded="e=>TotalCountCallback()">
+            <BootDataGridFieldColumn Field="Id" />
+            <BootDataGridFieldColumn Field="Name" />
+            <BootDataGridFieldColumn Field="Birthday" />
+        </BootDataGrid>
+        <BootPagination @bind-CurrentPage="Page" @bind-TotalCount="TotalCount" OnPageChanged="GetPaginationData" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDataGrid DataSourceProvider=""()=>list"" @ref=""paginationGrid"" OnDataLoaded=""e=>TotalCountCallback()"">
+    <BootDataGridFieldColumn Field=""Id"" />
+    <BootDataGridFieldColumn Field=""Name"" />
+    <BootDataGridFieldColumn Field=""Birthday"" />
+</BootDataGrid>
+<BootPagination @bind-CurrentPage=""Page"" @bind-TotalCount=""TotalCount"" OnPageChanged=""GetData"" />
+```
+```cs
+BootDataGrid paginationGrid;
+List<User> list;
+List<User> mockDataSource = new List<User>();
+
+/// <summary>
+/// 初始化数据源。
+/// </summary>
+protected override async Task OnInitializedAsync()
+{
+    var random = new Random();
+
+    //模拟数据源，可以想象成数据库的数据
+    for (int i = 0; i < 1000; i++)
+    {
+        mockDataSource.Add(new User
+        {
+            Id = (i + 1),
+            Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+            Name = random.Next(99999).ToString().PadLeft(5, '0')
+        });
+    }
+}
+
+protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    if (firstRender)
+    {
+        await GetPaginationData();//在组件渲染完成后才加载数据
+    }
+}
+/// <summary>
+/// 获取分页的数据源。
+/// </summary>
+/// <returns></returns>
+async Task GetPaginationData()
+{
+    list = mockDataSource.Skip((Page - 1) * Size).Take(Size).ToList();
+    await paginationGrid.LoadData();
+}
+
+/// <summary>
+/// 这是当数据源加载完成后给总数据源赋值的回调。
+/// </summary>
+void TotalCountCallback()
+{
+    TotalCount = mockDataSource.Count;
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+@code{
+    BootDataGrid paginationGrid;
+    List<User> list;
+    List<User> mockDataSource = new List<User>();
+    /// <summary>
+    /// 初始化数据源。
+    /// </summary>
+    protected override async Task OnInitializedAsync()
+    {
+        var random = new Random();
+
+        //模拟数据源，可以想象成数据库的数据
+        for (int i = 0; i < 1000; i++)
+        {
+            mockDataSource.Add(new User
+            {
+                Id = (i + 1),
+                Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+                Name = random.Next(99999).ToString().PadLeft(5, '0')
+            });
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await GetPaginationData();//在组件渲染完成后才加载数据
+        }
+    }
+    /// <summary>
+    /// 获取分页的数据源。
+    /// </summary>
+    /// <returns></returns>
+    async Task GetPaginationData()
+    {
+        list = mockDataSource.Skip((Page - 1) * Size).Take(Size).ToList();
+        await paginationGrid.LoadData();
+    }
+
+    /// <summary>
+    /// 这是当数据源加载完成后给总数据源赋值的回调。
+    /// </summary>
+    void TotalCountCallback()
+    {
+        TotalCount = mockDataSource.Count;
+    }
+}
+
 <ArgumentDescriptionTable Title="属性">
     <tr>
-        <td>DataSource <BootBadge Color="Color.Danger">required</BootBadge></td>
+        <td>DataSourceProvider <BootBadge Color="Color.Danger">required</BootBadge></td>
         <td>Object</td>
         <td>设置实现了 <code>IEnumerable</code> 接口的数据源。</td>
     </tr>

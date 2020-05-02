@@ -1,7 +1,7 @@
 ﻿@inherits BootComponentBase
 
 
-    <nav class="d-flex flex-row flex-fill  align-items-center">
+    <nav class="d-flex flex-row flex-fill @(ComponentUtil.GetFlexAlignCssClass(HorizontalAlign,"justify-content-"))  align-items-center">
         <ul class="list-inline d-flex flex-row align-items-center">
             @if (ShowTotalCount)
             {
@@ -38,7 +38,7 @@
                             backTo = 1;
                         }
 
-                        <li class="page-item">
+                        <li class="page-item" title="后退5页">
                             <a class="page-link" href="javascript:;" @onclick="e => NavigateToPage(backTo)">
                                 ...
                             </a>
@@ -63,6 +63,7 @@
                     }
                 }
 
+
                 @if (CurrentPage < TotalPages - PageNumberCount / 2)
                 {
                     var nextTo = CurrentPage + 5;
@@ -70,24 +71,30 @@
                     {
                         nextTo = TotalPages;
                     }
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:;" @onclick="e=>NavigateToPage(nextTo)">
+                    <li class="page-item" title="前进5页">
+                        <a class="page-link" href="javascript:;" @onclick="e => NavigateToPage(nextTo)">
                             ...
                         </a>
                     </li>
                 }
 
-                @if (CurrentPage >= TotalPages)
-                {
-                    <li class="page-item active">
-                        <span class="page-link">@TotalPages</span>
-                    </li>
-                }
-                else
-                {
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:;" @onclick="NavigateToLast">@TotalPages</a>
-                    </li>
+
+                @{
+                    if (TotalPages > 1)
+                    {
+                        if (CurrentPage >= TotalPages)
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">@TotalPages</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:;" @onclick="NavigateToLast">@TotalPages</a>
+                            </li>
+                        }
+                    }
                 }
 
                 <li class="page-item@(CurrentPage >= TotalPages ? " disabled" : "")" title="下一页">

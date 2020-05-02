@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Components;
 
@@ -8,7 +9,7 @@ namespace BootBlazorUI.DataGrid
     /// <summary>
     /// 表示 DataGrid 列的基类，这是一个抽象类。
     /// </summary>
-    public abstract class BootDataGridColumnBase:BootComponentBase
+    public abstract class BootDataGridColumnBase : BootComponentBase
     {
         /// <summary>
         /// 设置列的标题。
@@ -18,7 +19,7 @@ namespace BootBlazorUI.DataGrid
 
 
         /// <summary>
-        /// 设置单元格的宽度。不设置则自动计算宽度。
+        /// 设置单元格的宽度，单位自己决定。如果所有的列都不设置宽度，则会平均分配。
         /// </summary>
         [Parameter]
         public string Width { get; set; }
@@ -40,9 +41,19 @@ namespace BootBlazorUI.DataGrid
         /// <summary>
         /// 获取列的宽度 style 字符串，即 width:xxx
         /// </summary>
-        /// <returns></returns>
         internal string GetWidthStyleString()
-            => !string.IsNullOrWhiteSpace(Width) ? $"width:{Width}" : $"width:{Parent.GetAutoColumnWidth()}%";
+        {
+            if (!string.IsNullOrWhiteSpace(Width))
+            {
+                return $"width:{Width}";
+            }
+            var columnsHasWidthCount = Parent.Columns.Count(m => string.IsNullOrWhiteSpace(m.Width));
+            if (columnsHasWidthCount == Parent.Columns.Count)
+            {
+                return $"width:calc(100%/{columnsHasWidthCount})";
+            }
+            return null;
+        }
 
 
         protected override void OnInitialized()
@@ -51,11 +62,6 @@ namespace BootBlazorUI.DataGrid
             {
                 throw new ArgumentException($"{nameof(BootDataGridFieldColumn)} 只能在 {nameof(BootDataGrid)} 中使用");
             }
-        }
-
-        protected override void CreateComponentCssClass(ICollection<string> collection)
-        {
-
         }
 
         protected override void OnAfterRender(bool firstRender)

@@ -10,21 +10,21 @@
     <BootTabControlPage Title="程序包管理控制台(Package Manager)">
     @Code.GetCode($@"
 ```powershell
-PM> Install-Package BootBlazorUI --Version {Program.GetVersion()}
+PM> Install-Package BootBlazorUI --Version {Program.GetVersion(preview:1)}
 ```
 ")
     </BootTabControlPage>
     <BootTabControlPage Title=".NET 命令行(.Net CLI)">
     @Code.GetCode($@"
 ```cmd
-> dotnet add package BootBlazorUI --version {Program.GetVersion()}
+> dotnet add package BootBlazorUI --version {Program.GetVersion(preview: 1)}
 ```
 ")
     </BootTabControlPage>
     <BootTabControlPage Title="项目包引用(PackageReference)">
     @Code.GetCode($@"
 ```xml
-<PackageReference Include=""BootBlazorUI"" Version=""{Program.GetVersion()}"" />
+<PackageReference Include=""BootBlazorUI"" Version=""{Program.GetVersion(preview: 1)}"" />
 ```
 ")
     </BootTabControlPage>
@@ -44,8 +44,13 @@ PM> Install-Package BootBlazorUI --Version {Program.GetVersion()}
 ")
 </PageTitle>
 <PageTitle Title="更新日志">
-    <small>当前版本：<BootBadge>v@(Program.GetVersion())</BootBadge></small>
+    <small>当前版本：<BootBadge>v@(Program.GetVersion(preview: 1))</BootBadge></small>
     @Code.GetCode(@"
+### 1.0-preview1
+* 【修复】分页组件数据不满1页时出现重复第一页
+* 【修复】BootDataGrid 列宽度计算
+* 【优化】支持对 BootDataGrid 进行手动数据加载
+* 【优化】其他小问题
 #### 0.8
 * 【新增】分页组件 CurrentPage PageSize 以及 TotalCount 支持双向绑定功能
 * 【新增】BootButton 可取消与表单的级联 EditContent 参数，使按钮可选择被表单关联

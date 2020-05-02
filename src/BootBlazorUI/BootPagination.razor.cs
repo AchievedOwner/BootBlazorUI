@@ -63,6 +63,11 @@ namespace BootBlazorUI
         /// 设置显示页码的个数，范围是5-21的奇数。默认是 7 个。
         /// </summary>
         [Parameter] public int PageNumberCount { get; set; } = 7;
+
+        /// <summary>
+        /// 设置水平线上的对齐方式。默认是 <see cref="Flex.Center"/> 居中。
+        /// </summary>
+        [Parameter] public Flex HorizontalAlign { get; set; } = Flex.Center;
         #endregion
         #region 事件
 
@@ -78,6 +83,11 @@ namespace BootBlazorUI
         /// 设置当总记录数发生变更后触发的事件。
         /// </summary>
         [Parameter] public EventCallback<int> TotalCountChanged { get; set; }
+
+        /// <summary>
+        /// 设置当页码发生变更时触发的事件。
+        /// </summary>
+        [Parameter] public EventCallback<int> OnPageChanged { get; set; }
         #endregion
 
 
@@ -170,6 +180,7 @@ namespace BootBlazorUI
         {
             CurrentPage = page;
             await CurrentPageChanged.InvokeAsync(page);
+            await OnPageChanged.InvokeAsync(page);
         }
 
         /// <summary>

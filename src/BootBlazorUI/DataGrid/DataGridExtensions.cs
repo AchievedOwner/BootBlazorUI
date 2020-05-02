@@ -47,7 +47,7 @@ namespace BootBlazorUI.DataGrid
         /// <param name="row">当前行。</param>
         /// <param name="field">数据源的字段。</param>
         /// <returns>数据源字段在该行的值或 null。</returns>
-        public static T GetValue<T>(object row, string field)
+        public static T GetValue<T>(this object row, string field)
             => (T)GetValue(row, field);
     }
 }

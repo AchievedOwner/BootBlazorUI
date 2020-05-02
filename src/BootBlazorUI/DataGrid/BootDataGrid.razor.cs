@@ -69,9 +69,9 @@ namespace BootBlazorUI.DataGrid
         [Parameter] public int? RowHeight { get; set; }
 
         /// <summary>
-        /// 设置实现了 <see cref="IEnumerable"/> 接口的数据源。
+        /// 设置一个实现数据加载的委托，并必须范围实现 <see cref="IEnumerable"/> 接口的数据源。
         /// </summary>
-        [Parameter] public object DataSource { get; set; }
+        [Parameter] public Func<object> DataSourceProvider { get; set; }
 
         /// <summary>
         /// 设置数据源是空时显示的内容。
@@ -87,6 +87,14 @@ namespace BootBlazorUI.DataGrid
         /// 设置一个布尔值，是否允许选择多条行。
         /// </summary>
         [Parameter] public bool RowMultipleSelect { get; set; }
+
+        /// <summary>
+        /// 设置一个布尔值，表示是否在渲染后自动加载数据。默认是 <c>true</c>。
+        /// <para>
+        /// 若设置为 <c>false</c>，则需要手动调用 <see cref="LoadData"/> 方法来加载数据。
+        /// </para>
+        /// </summary>
+        [Parameter] public bool LoadDataAfterRender { get; set; } = true;
         #endregion
 
         #region 事件
@@ -94,34 +102,46 @@ namespace BootBlazorUI.DataGrid
         /// 设置当数据行被点击后触发选择行事件。
         /// </summary>
         [Parameter] public EventCallback<BootDataGridRowSelectedEventArgs> OnRowSelected { get; set; }
+
+        /// <summary>
+        /// 设置当数据加载前触发的事件。
+        /// </summary>
+        [Parameter] public EventCallback OnDataLoading { get; set; }
+        /// <summary>
+        /// 设置当数据加载完成后触发的事件。
+        /// </summary>
+        [Parameter] public EventCallback<IReadOnlyList<object>> OnDataLoaded { get; set; }
         #endregion
 
         /// <summary>
         /// 返回一个布尔值，表示数据是否已加载完成。
         /// </summary>
         /// <returns>若已加载完成，返回 <c>true</c>；否则返回 <c>false</c>。</returns>
-        public bool IsCompleted => !(DataSource is null);
-
+        public bool IsCompleted { get; private set; }
 
         protected override void OnInitialized()
         {
-            if (DataSource == null)
+            if (DataSourceProvider == null)
             {
-                throw new ArgumentException($"必须设置 {nameof(DataSource)} 参数");
+                throw new ArgumentException($"必须设置参数", nameof(DataSourceProvider));
             }
-
-            if (!(DataSource is IEnumerable data))
-            {
-                throw new InvalidOperationException($"{nameof(DataSource)} 必须实现了 {nameof(IEnumerable)} 接口");
-            }
-
-            Data = data.Cast<object>().ToList();
         }
 
-        protected override void OnAfterRender(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            await base.OnAfterRenderAsync(firstRender);
+
             if (firstRender)
             {
+                if (LoadDataAfterRender)
+                {
+                    await LoadData();
+                }
+                else
+                {
+                    IsCompleted = true;
+                }
+
                 for (int i = 0; i < Data.Count; i++)
                 {
                     RowCssList.Add(i, new List<string>());
