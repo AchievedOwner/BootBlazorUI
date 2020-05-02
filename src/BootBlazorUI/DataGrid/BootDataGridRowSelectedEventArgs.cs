@@ -10,9 +10,9 @@ namespace BootBlazorUI.DataGrid
         /// <summary>
         /// 初始化 <see cref="BootDataGridRowSelectedEventArgs"/> 类的新实例。
         /// </summary>
-        /// <param name="item">选项的行数据。</param>
         /// <param name="index">选择行的索引。</param>
-        public BootDataGridRowSelectedEventArgs(object item,int index)
+        /// <param name="item">选项的行数据。</param>
+        public BootDataGridRowSelectedEventArgs(int index, object item)
         {
             Item = item;
             Index = index;
@@ -26,5 +26,10 @@ namespace BootBlazorUI.DataGrid
         /// 获取选择行的索引。
         /// </summary>
         public int Index { get; }
+
+        /// <summary>
+        /// 提供不选择任何行的 <see cref="BootDataGridRowSelectedEventArgs"/> 事件参数的值。
+        /// </summary>
+        public static readonly new BootDataGridRowSelectedEventArgs Empty = new BootDataGridRowSelectedEventArgs(-1, null);
     }
 }

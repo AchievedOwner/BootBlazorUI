@@ -106,21 +106,5 @@ namespace BootBlazorUI
                 collection.Add($"height:{Height}px");
             }
         }
-
-        /// <summary>
-        /// 尝试更新进度条的值为指定的值。
-        /// </summary>
-        /// <param name="value">要更新的值。</param>
-        /// <returns>一个尝试更新值的任务，任务包含布尔值，表示更新成功返回 <c>true</c>；否则返回 <c>false</c>。</returns>
-        public async Task<bool> TryUpdateValue(decimal value)
-        {
-            if (value < Min || value > Max)
-            {
-                return false;
-            }
-            Value = value;
-            await JS.InvokeVoidAsync("bootBlazor.progressBar.onValueChanged", Id, value, Percentage);
-            return true;
-        }
     }
 }

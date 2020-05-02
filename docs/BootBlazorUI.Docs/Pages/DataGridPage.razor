@@ -24,7 +24,7 @@
 
 <PresentationPart Title="简单示例">
     <Description>
-        设置 <code>DataSourceProvider</code> 获取相关数据，数据源要求实现了 <code>IEnumerable</code> 接口。
+        设置 <code>DataSourceProvider</code> 参数并提供获取数据源的方法，这是一个委托，要求返回实现了 <code>IEnumerable</code> 接口的结果。
         <p>示例中采用的数据来自以下代码：</p>
         @Code.GetCode(@"
 ```cs
@@ -244,9 +244,9 @@ List<User> user = new List<User>
 <PresentationPart Title="自定义列宽">
     <RunTemplate>
         <BootDataGrid DataSourceProvider="() => user">
-            <BootDataGridFieldColumn Title="Id" Field="Id"  Width="150px"/>
+            <BootDataGridFieldColumn Title="Id" Field="Id" Width="150px" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
-            <BootDataGridFieldColumn Title="生日" Field="Birthday" Width="250px"/>
+            <BootDataGridFieldColumn Title="生日" Field="Birthday" Width="250px" />
         </BootDataGrid>
     </RunTemplate>
     <CodeTemplate>
@@ -315,7 +315,8 @@ List<User> user = new List<User>
         设置 <code>RowSelectedColor</code> 可使行点击后高亮该行，若再次点击则取消高亮。
     </Description>
     <RunTemplate>
-        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300" RowSelectedColor="Color.Primary">
+        <BootButton OnClick="e=>dataGridClickRowRef.ClickRow(-1)">清空</BootButton>
+        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300" RowSelectedColor="Color.Primary" @ref="dataGridClickRowRef">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -333,10 +334,16 @@ List<User> user = new List<User>
 ")
     </CodeTemplate>
 </PresentationPart>
+@code{
+    BootDataGrid dataGridClickRowRef;
+    BootDataGrid dataGridMulityClickRowRef;
+}
+
 <PresentationPart Title="选择多行">
     <Description>设置 <code>RowMultipleSelect="true"</code> 则可以选择多个行的高亮。</Description>
     <RunTemplate>
-        <BootDataGrid DataSourceProvider="() => userList" RowHeight="300" RowSelectedColor="Color.Success" RowMultipleSelect="true">
+        <BootButton Color="Color.Warning" OnClick="e=>dataGridMulityClickRowRef.ClickRow(-1)">清空</BootButton>
+        <BootDataGrid @ref="dataGridMulityClickRowRef" DataSourceProvider="() => userList" RowHeight="300" RowSelectedColor="Color.Success" RowMultipleSelect="true">
             <BootDataGridFieldColumn Title="Id" Field="Id" />
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -454,7 +461,7 @@ List<User> user = new List<User>
     }
 }
 
-<PresentationPart Title="手动加载数据">
+<PresentationPart Title="通过代码的方式加载数据">
     <Description>
         某些场景我们需要通过其他操作来进行数据的加载。需要将 <code>BootDataGrid</code> 组件通过 <code>@@ref</code> 关键字绑定到一个引用对象中，然后调用 <code>LoadData()</code> 方法手动加载数据。
         如果不希望数据在组件渲染后自动加载，可设置 <code>LoadDataAfterRender="false"</code>。
@@ -513,7 +520,7 @@ async Task GetData()
         {
             dataSource.Add(new User
             {
-                Id = random.Next()*i,
+                Id = random.Next() * i,
                 Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
                 Name = random.Next(99999).ToString().PadLeft(5, '0')
             });
@@ -524,7 +531,7 @@ async Task GetData()
 
 <PresentationPart Title="与分页组件结合">
     <Description>
-        使用分页组件 <code>BootPagination</code> 进行配合使用。
+        使用分页组件 <code>BootPagination</code> 进行配合使用，模拟从数据库加载数据进行渲染。
     </Description>
     <RunTemplate>
         <BootDataGrid DataSourceProvider="()=>list" @ref="paginationGrid" OnDataLoaded="e=>TotalCountCallback()">
@@ -646,11 +653,187 @@ void TotalCountCallback()
     }
 }
 
+
+<PresentationPart Title="更多高级操作">
+    <Description>
+        演示如何使用代码调用相关方法丰富表格。
+    </Description>
+    <RunTemplate>
+        <BootButton Outline="true" Color="Color.Success" OnClick="Add">新增一行</BootButton>
+        <BootButton Outline="true" Color="Color.Danger" OnClick="Remove">移除最后一行</BootButton>
+        <BootButton Color="Color.Warning" OnClick="SelectFifthRow">选中第5行</BootButton>
+        <label>
+            <input type="checkbox" @bind-value="RememberClickRow" /> 添加/移除时记住选中行
+        </label>
+        <BootDataGrid RowNumber="true" RowHeight="400" DataSourceProvider="()=>manualList" RowSelectedColor="Color.Warning" LoadDataAfterRender="false" @ref="manualGrid" OnRowSelected="RememberSelectRow">
+            <BootDataGridFieldColumn Field="Id" />
+            <BootDataGridFieldColumn Field="Name" />
+            <BootDataGridFieldColumn Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButton Outline=""true"" Color=""Color.Success"" OnClick=""Add"">新增一行</BootButton>
+<BootButton Outline=""true"" Color=""Color.Danger"" OnClick=""Remove"">移除最后一行</BootButton>
+<BootButton Color=""Color.Warning"" OnClick=""SelectFifthRow"">选中第5行</BootButton>
+<label>
+    <input type=""checkbox"" @bind-value=""RememberClickRow"" /> 添加/移除时记住选中行
+</label>
+<BootDataGrid RowNumber=""true"" RowHeight=""400"" DataSourceProvider=""()=>manualList"" RowSelectedColor=""Color.Warning"" LoadDataAfterRender=""false"" @ref=""manualGrid"" OnRowSelected=""RememberSelectRow"">
+    <BootDataGridFieldColumn Field=""Id"" />
+    <BootDataGridFieldColumn Field=""Name"" />
+    <BootDataGridFieldColumn Field=""Birthday"" />
+</BootDataGrid>
+```
+```cs
+BootDataGrid manualGrid;
+List<User> manualList = new List<User>();
+
+bool RememberClickRow { get; set; }
+
+/// <summary>
+/// 添加一行。
+/// </summary>
+/// <returns></returns>
+async Task Add()
+{
+    var random = new Random();
+    manualList.Add(new User
+    {
+        Id = random.Next(),
+        Name = $""第{manualList.Count +1}行"",
+        Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+    });
+    await manualGrid.LoadData();
+    await KeepSelectRow();
+}
+
+/// <summary>
+/// 移除最后一行
+/// </summary>
+async Task Remove()
+{
+    manualList.RemoveAt(manualList.Count - 1);
+    await manualGrid.LoadData();
+    await KeepSelectRow();
+}
+
+BootDataGridRowSelectedEventArgs selectedRow = BootDataGridRowSelectedEventArgs.Empty;
+
+/// <summary>
+/// 记住选中的行。
+/// </summary>
+/// <param name=""e""></param>
+void RememberSelectRow(BootDataGridRowSelectedEventArgs e)
+{
+    selectedRow = e;
+}
+
+/// <summary>
+/// 添加/删除时保存选中行的背景高亮模式。
+/// </summary>
+async Task KeepSelectRow()
+{
+    if (RememberClickRow && selectedRow.Index > -1)
+    {
+        if (manualList.Contains(selectedRow.Item as User))
+        {
+            await manualGrid.ClickRow(selectedRow.Index);
+        }
+    }
+}
+
+/// <summary>
+/// 选择第五行。
+/// </summary>
+async Task SelectFifthRow()
+{
+    if (manualList.Count > 4)
+    {
+        await manualGrid.ClickRow(4);//第五行，索引是4
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+
+    BootDataGrid manualGrid;
+    List<User> manualList = new List<User>();
+
+    bool RememberClickRow { get; set; }
+
+    /// <summary>
+    /// 添加一行。
+    /// </summary>
+    /// <returns></returns>
+    async Task Add()
+    {
+        var random = new Random();
+        manualList.Add(new User
+        {
+            Id = random.Next(),
+            Name = $"第{manualList.Count +1}行",
+            Birthday = new DateTime(random.Next(1980, 1999), random.Next(3, 12), random.Next(1, 30)),
+        });
+        await manualGrid.LoadData();
+        await KeepSelectRow();
+    }
+
+    /// <summary>
+    /// 移除最后一行
+    /// </summary>
+    async Task Remove()
+    {
+        manualList.RemoveAt(manualList.Count - 1);
+        await manualGrid.LoadData();
+        await KeepSelectRow();
+    }
+
+    BootDataGridRowSelectedEventArgs selectedRow = BootDataGridRowSelectedEventArgs.Empty;
+
+    /// <summary>
+    /// 记住选中的行。
+    /// </summary>
+    /// <param name="e"></param>
+    void RememberSelectRow(BootDataGridRowSelectedEventArgs e)
+    {
+        selectedRow = e;
+    }
+
+    /// <summary>
+    /// 添加/删除时保存选中行的背景高亮模式。
+    /// </summary>
+    async Task KeepSelectRow()
+    {
+        if (RememberClickRow && selectedRow.Index > -1)
+        {
+            if (manualList.Contains(selectedRow.Item as User))
+            {
+                await manualGrid.ClickRow(selectedRow.Index);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 选择第五行。
+    /// </summary>
+    async Task SelectFifthRow()
+    {
+        if (manualList.Count > 4)
+        {
+            await manualGrid.ClickRow(4);//第五行，索引是4
+        }
+    }
+}
+
 <ArgumentDescriptionTable Title="属性">
     <tr>
         <td>DataSourceProvider <BootBadge Color="Color.Danger">required</BootBadge></td>
-        <td>Object</td>
-        <td>设置实现了 <code>IEnumerable</code> 接口的数据源。</td>
+        <td>Func&lt;object></td>
+        <td>设置一个实现数据加载的委托，并必须范围实现 <code>IEnumerable</code> 接口的数据源。</td>
     </tr>
     <tr>
         <td>RowNumber</td>
@@ -707,6 +890,16 @@ void TotalCountCallback()
         <td>Boolean</td>
         <td>设置一个布尔值，是否允许选择多条行。</td>
     </tr>
+    <tr>
+        <td>LoadDataAfterRender</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否在渲染后自动加载数据。默认是 <code>true</code>。</td>
+    </tr>
+    <tr>
+        <td>LoadingText</td>
+        <td>String</td>
+        <td>设置数据加载中遮罩层的文字。支持 HTML 字符串。</td>
+    </tr>
 </ArgumentDescriptionTable>
 
 <ArgumentDescriptionTable Title="事件">
@@ -715,12 +908,47 @@ void TotalCountCallback()
         <td>EventCallback&lt;BootDataGridRowSelectedEventArgs></td>
         <td>设置当数据行被点击后触发选择行事件。</td>
     </tr>
+    <tr>
+        <td>OnDataLoading</td>
+        <td>EventCallback</td>
+        <td>设置当数据加载前触发的事件，在 <code>LoadData</code> 方法之前触发。</td>
+    </tr>
+    <tr>
+        <td>OnDataLoaded</td>
+        <td>EventCallback&lt;IReadOnlyList&lt;object>></td>
+        <td>设置当数据加载完成后触发的事件，在 <code>LoadData</code> 方法之后触发。</td>
+    </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="方法">
     <tr>
         <td>ClickRow</td>
         <td>Task</td>
         <td>点击指定的行。</td>
+    </tr>
+    <tr>
+        <td>HasRowCss</td>
+        <td>Boolean</td>
+        <td>判断指定行是否包含指定的 css 类名称。若索引不存在或指定的 css 名称不存在，则返回 <code>false</code>；否则返回 <code>true</code>。</td>
+    </tr>
+    <tr>
+        <td>AddRowCss</td>
+        <td>Void</td>
+        <td>向指定行添加指定的 css 类的名称。如果名称已存在，则不会添加。</td>
+    </tr>
+    <tr>
+        <td>RemoveRowCss</td>
+        <td>Boolean</td>
+        <td>移除指定行的 css 类名称并返回是否移除成功。若指定的索引不存在或无法移除指定的 css 名称，则返回 <code>false</code>；否则返回 <code>true</code>。</td>
+    </tr>
+    <tr>
+        <td>ShowLoading</td>
+        <td>Void</td>
+        <td>显示数据加载中的遮罩层。</td>
+    </tr>
+    <tr>
+        <td>HideLoading</td>
+        <td>Void</td>
+        <td>隐藏数据加载中的遮罩层。</td>
     </tr>
 </ArgumentDescriptionTable>
 <ArgumentDescriptionTable Title="列模板">

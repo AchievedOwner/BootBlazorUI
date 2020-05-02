@@ -21,14 +21,21 @@
             </table>
         </section>
 
-        <section class="d-flex flex-column" style="height:100%;min-height:100px;">
-            <div class="d-flex" style="@GetRowStyle()">
-
-                <table class="@BuildCssClassString()" style="@BuildStylesString()">
+        <section class="d-flex flex-column" style="height:100%;">
+            <div class="d-flex w-100 position-relative" style="@GetRowStyle()">
+                @if (!IsCompleted)
+                {
+                <div class="d-flex flex-column flex-fill align-items-center bg-dark text-light w-100 overflow-hidden p-2 position-absolute" style="height:100%;line-height:100%;opacity:0.6;left:0;top:0;z-index:9999">
+                    <div class="d-flex flex-row justify-content-center flex-fill align-items-center">
+                        <BootSpinner Size="Size.SM" AdditionalCssClass="mr-1" />
+                        @((MarkupString)LoadingText)
+                    </div>
+                </div>
+                }
+                <table class="@BuildCssClassString() position-relative" style="@BuildStylesString()">
                     <tbody>
-                        @if (IsCompleted)
-                        {
-                            if (!Data.Any())
+                        
+                            @if (!Data.Any())
                             {
                                 <tr>
                                     <td colspan="@GetColSpan()" class="text-center">
@@ -41,7 +48,7 @@
                             {
                                 var item = Data[i];
                                 var rowIndex = i;
-                                <tr @key="rowIndex" @onclick="_ => ClickRow(item, rowIndex)" class="@GetRowCssByIndex(rowIndex)">
+                                <tr @key="rowIndex" @onclick="_ => ClickRow(rowIndex)" class="@GetRowCssByIndex(rowIndex) @(RowSelectedColor.HasValue?"cursor-pointer":"")">
                                     @if (RowNumber)
                                     {
                                         <td class="text-center" style="width:20px">
@@ -70,20 +77,6 @@
                                     }
                                 </tr>
                             }
-                        }
-                        else
-                        {
-                            <tr>
-                                <td colspan="@GetColSpan()">
-                                    <div class="d-flex flex-column flex-fill align-items-center bg-light w-100 overflow-hidden p-2" style="height:100%;line-height:100%;opacity:0.4;left:0;top:0">
-                                        <div class="d-flex flex-row justify-content-center flex-fill align-items-center">
-                                            <BootSpinner Size="Size.SM" AdditionalCssClass="mr-1" />
-                                            数据拼命加载中...
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
                     </tbody>
                 </table>
             </div>

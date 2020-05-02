@@ -29,11 +29,6 @@ namespace BootBlazorUI.DataGrid
         internal Dictionary<int, List<string>> RowCssList { get; private set; } = new Dictionary<int, List<string>>();
 
         /// <summary>
-        /// 获取每一行的 style 集合。
-        /// </summary>
-        internal Dictionary<int, List<string>> RowStyleList { get; private set; } = new Dictionary<int, List<string>>();
-
-        /// <summary>
         /// 获取行的样式。
         /// </summary>
         private string GetRowStyle()
@@ -81,22 +76,9 @@ namespace BootBlazorUI.DataGrid
         {
             if (!RowCssList.ContainsKey(index))
             {
-                return string.Empty;
+                return null;
             }
             return string.Join(" ", RowCssList[index]);
-        }
-
-        /// <summary>
-        /// 获取行的 style 字符串。
-        /// </summary>
-        /// <param name="index">行的索引。</param>
-        private string GetRowStyleByIndex(int index)
-        {
-            if (!RowStyleList.ContainsKey(index))
-            {
-                return string.Empty;
-            }
-            return string.Join(" ", RowStyleList[index]);
         }
 
         /// <summary>

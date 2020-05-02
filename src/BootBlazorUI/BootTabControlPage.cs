@@ -47,7 +47,7 @@ namespace BootBlazorUI
 
 
         /// <summary>
-        /// 设置最小高度，单位像素。。
+        /// 设置最小高度，单位像素。
         /// </summary>
         [Parameter] public int? MinHeight { get; set; }
 
@@ -100,7 +100,7 @@ namespace BootBlazorUI
         {
             if (MinHeight.HasValue)
             {
-                collection.Add($"height:{MinHeight.Value}px;");
+                collection.Add($"min-height:{MinHeight.Value}px;");
             }
             if (Height.HasValue)
             {
@@ -108,7 +108,7 @@ namespace BootBlazorUI
             }
             if (MaxHeight.HasValue)
             {
-                collection.Add($"height:{MaxHeight.Value}px;overflow-y:auto");
+                collection.Add($"max-height:{MaxHeight.Value}px;overflow-y:auto");
             }
         }
     }

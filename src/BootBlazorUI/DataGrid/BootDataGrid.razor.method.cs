@@ -13,8 +13,9 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         public async Task LoadData()
         {
-            IsCompleted = false;
-            var dataSource= DataSourceProvider.Invoke();
+            ShowLoading();
+
+            var dataSource = await Task.Run(() => DataSourceProvider());
             if(!(dataSource is IEnumerable data))
             {
                 throw new InvalidOperationException($"{nameof(DataSourceProvider)} 返回的对象不是 {nameof(IEnumerable)} 的实例");
@@ -22,32 +23,52 @@ namespace BootBlazorUI.DataGrid
             await OnDataLoading.InvokeAsync(null);
             Data = data.Cast<object>().ToList();
             await OnDataLoaded.InvokeAsync(Data);
-            IsCompleted = true;
+
+            HideLoading();
+
+            InitializeRowCss();
         }
 
         /// <summary>
         /// 点击指定的行。
+        /// <para>
+        /// 若指定的索引是 -1，则：
+        /// <list type="bullet">
+        /// <item>
+        /// 若设置了 <see cref="RowSelectedColor"/> 参数，将取消所有的选中背景。
+        /// </item>
+        /// <item>
+        /// <see cref="BootDataGridRowSelectedEventArgs.Item"/> 的值是 null。
+        /// </item>
+        /// </list>
+        /// </para>
         /// </summary>
-        /// <param name="item">被选择的行数据。</param>
-        /// <param name="index">选择行的索引。</param>
-        public async Task ClickRow(object item, int index)
+        /// <param name="index">点击行的索引。</param>
+        /// <exception cref="InvalidOperationException">索引超出数组范围。</exception>
+        public async Task ClickRow(int index)
         {
-            if (item is null)
+            if (index > Data.Count)
             {
-                throw new ArgumentNullException(nameof(item));
+                throw new ArgumentOutOfRangeException($"指定的索引({index})超出数组范围({Data.Count})");
             }
 
-            if (index < 0)
-            {
-                throw new ArgumentException($"选择行的索引必须大于0，但实际的值是'{index}'", nameof(index));
-            }
-
-            await OnRowSelected.InvokeAsync(new BootDataGridRowSelectedEventArgs(item, index));
+            await OnRowSelected.InvokeAsync(new BootDataGridRowSelectedEventArgs(index, index < 0 ? null : Data[index]));
 
             if (RowSelectedColor.HasValue)
             {
                 var bgColorCss = ComponentUtil.GetColorCssClass(RowSelectedColor.Value, "bg-");
-                var textColorCss =ComponentUtil.GetReverseColorCssClass(RowSelectedColor.Value,"text-");
+                var textColorCss = ComponentUtil.GetReverseColorCssClass(RowSelectedColor.Value, "text-");
+
+                //先清空相应的 css
+                if (index < 0)
+                {
+                    for (int i = 0; i < RowCssList.Count; i++)
+                    {
+                        RemoveRowCss(i, bgColorCss);
+                        RemoveRowCss(i, textColorCss);
+                    }
+                    return;
+                }
 
                 if (!RowMultipleSelect)
                 {
@@ -59,40 +80,48 @@ namespace BootBlazorUI.DataGrid
                     }
                 }
 
-                if (HasRowCss(index, bgColorCss))
+                if (index > -1)
                 {
-                    RemoveRowCss(index, bgColorCss);
-                    RemoveRowCss(index, textColorCss);
-                }
-                else
-                {
-                    AddRowCss(index, bgColorCss);
-                    AddRowCss(index, textColorCss);
+                    if (HasRowCss(index, bgColorCss))
+                    {
+                        RemoveRowCss(index, bgColorCss);
+                        RemoveRowCss(index, textColorCss);
+                    }
+                    else
+                    {
+                        AddRowCss(index, bgColorCss);
+                        AddRowCss(index, textColorCss);
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// 向指定行添加指定的 css 类。如果类名称已存在，则不会添加。
+        /// 向指定行添加指定的 css 类的名称。如果名称已存在，则不会添加。
         /// </summary>
         /// <param name="index">指定的行索引。</param>
         /// <param name="name">css 类名称。</param>
-        /// <returns>若成功添加，则返回 <c>true</c>，否则返回 <c>false</c>。</returns>
-        public bool AddRowCss(int index, string name)
+        public void AddRowCss(int index, string name)
         {
-            if (HasRowCss(index, name))
+            if (!RowCssList.ContainsKey(index))
             {
-                return false;
+                RowCssList.Add(index, new List<string> { name });
+                return;
             }
-            var cssList = RowCssList[index];
-            if (!cssList.Contains(name))
+
+            var cssClass = RowCssList[index];
+            if (!cssClass.Contains(name))
             {
-                cssList.Add(name);
-                return true;
+                cssClass.Add(name);
             }
-            return false;
         }
 
+        /// <summary>
+        /// 移除指定行的 css 类名称并返回是否移除成功。
+        /// </summary>
+        /// <param name="index">要移除行的索引。</param>
+        /// <param name="name">要移除的行的 css 类名称。</param>
+        /// <returns>若指定的索引不存在或无法移除指定的 css 名称，则返回 <c>false</c>；否则返回 <c>true</c>。</returns>
         public bool RemoveRowCss(int index,string name)
         {
             if (!RowCssList.ContainsKey(index))
@@ -100,49 +129,33 @@ namespace BootBlazorUI.DataGrid
                 return false;
             }
 
-            var cssList = RowCssList[index];
-            if (cssList == null)
-            {
-                cssList = new List<string>();
-            }
-            return cssList.Remove(name);
+            return RowCssList[index].Remove(name);
         }
 
-        public bool HasRowCss(int index,string name)
+        /// <summary>
+        /// 判断指定行是否包含指定的 css 类名称。
+        /// </summary>
+        /// <param name="index">要判断的行索引。</param>
+        /// <param name="name">要判断的行的 css 类名称。</param>
+        /// <returns>若索引不存在或指定的 css 名称不存在，则返回 <c>false</c>；否则返回 <c>true</c>。</returns>
+        public bool HasRowCss(int index, string name)
         {
             if (!RowCssList.ContainsKey(index))
             {
                 return false;
             }
-            var cssList = RowCssList[index];
-            if (cssList == null)
-            {
-                cssList = new List<string>();
-            }
+            var cssClass = RowCssList[index];
 
-            return cssList.Contains(name);
+            return cssClass.Contains(name);
         }
 
         /// <summary>
-        /// 向指定行追加指定的 style 自定义样式。
+        /// 显示数据加载中的遮罩层。
         /// </summary>
-        /// <param name="index">指定的行索引。</param>
-        /// <param name="styles">样式数组。</param>
-        public void AppendRowStyle(int index, params string[] styles)
-        {
-            if (styles is null)
-            {
-                throw new ArgumentNullException(nameof(styles));
-            }
-
-            if (!RowCssList.ContainsKey(index))
-            {
-                RowCssList.Add(index, new List<string>(styles));
-            }
-            else
-            {
-                RowCssList[index].AddRange(styles);
-            }
-        }
+        public void ShowLoading() => IsCompleted = false;
+        /// <summary>
+        /// 隐藏数据加载中的遮罩层。
+        /// </summary>
+        public void HideLoading() => IsCompleted = true;
     }
 }

@@ -95,6 +95,10 @@ namespace BootBlazorUI.DataGrid
         /// </para>
         /// </summary>
         [Parameter] public bool LoadDataAfterRender { get; set; } = true;
+        /// <summary>
+        /// 设置数据加载中遮罩层的文字。支持 HTML 字符串。
+        /// </summary>
+        [Parameter] public string LoadingText { get; set; } = "数据正在拼命加载中...";
         #endregion
 
         #region 事件
@@ -104,11 +108,11 @@ namespace BootBlazorUI.DataGrid
         [Parameter] public EventCallback<BootDataGridRowSelectedEventArgs> OnRowSelected { get; set; }
 
         /// <summary>
-        /// 设置当数据加载前触发的事件。
+        /// 设置当数据加载前触发的事件。在 <see cref="LoadData"/> 方法之前触发。
         /// </summary>
         [Parameter] public EventCallback OnDataLoading { get; set; }
         /// <summary>
-        /// 设置当数据加载完成后触发的事件。
+        /// 设置当数据加载完成后触发的事件。在 <see cref="LoadData"/> 方法之后触发。
         /// </summary>
         [Parameter] public EventCallback<IReadOnlyList<object>> OnDataLoaded { get; set; }
         #endregion
@@ -141,11 +145,6 @@ namespace BootBlazorUI.DataGrid
                 {
                     IsCompleted = true;
                 }
-
-                for (int i = 0; i < Data.Count; i++)
-                {
-                    RowCssList.Add(i, new List<string>());
-                }
             }
         }
 
@@ -176,6 +175,22 @@ namespace BootBlazorUI.DataGrid
             if (Small)
             {
                 collection.Add("table-sm");
+            }
+        }
+
+
+
+        internal void Initialize()
+        {
+            InitializeRowCss();
+        }
+
+        private void InitializeRowCss()
+        {
+            RowCssList = new Dictionary<int, List<string>>();
+            for (int i = 0; i < Data.Count; i++)
+            {
+                RowCssList.Add(i, new List<string>());
             }
         }
     }

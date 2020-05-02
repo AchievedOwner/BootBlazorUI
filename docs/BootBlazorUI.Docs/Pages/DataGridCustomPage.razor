@@ -19,7 +19,7 @@
 <PresentationPart Title="被动加载数据">
     <RunTemplate>
         <BootButton OnClick="e=>GetData()">点击加载</BootButton>
-        <BootDataGrid DataSourceProvider="()=>list" LoadDataAfterRender="false" @ref="grid" OnDataLoaded="e=>SetTotalCount()">
+        <BootDataGrid DataSourceProvider="() => list" LoadDataAfterRender="false" @ref="grid" OnDataLoaded="e=>SetTotalCount()">
             <BootDataGridFieldColumn Field="Id" />
             <BootDataGridFieldColumn Field="Name" />
             <BootDataGridFieldColumn Field="Birthday" />
@@ -27,9 +27,25 @@
         <BootPagination @bind-CurrentPage="Page" @bind-TotalCount="TotalCount" OnPageChanged="GetData"/>
     </RunTemplate>
 </PresentationPart>
-@code{
-        BootDataGrid grid;
 
+
+<PresentationPart Title="控制数据">
+    <RunTemplate>
+        @*<BootButton OnClick="e=>GetData()">点击加载</BootButton>*@
+        <BootButton OnClick="Add">新增一行</BootButton>
+        <BootButton OnClick="Remove">移除一行</BootButton>
+        <BootDataGrid DataSourceProvider="()=>manualList"  RowSelectedColor="Color.Warning" LoadDataAfterRender="false" @ref="manualGrid" OnRowSelected="RememberSelectRow">
+            <BootDataGridFieldColumn Field="Id" />
+            <BootDataGridFieldColumn Field="Name" />
+            <BootDataGridFieldColumn Field="Birthday" />
+        </BootDataGrid>
+    </RunTemplate>
+</PresentationPart>
+@code{
+    BootDataGrid grid;
+
+    BootDataGrid manualGrid;
+    List<User> manualList = new List<User>();
 
     protected override void OnInitialized()
     {
@@ -56,11 +72,50 @@
     async Task GetData()
     {
         list = dataSource.Skip((Page - 1) * Size).Take(Size).ToList();
+
+        grid.ShowLoading();
+        await Task.Delay(3000);
         await grid.LoadData();
+        grid.HideLoading();
     }
 
-    void SetTotalCount() 
+    void SetTotalCount()
     {
         TotalCount = dataSource.Count;
+    }
+
+    async Task Add()
+    {
+        manualList.Add(new User
+        {
+            Id = new Random().Next(),
+            Name = new Random().Next().ToString()
+        });
+        await manualGrid.LoadData();
+        await KeepSelectRow();
+    }
+    async Task Remove()
+    {
+        manualList.RemoveAt(manualList.Count-1);
+        await manualGrid.LoadData();
+        await KeepSelectRow();
+    }
+    int selectedIndex = -1;
+    User selectedItem;
+    void RememberSelectRow(BootDataGridRowSelectedEventArgs e)
+    {
+        selectedIndex = e.Index;
+        selectedItem = e.Item as User;
+    }
+
+    async Task KeepSelectRow()
+    {
+        if (selectedIndex > -1)
+        {
+            if (manualList.Contains(selectedItem))
+            {
+                await manualGrid.ClickRow(selectedIndex);
+            }
+        }
     }
 }
