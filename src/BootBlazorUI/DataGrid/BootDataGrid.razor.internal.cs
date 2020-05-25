@@ -9,10 +9,6 @@ namespace BootBlazorUI.DataGrid
 {
     partial class BootDataGrid
     {
-        /// <summary>
-        /// 获取数据源的数据。
-        /// </summary>
-        IReadOnlyList<object> Data { get; set; } = new List<object>();
 
         /// <summary>
         /// 表示数据表格的列。
