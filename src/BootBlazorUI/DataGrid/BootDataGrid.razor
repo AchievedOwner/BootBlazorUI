@@ -14,7 +14,7 @@
                         }
                         @foreach (var item in Columns)
                         {
-                            <th style="@(item.GetWidthStyleString())">@item.GetTitle()</th>
+                            <th style="@(item.BuildStylesString())" class="@item.BuildCssClassString()">@item.GetTitle()</th>
                         }
                     </tr>
                 </thead>
@@ -57,7 +57,7 @@
                                     }
                                     @foreach (var col in Columns)
                                     {
-                                        <td class="@col.BuildCssClassString()" style="@(col.GetWidthStyleString())">
+                                        <td class="@col.BuildCssClassString()" style="@(col.BuildStylesString())">
                                             @{
                                                 if (col is BootDataGridFieldColumn fieldColumn)
                                                 {
@@ -70,7 +70,7 @@
                                                 }
                                                 if (col is BootDataGridTemplateColumn templateColumn)
                                                 {
-                                                    @templateColumn.ChildContent(item)
+                                                    @templateColumn.ChildContent(new BootDataGridRowSelectedEventArgs(rowIndex,item))
                                                 }
                                             }
                                         </td>

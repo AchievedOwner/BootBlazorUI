@@ -368,8 +368,8 @@ List<User> user = new List<User>
     </Description>
     <RunTemplate>
         <BootDataGrid DataSourceProvider="() => userList" RowHeight="300">
-            <BootDataGridTemplateColumn Title="自定义列" Width="20px">
-                <input type="checkbox" value="@(context.GetValue(nameof(User.Id)))" @onchange="@(e=>_js.InvokeVoidAsync("alert",$"选择了Id:{context.GetValue(nameof(User.Id))}的值"))" />
+            <BootDataGridTemplateColumn Title="自定义列" Width="200px" Align="HorizontalAlignment.Center">
+                <input type="checkbox" value="@(context.Item.GetValue(nameof(User.Id)))" @onchange="@(e=>_js.InvokeVoidAsync("alert",$"选择了Id:{context.Item.GetValue(nameof(User.Id))}的值"))" />
             </BootDataGridTemplateColumn>
             <BootDataGridFieldColumn Title="姓名" Field="Name" />
             <BootDataGridFieldColumn Title="生日" Field="Birthday" />
@@ -379,11 +379,11 @@ List<User> user = new List<User>
         @Code.GetCode(@"
 ```html
 <BootDataGrid DataSourceProvider=""() => userList"" RowHeight=""400"">
-<BootDataGridTemplateColumn Title=""自定义列"" Width=""20px"">
-    <input type=""checkbox"" value=""@(context.GetValue(nameof(User.Id)))"" @onchange=""@(e=>_js.InvokeVoidAsync(""alert"",$""选择了Id:{context.GetValue(nameof(User.Id))}的值""))"" />
-</BootDataGridTemplateColumn>
-<BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
-<BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
+    <BootDataGridTemplateColumn Title=""自定义列"" Width=""200px"" Align=""HorizontalAlignment.Center"">
+        <input type=""checkbox"" value=""@(context.GetValue(nameof(User.Id)))"" @onchange=""@(e=>_js.InvokeVoidAsync(""alert"",$""选择了Id:{context.GetValue(nameof(User.Id))}的值""))"" />
+    </BootDataGridTemplateColumn>
+    <BootDataGridFieldColumn Title=""姓名"" Field=""Name"" />
+    <BootDataGridFieldColumn Title=""生日"" Field=""Birthday"" />
 </BootDataGrid>
 ```
 ")

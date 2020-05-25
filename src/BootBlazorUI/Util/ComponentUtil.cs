@@ -46,5 +46,14 @@ namespace BootBlazorUI
             };
             return GetColorCssClass(reverseColor, prefix);
         }
+
+
+        /// <summary>
+        /// 获取水平对齐方式。
+        /// </summary>
+        /// <param name="alignment">对齐方式。</param>
+        /// <param name="prefix">前缀。</param>
+        internal static string GetHorizontalAlignCssClass(HorizontalAlignment alignment, string prefix = default)
+            => $"{prefix}{alignment.ToString().ToLower()}";
     }
 }
