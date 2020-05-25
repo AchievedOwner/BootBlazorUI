@@ -15,9 +15,10 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>主要优化了 BootTabControl 的实现方式
-【新增】UseCode 和 OnSwitch 事件用于通过代码来切换选项卡
-【优化】BootTabControl 的实现方式</PackageReleaseNotes>
+    <PackageReleaseNotes>【修复】BootPagination 跳转到无法同步数据
+【修复】BootDataGridTemplate 传入 RowSelectedArgs 参数
+【新增】BootDataGrid 的列水平对齐参数
+【优化】获取列 GetValue 时字段不存在返回 null，而不是引发异常</PackageReleaseNotes>
     <Copyright>BootBlazorUI © William Chow 2020</Copyright>
   </PropertyGroup>
 
