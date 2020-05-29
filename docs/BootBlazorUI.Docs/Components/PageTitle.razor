@@ -1,11 +1,13 @@
 ﻿<h2>@Title</h2>
 <div class="border-bottom m2-1 mb-2"></div>
-@if (ChildContent != null)
-{
-<blockquote>
-    @ChildContent
-</blockquote>
-}
+<div @attributes="AdditionalAttributes">
+    @if (ChildContent != null)
+    {
+        <blockquote>
+            @ChildContent
+        </blockquote>
+    }
+</div>
 <div class="mb-3"></div>
 
 @code {
@@ -13,4 +15,6 @@
     public string Title { get; set; }
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    [Parameter]public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
 }

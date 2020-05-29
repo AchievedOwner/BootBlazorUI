@@ -30,11 +30,10 @@ namespace BootBlazorUI.DataGrid
             if (rowType.IsClass)//实体
             {
                 var property = rowType.GetProperty(field);
-                if (property == null)
+                if (property != null)
                 {
-                    throw new InvalidOperationException($"没有在数据源中找到“{field}”字段");
+                    value = property.GetValue(row);
                 }
-                value = property.GetValue(row);
             }
 
             return value;

@@ -120,23 +120,19 @@
                         跳转到
                     </li>
                     <li class="list-inline-item">
-                        <input class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"") text-center" style="width:80px" @bind="CurrentPage" />
+                        <input class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"") text-center" style="width:80px" @bind="NavigateTo" @onblur="GoToPage" @onkeyup="PressEnter"/>
                     </li>
                 </ul>
             </div>
         }
     </nav>
 @code{
-    NavigateToModel model = new NavigateToModel();
-    class NavigateToModel
-    {
-        [System.ComponentModel.DataAnnotations.Required]
-        public string NavigateTo { get; set; }
-    }
+
+    string NavigateTo { get; set; }
 
     async Task GoToPage()
     {
-        if (!int.TryParse(model.NavigateTo, out int page))
+        if (!int.TryParse(NavigateTo, out int page))
         {
             page = 1;
         }
@@ -150,8 +146,15 @@
         {
             page = TotalPages;
         }
-        model.NavigateTo = page.ToString();
 
         await NavigateToPage(page);
+    }
+
+    async Task PressEnter(KeyboardEventArgs e)
+    {
+        if (e.Code.Contains("Enter"))
+        {
+            await GoToPage();
+        }
     }
 }
