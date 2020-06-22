@@ -30,7 +30,7 @@ namespace BootBlazorUI.Docs
             {
                 return version.ToString();
             }
-            return $"{version.Major}.{version.Minor}.{version.Build}-RC";
+            return $"{version.Major}.{version.Minor}.{version.Build}";
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
