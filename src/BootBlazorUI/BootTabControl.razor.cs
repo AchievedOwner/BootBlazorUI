@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
@@ -24,14 +25,9 @@ namespace BootBlazorUI
         public RenderFragment ChildContent { get; set; }
 
         /// <summary>
-        /// 表示启用页面。
-        /// </summary>
-        internal BootTabControlPage ActivedPage { get; set; }
-
-        /// <summary>
         /// 获取所有的页面。
         /// </summary>
-        List<BootTabControlPage> Pages { get; set; } = new List<BootTabControlPage>();
+        internal List<BootTabControlPage> Pages { get; set; } = new List<BootTabControlPage>();
 
         /// <summary>
         /// 设置一个布尔值，表示标签页是否使用药丸样式。
@@ -59,40 +55,78 @@ namespace BootBlazorUI
         [Parameter] public int? Height { get; set; }
 
         /// <summary>
+        /// 设置一个布尔值，表示是否使用代码来切换选项卡。若设置为 <c>true</c>，则需要调用 <see cref="SwitchTo(int)"/> 切换指定索引的选项卡。
+        /// </summary>
+        [Parameter] public bool UseCode { get; set; }
+
+        /// <summary>
+        /// 设置当切换选项卡时触发的事件。
+        /// </summary>
+        [Parameter] public EventCallback<int> OnSwtich { get; set; }
+
+        /// <summary>
+        /// 激活的标签页索引。
+        /// </summary>
+        internal int ActivedTabPageIndex { get; set; } = -1;
+
+
+
+        /// <summary>
         /// 添加一个标签页面。
         /// </summary>
         /// <param name="page">要添加的标签页面。</param>
-        internal void AddPage(BootTabControlPage page)
+        public void AddPage(BootTabControlPage page)
         {
             Pages.Add(page);
             if (Pages.Count == 1)
             {
-                ActivedPage = page;
+                ActivedTabPageIndex = 0;
             }
-            StateHasChanged();
+            StateHasChanged();            
         }
 
         /// <summary>
         /// 获取启用样式。
         /// </summary>
-        /// <param name="page"></param>
+        /// <param name="index"></param>
         /// <returns></returns>
-        string GetActiveClass(BootTabControlPage page)
+        string GetActiveClass(int index) => ActivedTabPageIndex == index ? "active" : null;
+
+        /// <summary>
+        /// 切换选项卡。
+        /// </summary>
+        /// <param name="index">要切换的索引。</param>
+        /// <returns></returns>
+        async Task Switch(int index)
         {
-            return ActivedPage == page ? "active" : string.Empty;
+            if (!UseCode)
+            {
+                await SwitchTo(index);
+            }
+            await OnSwtich.InvokeAsync(index);
         }
 
         /// <summary>
-        /// 激活指定的标签页面。
+        /// 切换指定索引的选项卡。
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
-        async Task ActivePage(BootTabControlPage page)
+        /// <param name="index">选项卡索引。</param>
+        public async Task SwitchTo(int index)
         {
-            await page.OnActived.InvokeAsync(page);
-            ActivedPage = page;
+            if (index < 0)
+            {
+                ActivedTabPageIndex = -1;
+                return;
+            }
+
+            var activedPage = Pages[index];
+            ActivedTabPageIndex = index;
+            await activedPage.OnActived.InvokeAsync(activedPage);
         }
 
+        /// <summary>
+        /// 创建组件的 css 类集合。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("nav");
@@ -107,6 +141,10 @@ namespace BootBlazorUI
             }
         }
 
+        /// <summary>
+        /// 创建组件的样式。
+        /// </summary>
+        /// <param name="collection">样式集合。</param>
         protected override void CreateComponentStyle(ICollection<string> collection)
         {
             if (MinHeight.HasValue)

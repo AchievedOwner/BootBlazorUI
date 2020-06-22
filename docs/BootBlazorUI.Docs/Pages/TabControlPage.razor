@@ -130,6 +130,88 @@
         ")
     </CodeTemplate>
 </PresentationPart>
+
+<PresentationPart Title="使用代码切换选项卡">
+    <Description>
+        特殊情况下，需要手动切换选项卡，则需要先设置 <code>UseCode="true"</code> 使自动点击切换无效，然后绑定 <code>OnSwitch</code> 事件调用 <code>SwitchTo</code> 方法切换选项卡。
+    </Description>
+    <RunTemplate>
+        <BootTabControl @ref="tabControl" UseCode="true" OnSwtich="Swtich">
+            <BootTabControlPage Title="第一个选项卡">
+                我是一个选项卡
+            </BootTabControlPage>
+            <BootTabControlPage Title="弹出对话框确定后切换">
+                确定后才切换到该选项卡
+            </BootTabControlPage>
+        </BootTabControl>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootTabControl @ref=""tabControl"" UseCode=""true"" OnSwtich=""Swtich"">
+    <BootTabControlPage Title=""第一个选项卡"">
+        我是一个选项卡
+    </BootTabControlPage>
+    <BootTabControlPage Title=""弹出对话框确定后切换"">
+        确定后才切换到该选项卡
+    </BootTabControlPage>
+</BootTabControl>
+```
+```cs
+BootTabControl tabControl;
+
+async Task Swtich(int index)
+{
+    if (index == 1)
+    {
+        DialogService.Show(option =>
+        {
+            option.Message = ""是否要切换选项卡？"";
+            option.Type = Dialog.DialogType.Confirm;
+            option.Confirm = async (_) =>
+            {
+                await tabControl.SwitchTo(1);
+                StateHasChanged();
+            };
+        });
+    }
+    else
+    {
+        await tabControl.SwitchTo(index);
+    }
+}
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<BootBlazorUI.Dialog.DialogContainer/>
+@code{
+
+    BootTabControl tabControl;
+
+
+    async Task Swtich(int index)
+    {
+        if (index == 1)
+        {
+            DialogService.Show(option =>
+            {
+                option.Message = "是否要切换选项卡？";
+                option.Type = Dialog.DialogType.Confirm;
+                option.Confirm = async (_) =>
+                {
+                    await tabControl.SwitchTo(1);
+                    StateHasChanged();
+                };
+            });
+        }
+        else
+        {
+            await tabControl.SwitchTo(index);
+        }
+    }
+}
+@inject BootBlazorUI.Dialog.IDialogService DialogService
 @inject IJSRuntime _js
 
 <ArgumentDescriptionTable Title="属性">
@@ -143,6 +225,26 @@
         <td>String</td>
         <td>设置标签页面标题。</td>
     </tr>
+    <tr>
+        <td>MinHeight</td>
+        <td>Nullable&lt;Int32></td>
+        <td>设置最小高度，单位像素。默认 100。</td>
+    </tr>
+    <tr>
+        <td>MaxHeight</td>
+        <td>Nullable&lt;Int32></td>
+        <td>设置最大高度，单位像素。超过该高度则显示滚动条。</td>
+    </tr>
+    <tr>
+        <td>Height</td>
+        <td>Nullable&lt;Int32></td>
+        <td>设置固定高度，单位像素。超过该高度则显示滚动条。</td>
+    </tr>
+    <tr>
+        <td>UseCode</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否使用代码来切换选项卡。若设置为 <code>true</code>，则需要调用 <code>SwitchTo(int)</code>" 切换指定索引的选项卡。</td>
+    </tr>
 </ArgumentDescriptionTable>
 
 <ArgumentDescriptionTable Title="事件">
@@ -150,5 +252,10 @@
         <td>OnActived</td>
         <td>EventCallBack</td>
         <td>设置当标签页被激活时触发的事件。</td>
+    </tr>
+    <tr>
+        <td>OnSwtich</td>
+        <td>EventCallback&lt;int></td>
+        <td>设置当切换选项卡时触发的事件。</td>
     </tr>
 </ArgumentDescriptionTable>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
@@ -78,7 +79,7 @@ namespace BootBlazorUI
         {
             collection.Add("tab-pane");
 
-            if (CascadedTabControl.ActivedPage == this)
+            if (CascadedTabControl.Pages[CascadedTabControl.ActivedTabPageIndex] ==this)
             {
                 collection.Add("active");
             }
@@ -96,6 +97,10 @@ namespace BootBlazorUI
             builder.CloseElement();
         }
 
+        /// <summary>
+        /// 创建组件的样式。
+        /// </summary>
+        /// <param name="collection">样式集合。</param>
         protected override void CreateComponentStyle(ICollection<string> collection)
         {
             if (MinHeight.HasValue)

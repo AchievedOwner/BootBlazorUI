@@ -6,7 +6,7 @@ BootBlazorUI 更偏向于交互性和实用性，而不仅仅是静态的组件�
 * .NET CORE 3.1+ SDK
 * .NET Standard 2.0+
 
-# 最新版本（v1.0-preview2）
+# 最新版本（v1.0-preview3）
 > Install-Package BootBlazorUI
 
 # 快速上手

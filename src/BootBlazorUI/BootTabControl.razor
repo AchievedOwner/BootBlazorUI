@@ -4,8 +4,9 @@
     @for (int i = 0; i < Pages.Count; i++)
     {
         var page = Pages[i];
-        <li class="nav-item">
-            <a href="javascript:;" class="nav-link @GetActiveClass(page)" role="tab" @onclick="@(()=>ActivePage(page))">
+        var index = i;
+        <li class="nav-item" @key="index">
+            <a href="javascript:;" class="nav-link @GetActiveClass(index)" role="tab" @onclick="_=>Switch(index)">
             @(page.Title)
             </a>
         </li>

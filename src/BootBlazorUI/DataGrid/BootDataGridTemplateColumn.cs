@@ -11,6 +11,6 @@ namespace BootBlazorUI.DataGrid
         /// 设置模板的自定义内容。
         /// </summary>
         [Parameter]
-        public RenderFragment<object> ChildContent { get; set; }
+        public RenderFragment<BootDataGridRowSelectedEventArgs> ChildContent { get; set; }
     }
 }

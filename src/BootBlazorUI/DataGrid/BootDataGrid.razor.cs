@@ -118,6 +118,11 @@ namespace BootBlazorUI.DataGrid
         #endregion
 
         /// <summary>
+        /// 获取数据源的数据。
+        /// </summary>
+        public IReadOnlyList<object> Data { get; private set; } = new List<object>();
+
+        /// <summary>
         /// 返回一个布尔值，表示数据是否已加载完成。
         /// </summary>
         /// <returns>若已加载完成，返回 <c>true</c>；否则返回 <c>false</c>。</returns>

@@ -25,10 +25,10 @@ namespace BootBlazorUI.DataGrid
         public string Width { get; set; }
 
         /// <summary>
-        /// 设置列的对齐方式。
+        /// 设置列的水平对齐方式。默认是左对齐。
         /// </summary>
         [Parameter]
-        public HorizontalAlignment Align { get; set; } = HorizontalAlignment.Center;
+        public HorizontalAlignment Align { get; set; } = HorizontalAlignment.Left;
 
         /// <summary>
         /// 父组件。
@@ -79,5 +79,19 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         internal virtual string GetTitle() => Title;
 
+
+        protected override void CreateComponentStyle(ICollection<string> collection)
+        {
+            var width= GetWidthStyleString();
+            if (!string.IsNullOrEmpty(width))
+            {
+                collection.Add(width);
+            }
+        }
+
+        protected override void CreateComponentCssClass(ICollection<string> collection)
+        {
+            collection.Add(ComponentUtil.GetHorizontalAlignCssClass(Align, "text-"));
+        }
     }
 }
