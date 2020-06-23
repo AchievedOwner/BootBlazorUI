@@ -1,0 +1,12 @@
+﻿@namespace BootBlazorUI
+
+@inherits BootComponentBase
+
+<BootButtonGroup AdditionalCssClass="@BuildCssClassString()">
+    <BootButton AdditionalCssClass="dropdown-toggle" Color="Color" Size="Size" OnClick="e=>RefMenu.Toggle()">
+        @Content
+    </BootButton>
+    <BootDropDownMenu @ref="RefMenu" OnToggle="flag=>IsActived=flag">
+        @DropDownItems
+    </BootDropDownMenu>
+</BootButtonGroup>
