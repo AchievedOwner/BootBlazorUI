@@ -69,6 +69,10 @@ namespace BootBlazorUI
             await OnToggle.InvokeAsync(IsActived);
         }
 
+        /// <summary>
+        /// 创建组件所需要的 css。
+        /// </summary>
+        /// <param name="collection">css 集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             if (IsActived)
