@@ -1,0 +1,206 @@
+﻿@page "/btnGroup"
+
+<PageTitle Title="按钮组(Button Group)">
+    将一系列按钮与按钮组分组在同一行上
+</PageTitle>
+
+<PresentationPart Title="简单示例">
+    <RunTemplate>
+        <BootButtonGroup>
+            <BootButton Color="Color.Primary">Primary</BootButton>
+            <BootButton Color="Color.Secondary">Secondary</BootButton>
+            <BootButton Color="Color.Info">Info</BootButton>
+            <BootButton Color="Color.Success">Success</BootButton>
+            <BootButton Color="Color.Warning">Warning</BootButton>
+            <BootButton Color="Color.Danger">Danger</BootButton>
+            <BootButton Color="Color.Light">Light</BootButton>
+            <BootButton Color="Color.Dark">Dark</BootButton>
+        </BootButtonGroup>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButtonGroup>
+    <BootButton Color=""Color.Primary"">Primary</BootButton>
+    <BootButton Color=""Color.Secondary"">Secondary</BootButton>
+    <BootButton Color=""Color.Info"">Info</BootButton>
+    <BootButton Color=""Color.Success"">Success</BootButton>
+    <BootButton Color=""Color.Warning"">Warning</BootButton>
+    <BootButton Color=""Color.Danger"">Danger</BootButton>
+    <BootButton Color=""Color.Light"">Light</BootButton>
+    <BootButton Color=""Color.Dark"">Dark</BootButton>
+</BootButtonGroup>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="尺寸">
+    <Description>
+        设置 <code>Size</code> 属性来显示尺寸。
+    </Description>
+    <RunTemplate>
+        <BootButtonGroup>
+            <BootButton Color="Color.Primary">Primary</BootButton>
+            <BootButton Color="Color.Secondary">Secondary</BootButton>
+            <BootButton Color="Color.Info">Info</BootButton>
+            <BootButton Color="Color.Success">Success</BootButton>
+            <BootButton Color="Color.Warning">Warning</BootButton>
+            <BootButton Color="Color.Danger">Danger</BootButton>
+            <BootButton Color="Color.Light">Light</BootButton>
+            <BootButton Color="Color.Dark">Dark</BootButton>
+        </BootButtonGroup>
+        <BootButtonGroup Size="Size.LG" AdditionalCssClass="mt-5">
+            <BootButton Color="Color.Primary">Primary</BootButton>
+            <BootButton Color="Color.Secondary">Secondary</BootButton>
+            <BootButton Color="Color.Info">Info</BootButton>
+            <BootButton Color="Color.Success">Success</BootButton>
+            <BootButton Color="Color.Warning">Warning</BootButton>
+            <BootButton Color="Color.Danger">Danger</BootButton>
+            <BootButton Color="Color.Light">Light</BootButton>
+            <BootButton Color="Color.Dark">Dark</BootButton>
+        </BootButtonGroup>
+        <BootButtonGroup Size="Size.SM" AdditionalCssClass="mt-5">
+            <BootButton Color="Color.Primary">Primary</BootButton>
+            <BootButton Color="Color.Secondary">Secondary</BootButton>
+            <BootButton Color="Color.Info">Info</BootButton>
+            <BootButton Color="Color.Success">Success</BootButton>
+            <BootButton Color="Color.Warning">Warning</BootButton>
+            <BootButton Color="Color.Danger">Danger</BootButton>
+            <BootButton Color="Color.Light">Light</BootButton>
+            <BootButton Color="Color.Dark">Dark</BootButton>
+        </BootButtonGroup>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButtonGroup>
+    <BootButton Color=""Color.Primary"">Primary</BootButton>
+    <BootButton Color=""Color.Secondary"">Secondary</BootButton>
+    <BootButton Color=""Color.Info"">Info</BootButton>
+    <BootButton Color=""Color.Success"">Success</BootButton>
+    <BootButton Color=""Color.Warning"">Warning</BootButton>
+    <BootButton Color=""Color.Danger"">Danger</BootButton>
+    <BootButton Color=""Color.Light"">Light</BootButton>
+    <BootButton Color=""Color.Dark"">Dark</BootButton>
+</BootButtonGroup>
+<BootButtonGroup Size=""Size.LG"">
+    <BootButton Color=""Color.Primary"">Primary</BootButton>
+    <BootButton Color=""Color.Secondary"">Secondary</BootButton>
+    <BootButton Color=""Color.Info"">Info</BootButton>
+    <BootButton Color=""Color.Success"">Success</BootButton>
+    <BootButton Color=""Color.Warning"">Warning</BootButton>
+    <BootButton Color=""Color.Danger"">Danger</BootButton>
+    <BootButton Color=""Color.Light"">Light</BootButton>
+    <BootButton Color=""Color.Dark"">Dark</BootButton>
+</BootButtonGroup>
+<BootButtonGroup Size=""Size.SM"">
+    <BootButton Color=""Color.Primary"">Primary</BootButton>
+    <BootButton Color=""Color.Secondary"">Secondary</BootButton>
+    <BootButton Color=""Color.Info"">Info</BootButton>
+    <BootButton Color=""Color.Success"">Success</BootButton>
+    <BootButton Color=""Color.Warning"">Warning</BootButton>
+    <BootButton Color=""Color.Danger"">Danger</BootButton>
+    <BootButton Color=""Color.Light"">Light</BootButton>
+    <BootButton Color=""Color.Dark"">Dark</BootButton>
+</BootButtonGroup>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="嵌套">
+    <Description>
+        可以将 <code>BootButton</code> 和 <code>BootDropDown</code> 混合一起使用。
+    </Description>
+    <RunTemplate>
+        <BootButtonGroup>
+            <BootButton>1</BootButton>
+            <BootButton Color="Color.Warning">2</BootButton>
+            <BootDropDown Color="Color.Danger">
+                <Content>下拉</Content>
+                <DropDownItems>
+                    <BootDropDownLinkItem>选项1</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项2</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项3</BootDropDownLinkItem>
+                </DropDownItems>
+            </BootDropDown>
+        </BootButtonGroup>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButtonGroup>
+    <BootButton>1</BootButton>
+    <BootButton Color=""Color.Warning"">2</BootButton>
+    <BootDropDown Color=""Color.Danger"">
+        <Content>下拉</Content>
+        <DropDownItems>
+            <BootDropDownLinkItem>选项1</BootDropDownLinkItem>
+            <BootDropDownLinkItem>选项2</BootDropDownLinkItem>
+            <BootDropDownLinkItem>选项3</BootDropDownLinkItem>
+        </DropDownItems>
+    </BootDropDown>
+</BootButtonGroup>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<PresentationPart Title="垂直显示">
+    <Description>设置 <code>Vertical="true"</code> 会将按钮组垂直显示。</Description>
+    <RunTemplate>
+        <BootButtonGroup Vertical="true">
+            <BootButton>按钮</BootButton>
+            <BootButton>按钮</BootButton>
+            <BootDropDown>
+                <Content>下拉</Content>
+                <DropDownItems>
+                    <BootDropDownLinkItem>选项1</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项2</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项3</BootDropDownLinkItem>
+                </DropDownItems>
+            </BootDropDown>
+            <BootButton>按钮</BootButton>
+            <BootButton>按钮</BootButton>
+            <BootDropDown>
+                <Content>下拉</Content>
+                <DropDownItems>
+                    <BootDropDownLinkItem>选项1</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项2</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项3</BootDropDownLinkItem>
+                </DropDownItems>
+            </BootDropDown>
+            <BootButton>按钮</BootButton>
+            <BootButton>按钮</BootButton>
+            <BootDropDown>
+                <Content>下拉</Content>
+                <DropDownItems>
+                    <BootDropDownLinkItem>选项1</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项2</BootDropDownLinkItem>
+                    <BootDropDownLinkItem>选项3</BootDropDownLinkItem>
+                </DropDownItems>
+            </BootDropDown>
+        </BootButtonGroup>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootButtonGroup Vertical=""true"">
+...
+</BootButtonGroup>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="属性">
+    <tr>
+        <td>Size</td>
+        <td>Size</td>
+        <td>设置按钮组的尺寸。</td>
+    </tr>
+    <tr>
+        <td>Vertical</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否垂直显示。</td>
+    </tr>
+</ArgumentDescriptionTable>

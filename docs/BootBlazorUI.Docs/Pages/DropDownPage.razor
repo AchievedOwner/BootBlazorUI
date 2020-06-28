@@ -1,0 +1,206 @@
+﻿@page "/dropdown"
+
+    <PageTitle Title="下拉菜单(DropDownMenu)">
+        切换上下文覆盖显示链接列表和更多与引导下拉。
+    </PageTitle>
+
+<PresentationPart Title="手动触发">
+    <Description>
+        使用 <code>BootDropDownMenu</code> 作为下拉菜单的主容器，通过 <code>@@ref</code> 引用的方式，手动调用 <code>Toggle</code> 方法显示/隐藏下拉菜单。
+    </Description>
+    <RunTemplate>
+        <div class="dropdown">
+            <BootButton Color="Color.Success" OnClick="e=>RefMenu.Toggle()">下拉菜单</BootButton>
+            <BootDropDownMenu @ref="RefMenu">
+                <BootDropDownLinkItem>选项1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>选项2</BootDropDownLinkItem>
+                <BootDropDownDivider/>
+                <BootDropDownLinkItem>选项3</BootDropDownLinkItem>
+            </BootDropDownMenu>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""dropdown"">
+    <BootButton Color=""Color.Success"" OnClick=""e=>RefMenu.Toggle()"">下拉菜单</BootButton>
+    <BootDropDownMenu @ref=""RefMenu"">
+        <BootDropDownLinkItem>选项1</BootDropDownLinkItem>
+        <BootDropDownLinkItem>选项2</BootDropDownLinkItem>                
+        <BootDropDownDivider/>
+        <BootDropDownLinkItem>选项3</BootDropDownLinkItem>
+    </BootDropDownMenu>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+@code{
+    BootDropDownMenu RefMenu;
+}
+
+<PresentationPart Title="下拉菜单容器">
+    <Description>
+        使用 <code>BootDropDown</code> 作为下拉菜单容器，可以自动实现下拉菜单的点击事件。
+    </Description>
+    <RunTemplate>
+        <BootDropDown>
+            <Content>
+                这是一个下拉菜单
+            </Content>
+            <DropDownItems>
+                <BootDropDownTextItem>普通文本</BootDropDownTextItem>
+                <BootDropDownDivider />
+                <BootDropDownHeader><h4>标题</h4></BootDropDownHeader>
+                <BootDropDownLinkItem Link="item1">选项1</BootDropDownLinkItem>
+                <BootDropDownLinkItem Link="item2">选项2</BootDropDownLinkItem>
+                <BootDropDownLinkItem Link="item3">选项3</BootDropDownLinkItem>
+                <BootDropDownDivider/>
+                <BootDropDownTemplate>
+                    <BootBadge>自定义</BootBadge>
+                </BootDropDownTemplate>
+            </DropDownItems>
+        </BootDropDown>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDropDown>
+    <Content>
+        这是一个下拉菜单
+    </Content>
+    <DropDownItems>
+        <BootDropDownTextItem>普通文本</BootDropDownTextItem>
+        <BootDropDownDivider />
+        <BootDropDownHeader><h4>标题</h4></BootDropDownHeader>
+        <BootDropDownLinkItem Link=""item1"">选项1</BootDropDownLinkItem>
+        <BootDropDownLinkItem Link=""item2"">选项2</BootDropDownLinkItem>
+        <BootDropDownLinkItem Link=""item3"">选项3</BootDropDownLinkItem>
+        <BootDropDownDivider/>
+        <BootDropDownTemplate>
+            <BootBadge>自定义</BootBadge>
+        </BootDropDownTemplate>
+    </DropDownItems>
+</BootDropDown>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart  Title="尺寸">
+    <Description>设置 <code>Size</code> 可以改变下拉菜单的尺寸。</Description>
+    <RunTemplate>
+        <BootDropDown Size="Size.LG">
+            <Content>大尺寸</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Size="Size.SM">
+            <Content>小尺寸</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDropDown Size=""Size.LG"">
+    <Content>大尺寸</Content>
+    <DropDownItems>
+        <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+        <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+    </DropDownItems>
+</BootDropDown>
+<BootDropDown Size=""Size.SM"">
+    <Content>小尺寸</Content>
+    <DropDownItems>
+        <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+        <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+    </DropDownItems>
+</BootDropDown>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="颜色主题">
+    <Description>
+        设置 <code>Color</code> 改变下来菜单的颜色主题。
+    </Description>
+    <RunTemplate>
+        <BootDropDown Color="Color.Primary">
+            <Content>Primary</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Color="Color.Secondary">
+            <Content>Secondary</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Color="Color.Info">
+            <Content>Info</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Color="Color.Warning">
+            <Content>Warning</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Color="Color.Success">
+            <Content>Success</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Color="Color.Danger">
+            <Content>Danger</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Color="Color.Light">
+            <Content>Light</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+        <BootDropDown Color="Color.Dark">
+            <Content>Dark</Content>
+            <DropDownItems>
+                <BootDropDownLinkItem>连接1</BootDropDownLinkItem>
+                <BootDropDownLinkItem>连接2</BootDropDownLinkItem>
+            </DropDownItems>
+        </BootDropDown>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootDropDown Color=""Color.Primary"">...</BootDropDown>
+<BootDropDown Color=""Color.Secondary"">...</BootDropDown>
+<BootDropDown Color=""Color.Info"">...</BootDropDown>
+<BootDropDown Color=""Color.Warning"">...</BootDropDown>
+<BootDropDown Color=""Color.Success"">...</BootDropDown>
+<BootDropDown Color=""Color.Danger"">...</BootDropDown>
+<BootDropDown Color=""Color.Light"">...</BootDropDown>
+<BootDropDown Color=""Color.Dark"">...</BootDropDown>
+```
+")
+    </CodeTemplate>
+</PresentationPart>

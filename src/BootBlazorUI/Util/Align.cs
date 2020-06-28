@@ -64,4 +64,26 @@
         /// </summary>
         Around,
     }
+    /// <summary>
+    /// 表示方向的枚举。
+    /// </summary>
+    public enum Direction
+    {
+        /// <summary>
+        /// 向上。
+        /// </summary>
+        Up,
+        /// <summary>
+        /// 向下。
+        /// </summary>
+        Down,
+        /// <summary>
+        /// 向左。
+        /// </summary>
+        Left,
+        /// <summary>
+        /// 向右。
+        /// </summary>
+        Right
+    }
 }
