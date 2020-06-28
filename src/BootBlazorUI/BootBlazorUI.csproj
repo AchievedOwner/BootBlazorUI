@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
+	  <LangVersion>8.0</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0-rc</Version>
+    <Version>1.0</Version>
     <Authors>William Chow</Authors>
     <Description>BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。</Description>
     <PackageProjectUrl>https://github.com/Michael-Pro/BootBlazorUI</PackageProjectUrl>
@@ -15,10 +16,7 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>【修复】BootPagination 跳转到无法同步数据
-【修复】BootDataGridTemplate 传入 RowSelectedArgs 参数
-【新增】BootDataGrid 的列水平对齐参数
-【优化】获取列 GetValue 时字段不存在返回 null，而不是引发异常</PackageReleaseNotes>
+    <PackageReleaseNotes>【修复】TargetFramework 改为 netstandard2.0</PackageReleaseNotes>
     <Copyright>BootBlazorUI © William Chow 2020</Copyright>
   </PropertyGroup>
 
