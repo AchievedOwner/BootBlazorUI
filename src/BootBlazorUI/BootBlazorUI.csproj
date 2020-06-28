@@ -16,7 +16,9 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>【修复】TargetFramework 改为 netstandard2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>【新增】BoootButtonGroup 按钮组组件
+【新增】BootDropDown 下拉菜单组件
+【修复】BootDataGrid 固定高度不会一直出现滚动条</PackageReleaseNotes>
     <Copyright>BootBlazorUI © William Chow 2020</Copyright>
   </PropertyGroup>
 
