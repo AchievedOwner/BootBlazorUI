@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -69,10 +70,16 @@ namespace BootBlazorUI
         /// 获取根据设置的 <see cref="Min"/> 和 <see cref="Max"/> 以及当前的 <see cref="Value"/> 计算进度条的百分比。
         /// </summary>
         public decimal Percentage => Math.Round((Value / (Max - Min)) * 100, 0);
-
-        [Inject]
-        private IJSRuntime JS { get; set; }
-
+        /// <summary>
+        /// Gets or sets the js.
+        /// </summary>
+        [Inject] IJSRuntime JS { get; set; }
+        /// <summary>
+        /// Method invoked when the component is ready to start, having received its
+        /// initial parameters from its parent in the render tree.
+        /// </summary>
+        /// <exception cref="ArgumentException">
+        /// </exception>
         protected override void OnInitialized()
         {
             if (Min < 0 || Max < 0)
@@ -88,17 +95,23 @@ namespace BootBlazorUI
                 throw new ArgumentException($"{Value}的值不能小于{Min}，且不能大于{Max}");
             }
         }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            collection.Add(ComponentUtil.GetColorCssClass(Color,"bg-"));
+            collection.Add(ComponentUtil.GetColorCssClass(Color, "bg-"));
             collection.Add("progress-bar");
             if (Striped)
             {
                 collection.Add("progress-bar-striped");
             }
         }
-
+        /// <summary>
+        /// 创建组件所需要的 style 样式。
+        /// </summary>
+        /// <param name="collection">style 名称集合。</param>
         protected override void CreateComponentStyle(ICollection<string> collection)
         {
             if (Height.HasValue)

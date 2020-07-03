@@ -1,0 +1,70 @@
+﻿@page "/breadcrumb"
+
+    <PageTitle Title="面包屑（BreadCrumb）">
+        指示当前页面在自动添加分隔符的导航层次结构中的位置
+    </PageTitle>
+
+
+<PresentationPart Title="简单示例">
+    <RunTemplate>
+        <BootBreadCrumb>
+            <BootBreadCrumbItem Link="home" Title="主页"/>
+            <BootBreadCrumbItem Actived="true" Title="类库"/>
+        </BootBreadCrumb>
+        <BootBreadCrumb>
+            <BootBreadCrumbItem Link="home">
+               <i class="fa fa-home"></i> 主页
+            </BootBreadCrumbItem>
+            <BootBreadCrumbItem Link="library">
+               <i class="fa fa-book"></i> 类库
+            </BootBreadCrumbItem>
+            <BootBreadCrumbItem Actived="true">
+               <i class="fa fa-database"></i> 数据
+            </BootBreadCrumbItem>
+        </BootBreadCrumb>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootBreadCrumb>
+    <BootBreadCrumbItem Link=""home"" Title=""主页""/>
+    <BootBreadCrumbItem Actived=""true"" Title=""类库""/>
+</BootBreadCrumb>
+<BootBreadCrumb>
+    <BootBreadCrumbItem Link=""home"">
+        <i class=""fa fa-home""></i> 主页
+    </BootBreadCrumbItem>
+    <BootBreadCrumbItem Link=""library"">
+        <i class=""fa fa-book""></i> 类库
+    </BootBreadCrumbItem>
+    <BootBreadCrumbItem Actived=""true"">
+        <i class=""fa fa-database""></i> 数据
+    </BootBreadCrumbItem>
+</BootBreadCrumb>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="BootBreadCrumbItem 的属性">
+    <tr>
+        <td>Title</td>
+        <td>String</td>
+        <td>设置导航元素里的标题。若设置了 <code>ChildContent</code> 的内容，则该属性的值将被忽略。</td>
+    </tr>
+    <tr>
+        <td>Active</td>
+        <td>Boolean</td>
+        <td>设置一个布尔值，表示是否为启用状态。</td>
+    </tr>
+    <tr>
+        <td>Link</td>
+        <td>String</td>
+        <td>设置超链接的地址。</td>
+    </tr>
+    <tr>
+        <td>ChildContent</td>
+        <td>RenderFragment</td>
+        <td>设置呈现组件内部的任意内容。若设置，则 <code>Title</code> 的值将被忽略。</td>
+    </tr>
+</ArgumentDescriptionTable>

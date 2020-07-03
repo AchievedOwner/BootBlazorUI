@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI
@@ -100,7 +101,10 @@ namespace BootBlazorUI
             await OnHidden.InvokeAsync(true);
             StateHasChanged();
         }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("position-absolute");
@@ -110,7 +114,10 @@ namespace BootBlazorUI
             collection.Add(IsShown ? "d-flex" : "d-none");
             collection.Add("flex-column flex-fill");
         }
-
+        /// <summary>
+        /// 创建组件所需要的 style 样式。
+        /// </summary>
+        /// <param name="collection">style 名称集合。</param>
         protected override void CreateComponentStyle(ICollection<string> collection)
         {
             collection.Add("height:100%");

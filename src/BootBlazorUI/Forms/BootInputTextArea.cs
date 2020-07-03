@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
@@ -20,12 +21,19 @@ namespace BootBlazorUI.Forms
         /// </summary>
         [Parameter]
         public bool ReadOnlyAsText { get; set; }
-
+        /// <summary>
+        /// 构造输入组件的渲染树。
+        /// </summary>
+        /// <param name="builder">渲染构造器。</param>
+        /// <param name="sequence">系列。</param>
         protected override void BuildInputRenderTree(RenderTreeBuilder builder, int sequence)
         {
             builder.AddAttribute(sequence++, "rows", Rows);
         }
-
+        /// <summary>
+        /// 构建组件内置的 class 样式。
+        /// </summary>
+        /// <param name="collection"></param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             if (ReadOnly && ReadOnlyAsText)
@@ -37,7 +45,12 @@ namespace BootBlazorUI.Forms
                 collection.Add("form-control");
             }
         }
-
+        /// <summary>
+        /// 定义组件的元素名称。
+        /// </summary>
+        /// <returns>
+        /// 组件元素的名称字符串。
+        /// </returns>
         protected override string OpenElement()
             => "textarea";
     }

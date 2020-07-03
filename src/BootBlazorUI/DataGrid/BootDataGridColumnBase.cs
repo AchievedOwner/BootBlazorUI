@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI.DataGrid
@@ -55,15 +56,30 @@ namespace BootBlazorUI.DataGrid
             return null;
         }
 
-
+        /// <summary>
+        /// Method invoked when the component is ready to start, having received its
+        /// initial parameters from its parent in the render tree.
+        /// </summary>
+        /// <exception cref="BootChildNotInParentComponentException{BootDataGrid, BootDataGridFieldColumn}"></exception>
         protected override void OnInitialized()
         {
             if (Parent == null)
             {
-                throw new ArgumentException($"{nameof(BootDataGridFieldColumn)} 只能在 {nameof(BootDataGrid)} 中使用");
+                throw new BootChildNotInParentComponentException<BootDataGrid, BootDataGridFieldColumn>();
             }
         }
 
+        /// <summary>
+        /// Method invoked after each time the component has been rendered.
+        /// </summary>
+        /// <param name="firstRender">Set to <c>true</c> if this is the first time <see cref="M:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender(System.Boolean)" /> has been invoked
+        /// on this component instance; otherwise <c>false</c>.</param>
+        /// <remarks>
+        /// The <see cref="M:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender(System.Boolean)" /> and <see cref="M:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync(System.Boolean)" /> lifecycle methods
+        /// are useful for performing interop, or interacting with values recieved from <c>@ref</c>.
+        /// Use the <paramref name="firstRender" /> parameter to ensure that initialization work is only performed
+        /// once.
+        /// </remarks>
         protected override void OnAfterRender(bool firstRender)
         {
             if (firstRender)
@@ -79,16 +95,22 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         internal virtual string GetTitle() => Title;
 
-
+        /// <summary>
+        /// 创建组件所需要的 style 样式。
+        /// </summary>
+        /// <param name="collection">style 名称集合。</param>
         protected override void CreateComponentStyle(ICollection<string> collection)
         {
-            var width= GetWidthStyleString();
+            var width = GetWidthStyleString();
             if (!string.IsNullOrEmpty(width))
             {
                 collection.Add(width);
             }
         }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add(ComponentUtil.GetHorizontalAlignCssClass(Align, "text-"));

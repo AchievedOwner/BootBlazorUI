@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
@@ -34,7 +35,11 @@ namespace BootBlazorUI.Forms
         /// </summary>
         protected override string OpenElement()
         => "select";
-
+        /// <summary>
+        /// Method invoked when the component is ready to start, having received its
+        /// initial parameters from its parent in the render tree.
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
         protected override void OnInitialized()
         {
             if (SelectItems == null && SelectItemsProvider == null)
@@ -47,7 +52,11 @@ namespace BootBlazorUI.Forms
                 SelectItems = SelectItemsProvider.Invoke();
             }
         }
-
+        /// <summary>
+        /// 构造输入组件的渲染树。
+        /// </summary>
+        /// <param name="builder">渲染构造器。</param>
+        /// <param name="sequence">系列。</param>
         protected override void BuildInputRenderTree(RenderTreeBuilder builder, int sequence)
         {
             builder.AddContent(sequence++, optionBuilder =>
@@ -66,8 +75,10 @@ namespace BootBlazorUI.Forms
             });
         }
 
-       
-
+        /// <summary>
+        /// 构建组件内置的 class 样式。
+        /// </summary>
+        /// <param name="collection"></param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("form-control");

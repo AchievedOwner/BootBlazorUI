@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
@@ -28,7 +29,10 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public Size Size { get; set; } = Size.Default;
-
+        /// <summary>
+        /// Renders the component to the supplied <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" />.
+        /// </summary>
+        /// <param name="builder">A <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> that will receive the render output.</param>
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             builder.OpenElement(0, "div");
@@ -37,7 +41,10 @@ namespace BootBlazorUI
             builder.AddContent(3, content => content.AddMarkupContent(4, "<span class=\"sr-only\">加载中...</span>"));
             builder.CloseElement();
         }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             var spinnerClass = Grow ? "grow" : "border";

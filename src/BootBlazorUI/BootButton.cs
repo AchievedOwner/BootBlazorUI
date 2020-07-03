@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -86,7 +87,7 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
-        
+
         /// <summary>
         /// 当按钮被禁用时触发的事件。事件参数表示是否被禁用。<c>true</c> 表示禁用状态，否则是 <c>false</c>。
         /// </summary>
@@ -147,9 +148,14 @@ namespace BootBlazorUI
         /// </summary>
         public bool IsSubmitting { get; private set; }
 
+        /// <summary>
+        /// Method invoked when the component has received parameters from its parent in
+        /// the render tree, and the incoming values have been assigned to properties.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">若设置了 {nameof(OnSubmitTemplate)} 属性，则必须要设置 {nameof(NonSubmitTemplate)} 来代替 {nameof(ChildContent)} 属性</exception>
         protected override void OnParametersSet()
         {
-            if (OnSubmitTemplate != null && NonSubmitTemplate==null)
+            if (OnSubmitTemplate != null && NonSubmitTemplate == null)
             {
                 throw new InvalidOperationException($"若设置了 {nameof(OnSubmitTemplate)} 属性，则必须要设置 {nameof(NonSubmitTemplate)} 来代替 {nameof(ChildContent)} 属性");
             }
@@ -186,7 +192,7 @@ namespace BootBlazorUI
             {
                 if (OnSubmitTemplate == null)
                 {
-                    builder.AddContent(8, content=>
+                    builder.AddContent(8, content =>
                     {
                         content.OpenComponent<BootSpinner>(12);
                         content.AddAttribute(13, nameof(Size), Size.SM);
