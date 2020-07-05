@@ -21,7 +21,7 @@ namespace BootBlazorUI.Abstractions
         /// <summary>
         /// 用于存储子组件的列表。
         /// </summary>
-        private List<BootComponentBase> _childComponents = new List<BootComponentBase>();
+        private readonly List<BootComponentBase> _childComponents = new List<BootComponentBase>();
 
         /// <summary>
         /// 获取该父组件包含的子组件列表。

@@ -11,7 +11,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 呈现 div 元素并带有 "card" 样式的卡片组件。
     /// </summary>
-    /// <seealso cref="BootBlazorUI.BootComponentBase" />
+    /// <seealso cref="BootComponentBase" />
     public class BootCard : BootParentComponentBase<BootCard>
     {
         /// <summary>
