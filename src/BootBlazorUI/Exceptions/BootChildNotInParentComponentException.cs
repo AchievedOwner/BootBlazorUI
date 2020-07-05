@@ -4,10 +4,18 @@ using System.Text;
 
 namespace BootBlazorUI
 {
-    internal class BootChildNotInParentComponentException<TParent,TChild> : Exception
+    internal class BootChildNotInParentComponentException : Exception
+    {
+        public BootChildNotInParentComponentException(Type paremt,Type child)
+            : base($"子组件'{child.Name}'只能放在父组件'{paremt.Name}'中")
+        {
+        }
+    }
+
+    internal class BootChildNotInParentComponentException<TParent,TChild> : BootChildNotInParentComponentException
     {
         public BootChildNotInParentComponentException()
-            : base($"子组件'{typeof(TChild).Name}'只能放在父组件'{typeof(TParent).Name}'中")
+            : base(typeof(TParent),typeof(TChild))
         {
         }
     }

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
+
     using Forms;
     /// <summary>
     /// 呈现 button 的按钮元素。可配合 <see cref="BootEditForm"/> 组件可实现表单验证和提交的交互模式。

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
     /// <summary>
     /// 呈现 span 元素的徽章组件，可以醒目并优雅地呈现一些状态或醒目的文字。
     /// </summary>

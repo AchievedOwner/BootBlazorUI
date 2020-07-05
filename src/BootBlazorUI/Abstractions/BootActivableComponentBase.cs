@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Components;
 
-namespace BootBlazorUI
+namespace BootBlazorUI.Abstractions
 {
     /// <summary>
     /// 表示一个可进行激活/未激活切换的组件基类。

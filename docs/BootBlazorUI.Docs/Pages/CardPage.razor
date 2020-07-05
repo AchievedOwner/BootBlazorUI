@@ -1,0 +1,678 @@
+﻿@page "/card"
+
+    <PageTitle Title="卡片(Card)">
+        <p>
+            卡片是一种灵活的、可扩展的内容容器。它包括页眉和页脚选项、各种内容、上下文背景颜色和强大的显示选项。如果你熟悉Bootstrap 3，卡取代了我们的旧面板，井和缩略图。与这些组件类似的功能可以作为卡片的修改类使用。
+        </p>
+        <p>
+            <code>BootCard</code> 是卡片组件的容器，并包含了以下子组件：
+            <ul>
+                <li><code>BootCardHeader</code>：呈现卡片顶部的组件。</li>
+                <li>
+                    <code>BootCardBody</code>：呈现卡片正文的组件。并包含以下子组件：
+                    <ul>
+                        <li><code>BootCardTitle</code>：以 h4 元素呈现的标题。</li>
+                        <li><code>BootCardSubTitle</code>：以 h6 元素呈现副标题。</li>
+                        <li><code>BootCardText</code>：以 p 元素呈现描述性的普通文本。</li>
+                        <li><code>BootCardLink</code>：以 a 元素呈现超链接。</li>
+                    </ul>
+                </li>
+                <li><code>BootCardFooter</code>：呈现卡片底部的组件。</li>
+                <li><code>BootCardImage</code>：呈现卡片的图片组件。</li>
+            </ul>
+        </p>
+    </PageTitle>
+
+<PresentationPart Title="正文部分(Body)">
+    <Description>
+        使用 <code>BootCardBody</code> 可以构造卡片的正文部分。
+    </Description>
+    <RunTemplate>
+        <BootCard AdditionalCssClass="w-25">
+            <BootCardBody>
+                这里是一个卡片的正文部分。
+            </BootCardBody>
+        </BootCard>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootCard>
+    <BootCardBody>
+        这里是一个卡片的正文部分。
+    </BootCardBody>
+</BootCard>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="标题、文本、超链接">
+    <RunTemplate>
+        <BootCard AdditionalCssClass="w-25">
+            <BootCardBody>
+                <BootCardTitle>卡片标题</BootCardTitle>
+                <BootCardSubTitle>卡片的副标题</BootCardSubTitle>
+                <BootCardText>这是卡片里的一段文字，这段文字仅仅是表现普通的文本内容而已。</BootCardText>
+                <BootCardLink Link="link1">超链接1</BootCardLink>
+                <BootCardLink Link="link2">超链接2</BootCardLink>
+            </BootCardBody>
+        </BootCard>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootCard>
+    <BootCardBody>
+        <BootCardTitle>卡片标题</BootCardTitle>
+        <BootCardSubTitle>卡片的副标题</BootCardSubTitle>
+        <BootCardText>这是卡片里的一段文字，这段文字仅仅是表现普通的文本内容而已。</BootCardText>
+        <BootCardLink Link=""link1"">超链接1</BootCardLink>
+        <BootCardLink Link=""link2"">超链接2</BootCardLink>
+    </BootCardBody>
+</BootCard>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="顶部、底部">
+    <Description>
+        添加 <code>BootCardHeader</code> 组件呈现顶部元素。添加 <code>BootCardFooter</code> 组件呈现底部元素。
+    </Description>
+    <RunTemplate>
+        <BootCard>
+            <BootCardHeader>
+                爆炸特性
+            </BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>这是一个标题</BootCardTitle>
+                <BootCardText>这里的内容是一个普通的文本</BootCardText>
+                <BootButton>点击查看详情</BootButton>
+            </BootCardBody>
+            <BootCardFooter>
+                2天前发布
+            </BootCardFooter>
+        </BootCard>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootCard>
+    <BootCardHeader>
+        爆炸特性
+    </BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>这是一个标题</BootCardTitle>
+        <BootCardText>这里的内容是一个普通的文本</BootCardText>
+        <BootButton>点击查看详情</BootButton>
+    </BootCardBody>
+    <BootCardFooter>
+        2天前发布
+    </BootCardFooter>
+</BootCard>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="图片">
+    <Description>
+        在 <code>BootCardBody</code> 组件中添加 <code>BootCardImage</code> 组件可以呈现图片，并且要设置属性 <code>Source</code> 的图片来源地址。
+    </Description>
+    <RunTemplate>
+        <BootCard AdditionalCssClass="w-25">
+            <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+            <BootCardBody>
+                <BootCardText>这上面是一张图片，呈现一个配图罢了。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard AdditionalCssClass="w-25">
+            <BootCardBody>
+                <BootCardText>这下面是一张图片，呈现一个配图罢了。</BootCardText>
+            </BootCardBody>
+            <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+        </BootCard>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootCard AdditionalCssClass=""w-25"">
+    <BootCardBody>
+        <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+        <BootCardText>这上面是一张图片，呈现一个配图罢了。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard AdditionalCssClass=""w-25"">
+    <BootCardBody>
+        <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+        <BootCardText>这下面是一张图片，呈现一个配图罢了。</BootCardText>
+    </BootCardBody>
+</BootCard>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="图片叠加">
+    <Description>
+        设置 <code>BootCardBody</code> 的属性 <code>Overlay="true"</code> 并且同时设置 <code>BootCardImage</code> 组件的 <code>Overlay="true"</code> 才生效。
+    </Description>
+    <RunTemplate>
+        <BootCard AdditionalCssClass="w-50">
+            <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" Overlay="true" />
+            <BootCardBody Overlay="true">
+                <BootCardTitle>这是一个标题</BootCardTitle>
+                <BootCardText>这一段文字能显示在图片上，你可以在图片上看到这一段无聊的文字描述。要没有了一段文字，我都不知道怎么查看在图片叠加上的效果，你说是不是呢？</BootCardText>
+                <BootCardText>这一段配图是在上周发布的。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootCard AdditionalCssClass=""w-50"">
+    <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" Overlay=""true"" />
+    <BootCardBody Overlay=""true"">
+        <BootCardTitle>这是一个标题</BootCardTitle>
+        <BootCardText>这一段文字能显示在图片上，你可以在图片上看到这一段无聊的文字描述。要没有了一段文字，我都不知道怎么查看在图片叠加上的效果，你说是不是呢？</BootCardText>
+        <BootCardText>这一段配图是在上周发布的。</BootCardText>
+    </BootCardBody>
+</BootCard>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="颜色主题">
+    <Description>
+        设置 <code>BootCard</code> 组件的 <code>Color</code> 属性选择颜色主题。
+    </Description>
+    <RunTemplate>
+        <BootCard Color="Color.Primary" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Primary 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Color="Color.Secondary" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Secondary 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Color="Color.Info" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Info 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Color="Color.Success" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Success 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Color="Color.Warning" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Warning 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Color="Color.Danger" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Danger 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Color="Color.Light" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Light 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Color="Color.Dark" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Dark 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootCard Color=""Color.Primary"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Primary 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Color=""Color.Secondary"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Secondary 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Color=""Color.Info"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Info 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Color=""Color.Success"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Success 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Color=""Color.Warning"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Warning 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Color=""Color.Danger"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Danger 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Color=""Color.Light"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Light 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Color=""Color.Dark"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Dark 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="边框主题颜色">
+    <Description>
+        设置 <code>BootCard</code> 组件的 <code>Bordered="true"</code> 呈现边框式的主题颜色。
+    </Description>
+    <RunTemplate>
+        <BootCard Bordered="true" Color="Color.Primary" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Primary 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Bordered="true" Color="Color.Secondary" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Secondary 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Bordered="true" Color="Color.Info" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Info 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Bordered="true" Color="Color.Success" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Success 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Bordered="true" Color="Color.Warning" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Warning 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Bordered="true" Color="Color.Danger" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Danger 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Bordered="true" Color="Color.Light" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Light 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+        <BootCard Bordered="true" Color="Color.Dark" AdditionalCssClass="w-25 mb-3">
+            <BootCardHeader>顶部</BootCardHeader>
+            <BootCardBody>
+                <BootCardTitle>Dark 主题</BootCardTitle>
+                <BootCardText>这是主题颜色的文字描述。</BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootCard Bordered=""true"" Color=""Color.Primary"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Primary 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Bordered=""true"" Color=""Color.Secondary"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Secondary 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Bordered=""true"" Color=""Color.Info"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Info 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Bordered=""true"" Color=""Color.Success"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Success 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Bordered=""true"" Color=""Color.Warning"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Warning 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Bordered=""true"" Color=""Color.Danger"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Danger 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Bordered=""true"" Color=""Color.Light"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Light 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+<BootCard Bordered=""true"" Color=""Color.Dark"" AdditionalCssClass=""w-25 mb-3"">
+    <BootCardHeader>顶部</BootCardHeader>
+    <BootCardBody>
+        <BootCardTitle>Dark 主题</BootCardTitle>
+        <BootCardText>这是主题颜色的文字描述。</BootCardText>
+    </BootCardBody>
+</BootCard>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="使用栅格布局卡片">
+    <Description>你可以将卡片放在栅格布局系统中，利用 <code>.row</code> 作为行，利用 <code>.col-x</code> 作为列，对列中的卡片进行布局。</Description>
+    <RunTemplate>
+        <div class="row">
+            <div class="col-6">
+                <BootCard>
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            百度（纳斯达克：BIDU）是全球最大的中文搜索引擎，中国最大的以信息和知识为核心的互联网综合服务公司，全球领先的人工智能平台型公司。
+                            百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+            <div class="col-6">
+                <BootCard>
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            “百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。1999年底，身在美国硅谷的李彦宏看到了中国互联网及中文搜索引擎服务的巨大发展潜力，抱着技术改变世界的梦想，他毅然辞掉硅谷的高薪工作，携搜索引擎专利技术，于 2000年1月1日在中关村创建了百度公司。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+            <div class="col-6">
+                <BootCard>
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            百度拥有数万名研发工程师，这是中国乃至全球都顶尖的技术团队。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+            <div class="col-6">
+                <BootCard>
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            这支队伍掌握着世界上最为先进的搜索引擎技术，使百度成为中国掌握世界尖端科学核心技术的中国高科技企业，也使中国成为美国、俄罗斯、和韩国之外，全球仅有的4个拥有搜索引擎核心技术的国家之一。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""row"">
+    <div class=""col-6"">
+        <BootCard>
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    百度（纳斯达克：BIDU）是全球最大的中文搜索引擎，中国最大的以信息和知识为核心的互联网综合服务公司，全球领先的人工智能平台型公司。
+                    百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+    <div class=""col-6"">
+        <BootCard>
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    “百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。1999年底，身在美国硅谷的李彦宏看到了中国互联网及中文搜索引擎服务的巨大发展潜力，抱着技术改变世界的梦想，他毅然辞掉硅谷的高薪工作，携搜索引擎专利技术，于 2000年1月1日在中关村创建了百度公司。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+    <div class=""col-6"">
+        <BootCard>
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    百度拥有数万名研发工程师，这是中国乃至全球都顶尖的技术团队。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+    <div class=""col-6"">
+        <BootCard>
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    这支队伍掌握着世界上最为先进的搜索引擎技术，使百度成为中国掌握世界尖端科学核心技术的中国高科技企业，也使中国成为美国、俄罗斯、和韩国之外，全球仅有的4个拥有搜索引擎核心技术的国家之一。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="对齐其他卡片的高度">
+    <Description>
+        在栅格系统中布局时，可设置 <code>AlighHeight="true"</code> 来对齐卡片的高度。
+    </Description>
+    <RunTemplate>
+        <div class="row">
+            <div class="col-4">
+                <BootCard AlignHeight="true">
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            百度（纳斯达克：BIDU）是全球最大的中文搜索引擎，中国最大的以信息和知识为核心的互联网综合服务公司，全球领先的人工智能平台型公司。
+                            百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+            <div class="col-4">
+                <BootCard AlignHeight="true">
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            “百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。1999年底，身在美国硅谷的李彦宏看到了中国互联网及中文搜索引擎服务的巨大发展潜力，抱着技术改变世界的梦想，他毅然辞掉硅谷的高薪工作，携搜索引擎专利技术，于 2000年1月1日在中关村创建了百度公司。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+            <div class="col-4">
+                <BootCard AlignHeight="true">
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            百度拥有数万名研发工程师，这是中国乃至全球都顶尖的技术团队。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+            <div class="col-4">
+                <BootCard AlignHeight="true">
+                    <BootCardImage Source="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+                    <BootCardBody>
+                        <BootCardTitle>百度</BootCardTitle>
+                        <BootCardText>
+                            这支队伍掌握着世界上最为先进的搜索引擎技术，使百度成为中国掌握世界尖端科学核心技术的中国高科技企业，也使中国成为美国、俄罗斯、和韩国之外，全球仅有的4个拥有搜索引擎核心技术的国家之一。
+                        </BootCardText>
+                    </BootCardBody>
+                </BootCard>
+            </div>
+        </div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<div class=""row"">
+    <div class=""col-4"">
+        <BootCard AlignHeight=""true"">
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    百度（纳斯达克：BIDU）是全球最大的中文搜索引擎，中国最大的以信息和知识为核心的互联网综合服务公司，全球领先的人工智能平台型公司。
+                    百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+    <div class=""col-4"">
+        <BootCard AlignHeight=""true"">
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    “百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。1999年底，身在美国硅谷的李彦宏看到了中国互联网及中文搜索引擎服务的巨大发展潜力，抱着技术改变世界的梦想，他毅然辞掉硅谷的高薪工作，携搜索引擎专利技术，于 2000年1月1日在中关村创建了百度公司。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+    <div class=""col-4"">
+        <BootCard AlignHeight=""true"">
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    百度拥有数万名研发工程师，这是中国乃至全球都顶尖的技术团队。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+    <div class=""col-4"">
+        <BootCard AlignHeight=""true"">
+            <BootCardImage Source=""https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"" />
+            <BootCardBody>
+                <BootCardTitle>百度</BootCardTitle>
+                <BootCardText>
+                    这支队伍掌握着世界上最为先进的搜索引擎技术，使百度成为中国掌握世界尖端科学核心技术的中国高科技企业，也使中国成为美国、俄罗斯、和韩国之外，全球仅有的4个拥有搜索引擎核心技术的国家之一。
+                </BootCardText>
+            </BootCardBody>
+        </BootCard>
+    </div>
+</div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<ArgumentDescriptionTable Title="BootCard 属性">
+    <tr>
+        <td>Color</td>
+        <td>Nullable</td>
+        <td>设置卡片的颜色主题。</td>
+    </tr>
+    <tr>
+        <td>Bordered</td>
+        <td>Boolean</td>
+        <td>设置卡片是否使用边框样式的主题颜色，配合 <code>Color</code> 参数使用。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="BootCardLink 属性">
+    <tr>
+        <td>Link</td>
+        <td>String</td>
+        <td>设置超链接的 URL 地址。</td>
+    </tr>
+</ArgumentDescriptionTable>
+<ArgumentDescriptionTable Title="BootCardImage 属性">
+    <tr>
+        <td>Source</td>
+        <td>String</td>
+        <td>设置图片的 URL 地址。</td>
+    </tr>
+</ArgumentDescriptionTable>

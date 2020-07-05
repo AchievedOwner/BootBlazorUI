@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
     /// <summary>
     /// 呈现可进行折叠的 div 元素。
     /// </summary>

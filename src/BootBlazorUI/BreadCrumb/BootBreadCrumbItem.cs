@@ -5,16 +5,12 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
     /// <summary>
     /// 呈现面包屑导航的 li 元素。
     /// </summary>
-    public class BootBreadCrumbItem : BootComponentBase
+    public class BootBreadCrumbItem : BootChildComponentBase<BootBreadCrumb>
     {
-        /// <summary>
-        /// 级联的 <see cref="BootBreadCrumb"/> 对象。
-        /// </summary>
-        [CascadingParameter] BootBreadCrumb CascadingBreadCrumb { get; set; }
-
         /// <summary>
         /// 设置导航元素里的标题。若设置了 <see cref="ChildContent"/> 的内容，则该属性的值将被忽略。
         /// </summary>
@@ -33,21 +29,12 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置呈现组件内部的任意内容。若设置，则 <see cref="Title"/> 的值将被忽略。
         /// </summary>
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public override RenderFragment ChildContent { get; set; }
 
         /// <summary>
-        /// Method invoked when the component is ready to start, having received its
-        /// initial parameters from its parent in the render tree.
+        /// 设置呈现元素的名称。
         /// </summary>
-        /// <exception cref="BootChildNotInParentComponentException{BootBreadCrumb, BootBreadCrumbItem}"></exception>
-        protected override void OnInitialized()
-        {
-            if (CascadingBreadCrumb == null)
-            {
-                throw new BootChildNotInParentComponentException<BootBreadCrumb, BootBreadCrumbItem>();
-            }
-            CascadingBreadCrumb.Add(this);
-        }
+        public override string ElementName { get; set; } = "li";
 
         /// <summary>
         /// Renders the component to the supplied <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" />.
@@ -55,7 +42,7 @@ namespace BootBlazorUI
         /// <param name="builder">A <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> that will receive the render output.</param>
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            builder.OpenElement(0, "li");
+            builder.OpenElement(0, ElementName);
             AddCommonAttributes(builder);
             if (!string.IsNullOrWhiteSpace(Link))
             {

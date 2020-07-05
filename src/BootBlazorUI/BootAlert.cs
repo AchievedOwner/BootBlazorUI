@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
     /// <summary>
     /// 呈现 div 的元素并且带有警告消息框的组件。
     /// </summary>

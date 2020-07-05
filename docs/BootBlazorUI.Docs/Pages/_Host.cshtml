@@ -17,7 +17,7 @@
 
     @Html.EmbeddedBlazorContent()
 </head>
-<body>
+<body class="overflow-hidden">
     <app>
         @(await Html.RenderComponentAsync<App>(RenderMode.Server))
     </app>

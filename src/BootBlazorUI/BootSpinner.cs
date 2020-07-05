@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
     /// <summary>
     /// 呈现可旋转的容器元素。一般用于表示操作正在进行中的状态。
     /// </summary>

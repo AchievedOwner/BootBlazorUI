@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace BootBlazorUI
+namespace BootBlazorUI.Abstractions
 {
     /// <summary>
     /// 表示 Boot 组件的基类。这是一个抽象类。

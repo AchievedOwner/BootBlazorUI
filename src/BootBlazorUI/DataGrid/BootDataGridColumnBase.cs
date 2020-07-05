@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI.DataGrid
 {
+    using Abstractions;
     /// <summary>
     /// 表示 DataGrid 列的基类，这是一个抽象类。
     /// </summary>

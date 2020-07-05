@@ -12,6 +12,7 @@ using EmbeddedBlazorContent;
 
 namespace BootBlazorUI.Docs
 {
+    using Abstractions;
     public class Program
     {
         public static void Main(string[] args)
