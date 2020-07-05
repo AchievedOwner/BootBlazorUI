@@ -18,7 +18,7 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter] public Size Size { get; set; } = Size.Default;
         /// <summary>
-        /// 设置显示下拉菜单的内容。
+        /// 设置下拉菜单点击按钮的内容。
         /// </summary>
         [Parameter]public RenderFragment Content { get; set; }
         /// <summary>

@@ -33,7 +33,7 @@ namespace BootBlazorUI.DataGrid
 
             if (RowHeight.HasValue)
             {
-                collection.Add($"height:{RowHeight.Value}px;overflow-y:scroll");
+                collection.Add($"height:{RowHeight.Value}px;overflow-y:auto");
             }
 
             return string.Join(";", collection);
