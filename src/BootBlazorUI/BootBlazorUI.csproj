@@ -16,7 +16,9 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Bootstrap Blazor UI Library</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>【新增】BootBreadCrumb 面包屑导航组件</PackageReleaseNotes>
+    <PackageReleaseNotes>【新增】BootBreadCrumb 面包屑导航组件
+【新增】BootCard 卡片组件
+【优化】部分重构</PackageReleaseNotes>
     <Copyright>BootBlazorUI © William Chow 2020</Copyright>
   </PropertyGroup>
 
