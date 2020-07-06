@@ -1,12 +1,11 @@
-﻿using System.Linq;
-
-namespace BootBlazorUI
+﻿namespace BootBlazorUI
 {
     /// <summary>
     /// 组件工具类。
     /// </summary>
     static class ComponentUtil
     {
+
         /// <summary>
         /// 获取颜色主题的 css 类名称。
         /// </summary>
@@ -54,6 +53,6 @@ namespace BootBlazorUI
         /// <param name="alignment">对齐方式。</param>
         /// <param name="prefix">前缀。</param>
         internal static string GetHorizontalAlignCssClass(HorizontalAlignment alignment, string prefix = default)
-            => $"{prefix}{alignment.ToString().ToLower()}";
+            => $"{prefix}{alignment.GetDescription()}";
     }
 }

@@ -1,6 +1,6 @@
 ﻿@inherits BootComponentBase
 
-<ul id="@Id" class="@BuildCssClassString()" role="tablist" @attributes="AdditionalAttributes">
+<ul class="@BuildCssClassString()" role="tablist" @attributes="AdditionalAttributes">
     @for (int i = 0; i < Pages.Count; i++)
     {
         var page = Pages[i];

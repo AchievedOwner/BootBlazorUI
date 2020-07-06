@@ -1,0 +1,154 @@
+﻿@page "/layout/grid"
+@using BootBlazorUI.Layout
+
+<PageTitle Title="栅格系统">
+   <p>引用命名空间 <code>using BootBlazorUI.Layout</code></p>
+    <p>
+        栅格系统借助12个列系统和5个默认响应层构建各种形状大小的布局。可参考 <a href="https://v4.bootcss.com/docs/layout/overview/" target="_blank">Bootstrap 栅格系统</a>
+    </p>
+</PageTitle>
+
+<PresentationPart Title="容器">
+    <Description>
+        <p>
+            容器在使用默认网格系统时是必需的。容器用于容纳、填充和(有时)使内容居中。虽然容器可以嵌套，但大多数布局不需要嵌套容器。
+        </p>
+        <p>
+            使用 <code>BootContainer</code> 表示容器组件，可选择设置 <code>Fluid="true"</code> 表示所有终端的显示宽度均为 100%。
+        </p>
+    </Description>
+    <RunTemplate>
+        <BootContainer BackgroundColor="Color.Warning">
+            容器
+        </BootContainer>
+        <BootContainer Fluid="true" BackgroundColor="Color.Info" MarginTop="3" TextColor="Color.Light">
+            Fluid="true" 的容器
+        </BootContainer>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootContainer BackgroundColor=""Color.Warning"">
+    栅格容器
+</BootContainer>
+<BootContainer Fluid=""true"" BackgroundColor=""Color.Info"" MarginTop=""3"" TextColor=""Color.Light"">
+    Fluid = ""true"" 的栅格容器
+</BootContainer>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="在栅格系统中的行与列">
+    <Description>
+        使用 <code>BootGridRow</code> 表示1行，使用 <code>BootGridColumn</code> 表示1列，要求 <code>BootGridColumn</code> 组件要放在 <code>BootGridRow</code> 组件中。
+    </Description>
+    <RunTemplate>
+        <BootContainer>
+            <BootGridRow>
+                <BootGridColumn>
+                    1 of 3
+                </BootGridColumn>
+                <BootGridColumn>
+                    2 of 3
+                </BootGridColumn>
+                <BootGridColumn>
+                    3 of 3
+                </BootGridColumn>
+            </BootGridRow>
+        </BootContainer>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootContainer>
+    <BootGridRow>
+        <BootGridColumn>
+            1 of 3
+        </BootGridColumn>
+        <BootGridColumn>
+            2 of 3
+        </BootGridColumn>
+        <BootGridColumn>
+            3 of 3
+        </BootGridColumn>
+    </BootGridRow>
+</BootContainer>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="设置列的占比">
+    <Description>
+        <p>根据列的需要设置 <code>Column</code> 列的占比，范围是 1-12，其他值无效。</p>
+        <p>
+            如果不设置，则会自动计算这一行的平均列宽占比。
+        </p>
+        <p>
+            但他们所占的一行是等宽的。
+        </p>
+    </Description>
+    <RunTemplate>
+        <BootContainer>
+            <BootGridRow>
+                <BootGridColumn Column="6" Border="true">
+                    6 of 12
+                </BootGridColumn>
+                <BootGridColumn Column="2" Border="true">
+                    2 of 12
+                </BootGridColumn>
+                <BootGridColumn Column="2" Border="true">
+                    2 of 12
+                </BootGridColumn>
+                <BootGridColumn Column="2" Border="true">
+                    2 of 12
+                </BootGridColumn>
+            </BootGridRow>
+            <BootGridRow>
+                <BootGridColumn Border="true">
+                    1 of 3
+                </BootGridColumn>
+                <BootGridColumn Border="true">
+                    2 of 3
+                </BootGridColumn>
+                <BootGridColumn Border="true">
+                    3 of 3
+                </BootGridColumn>
+            </BootGridRow>
+        </BootContainer>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootContainer>
+    <BootGridRow>
+        <BootGridColumn Column=""6"" Border=""true"">
+            6 of 12
+        </BootGridColumn>
+        <BootGridColumn Column=""2"" Border=""true"">
+            2 of 12
+        </BootGridColumn>
+        <BootGridColumn Column=""2"" Border=""true"">
+            2 of 12
+        </BootGridColumn>
+        <BootGridColumn Column=""2"" Border=""true"">
+            2 of 12
+        </BootGridColumn>
+    </BootGridRow>
+    <BootGridRow>
+        <BootGridColumn Border=""true"">
+            1 of 3
+        </BootGridColumn>
+        <BootGridColumn Border=""true"">
+            2 of 3
+        </BootGridColumn>
+        <BootGridColumn Border=""true"">
+            3 of 3
+        </BootGridColumn>
+    </BootGridRow>
+</BootContainer>
+```
+")
+    </CodeTemplate>
+</PresentationPart>

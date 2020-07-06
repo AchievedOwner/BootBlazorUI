@@ -1,4 +1,6 @@
-﻿namespace BootBlazorUI
+﻿using System.ComponentModel;
+
+namespace BootBlazorUI
 {
     /// <summary>
     /// 横向对齐方式。
@@ -8,14 +10,17 @@
         /// <summary>
         /// 左对齐。
         /// </summary>
+        [Description("left")]
         Left,
         /// <summary>
         /// 居中对齐。
         /// </summary>
+        [Description("center")]
         Center,
         /// <summary>
         /// 右对齐。
         /// </summary>
+        [Description("right")]
         Right
     }
 
@@ -85,5 +90,32 @@
         /// 向右。
         /// </summary>
         Right
+    }
+
+    /// <summary>
+    /// 呈现元素的位置。
+    /// </summary>
+    public enum Position
+    {
+        /// <summary>
+        /// 顶部。
+        /// </summary>
+        [Description("top")]
+        Top = 1,
+        /// <summary>
+        /// 底部。
+        /// </summary>
+        [Description("bottom")]
+        Bottom = 2,
+        /// <summary>
+        /// 左侧。
+        /// </summary>
+        [Description("left")]
+        Left = 3,
+        /// <summary>
+        /// 右侧。
+        /// </summary>
+        [Description("right")]
+        Right = 4
     }
 }

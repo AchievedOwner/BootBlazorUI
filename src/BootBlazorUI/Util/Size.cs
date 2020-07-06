@@ -5,10 +5,11 @@
     /// </summary>
     public enum Size
     {
+        Default=-1,
         /// <summary>
-        /// 默认尺寸。
+        /// 超小尺寸。
         /// </summary>
-        Default = 0,
+        XS = 0,
         /// <summary>
         /// 小尺寸。
         /// </summary>

@@ -37,17 +37,17 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter] public bool AlignHeight { get; set; }
 
-        /// <summary>
-        /// 使用 <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> 创建父组件的 <see cref="T:Microsoft.AspNetCore.Components.CascadingValue`1" /> 组件。
-        /// </summary>
-        /// <param name="builder">A <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> that will receive the render output.</param>
-        protected override void BuildRenderTree(RenderTreeBuilder builder)
-        {
-            builder.OpenElement(0, "div");
-            AddCommonAttributes(builder);
-            base.BuildRenderTree(builder);
-            builder.CloseElement();
-        }
+        ///// <summary>
+        ///// 使用 <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> 创建父组件的 <see cref="T:Microsoft.AspNetCore.Components.CascadingValue`1" /> 组件。
+        ///// </summary>
+        ///// <param name="builder">A <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> that will receive the render output.</param>
+        //protected override void BuildRenderTree(RenderTreeBuilder builder)
+        //{
+        //    builder.OpenElement(0, "div");
+        //    AddCommonAttributes(builder);
+        //    base.BuildRenderTree(builder);
+        //    builder.CloseElement();
+        //}
 
         /// <summary>
         /// 创建组件所需要的 class 类。

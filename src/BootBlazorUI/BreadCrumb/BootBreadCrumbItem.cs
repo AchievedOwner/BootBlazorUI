@@ -29,7 +29,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置呈现组件内部的任意内容。若设置，则 <see cref="Title"/> 的值将被忽略。
         /// </summary>
-        [Parameter] public override RenderFragment ChildContent { get; set; }
+        [Parameter] public new RenderFragment ChildContent { get; set; }
 
         /// <summary>
         /// 设置呈现元素的名称。

@@ -1,5 +1,5 @@
 ﻿@inherits BootComponentBase
-<div id="@Id" class="progress" style="@BuildStylesString()" @attributes="AdditionalAttributes">
+<div class="progress" style="@BuildStylesString()" @attributes="AdditionalAttributes">
     <div class="@BuildCssClassString()" style="width:@(Percentage)%" role="progressbar" aria-valuenow="@Value" aria-valuemin="@Min" aria-valuemax="@Max">
         @if (Template == null)
         {

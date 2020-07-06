@@ -1,4 +1,6 @@
 ﻿
+using BootBlazorUI.Abstractions.Parameters;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
@@ -10,7 +12,7 @@ namespace BootBlazorUI.Abstractions
     /// </summary>
     /// <typeparam name="TParentComponent">父组件的类型。</typeparam>
     /// <seealso cref="BootBlazorUI.Abstractions.BootComponentBase" />
-    public abstract class BootChildComponentBase<TParentComponent> : BootComponentBase
+    public abstract class BootChildComponentBase<TParentComponent> : BootComponentBase,IHasChildContent
         where TParentComponent : BootParentComponentBase<TParentComponent>
     {
         /// <summary>
@@ -19,14 +21,14 @@ namespace BootBlazorUI.Abstractions
         [CascadingParameter]protected virtual TParentComponent Parent { get; set; }
 
         /// <summary>
-        /// 设置组件的任意内容。
+        /// 设置组件的一段 UI 内容。
         /// </summary>
-        [Parameter] public virtual RenderFragment ChildContent { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; }
 
         /// <summary>
         /// 设置呈现元素的名称。
         /// </summary>
-        [Parameter] public abstract string ElementName { get; set; }
+        [Parameter] public virtual string ElementName { get; set; } = "div";
 
         /// <summary>
         /// Method invoked when the component is ready to start, having received its

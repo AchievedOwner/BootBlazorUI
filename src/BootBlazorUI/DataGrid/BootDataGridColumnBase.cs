@@ -24,7 +24,7 @@ namespace BootBlazorUI.DataGrid
         /// 设置单元格的宽度，单位自己决定。如果所有的列都不设置宽度，则会平均分配。
         /// </summary>
         [Parameter]
-        public string Width { get; set; }
+        public new string Width { get; set; }
 
         /// <summary>
         /// 设置列的水平对齐方式。默认是左对齐。

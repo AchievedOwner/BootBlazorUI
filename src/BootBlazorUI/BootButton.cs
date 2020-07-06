@@ -171,7 +171,7 @@ namespace BootBlazorUI
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             builder.OpenElement(0, "button");
-            AddIdAttribute(builder, 1);
+            
             builder.AddAttribute(2, "type", $"{Type.ToString().ToLower()}");
             builder.AddAttribute(3, "disabled", Disabled);
             AddCssClassAttribute(builder, 4);
