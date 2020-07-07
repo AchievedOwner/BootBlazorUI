@@ -1,0 +1,33 @@
+﻿@page "/utilities/overflow"
+
+    <PageTitle Title="溢出(Overflow)">        
+        使用这些快捷实用程序快速配置内容如何溢出元素。
+    </PageTitle>
+
+<PresentationPart Title="示例">
+    <Description>
+        设置 <code>Overflow</code> 参数选择溢出的内容呈现情况。
+    </Description>
+    <RunTemplate>
+        <BootRow>
+            <BootColumn Column="1">
+                <Div Overflow="Overflow.Auto"  Height="130px">
+                    设置一个元素的 <code>Overflow="Overflow.Auto"</code> 时，超出的范围就会显示出滚动条。
+                </Div>
+            </BootColumn>
+            <BootColumn Column="1">
+                <Div Overflow="Overflow.Hidden"  Height="130px">
+                    设置一个元素的 <code>Overflow="Overflow.Hidden"</code> 时，超出的范围就会隐藏。
+                </Div>
+            </BootColumn>
+        </BootRow>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div Overflow=""Overflow.Auto"">...</Div>
+<Div Overflow=""Overflow.Hidden"">...</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>

@@ -6,7 +6,7 @@ using BootBlazorUI.Abstractions.Parameters;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace BootBlazorUI.Layout
+namespace BootBlazorUI
 {
     /// <summary>
     /// 表示使用 div 元素呈现的栅格系统的容器组件。

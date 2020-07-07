@@ -6,8 +6,21 @@
     public interface IHasHeight
     {
         /// <summary>
-        /// 设置组件的高度比例。
+        /// 设置组件的高度百分比。
         /// </summary>
-        public Height? Height { get; set; }
+        public Height? HeightPercent { get; set; }
+
+        /// <summary>
+        /// 设置组件的固定高度。
+        /// </summary>
+        public string Height { get; set; }
+        /// <summary>
+        /// 设置组件的最小高度。
+        /// </summary>
+        public string MinHeight { get; set; }
+        /// <summary>
+        /// 设置组件的最大高度。
+        /// </summary>
+        public string MaxHeight { get; set; }
     }
 }

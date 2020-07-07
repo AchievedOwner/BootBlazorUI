@@ -16,11 +16,19 @@
         IHasPadding, 
         IHasBorder, 
         IHasFloat, 
-        IHasHeight
+        IHasHeight,
+        IHasOverflow,
+        IHasShadow,
+        IHasRounded
     {
         /// <summary>
         /// 返回所有公用参数的 css 名称列表。
         /// </summary>
         IReadOnlyList<string> GetParameterClass();
+
+        /// <summary>
+        /// 返回所有公用参数的 style 名称列表。
+        /// </summary>
+        IReadOnlyList<string> GetParameterStyle();
     }
 }

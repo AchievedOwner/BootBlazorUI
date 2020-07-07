@@ -14,6 +14,20 @@ namespace BootBlazorUI.Abstractions.Parameters
         /// <value>
         /// <see cref="BootBlazorUI.Width"/> 的枚举值或 <c>null</c>。
         /// </value>
-        public Width? Width { get; set; }
+        public Width? WidthPercent { get; set; }
+
+        /// <summary>
+        /// 设置组件的固定宽度。
+        /// </summary>
+        public string Width { get; set; }
+
+        /// <summary>
+        /// 设置组件的最大宽度。
+        /// </summary>
+        public string MaxWidth { get; set; }
+        /// <summary>
+        /// 设置组件的最小宽度。
+        /// </summary>
+        public string MinWidth { get; set; }
     }
 }

@@ -38,22 +38,6 @@ namespace BootBlazorUI
         public string Title { get; set; }
 
         /// <summary>
-        /// 设置标签页的固定高度，单位像素。
-        /// </summary>
-        [Parameter]public int? Height { get; set; }
-
-        /// <summary>
-        /// 设置标签页的最大限度的高度，单位像素。超过该高度则显示滚动条。
-        /// </summary>
-        [Parameter] public int? MaxHeight { get; set; }
-
-
-        /// <summary>
-        /// 设置最小高度，单位像素。
-        /// </summary>
-        [Parameter] public int? MinHeight { get; set; }
-
-        /// <summary>
         /// 设置当标签页被激活时触发的事件。
         /// </summary>
         [Parameter]
@@ -96,26 +80,6 @@ namespace BootBlazorUI
             base.AddCommonAttributes(builder);
             builder.AddContent(2, ChildContent);
             builder.CloseElement();
-        }
-
-        /// <summary>
-        /// 创建组件的样式。
-        /// </summary>
-        /// <param name="collection">样式集合。</param>
-        protected override void CreateComponentStyle(ICollection<string> collection)
-        {
-            if (MinHeight.HasValue)
-            {
-                collection.Add($"min-height:{MinHeight.Value}px;");
-            }
-            if (Height.HasValue)
-            {
-                collection.Add($"height:{Height.Value}px;overflow-y:auto");
-            }
-            if (MaxHeight.HasValue)
-            {
-                collection.Add($"max-height:{MaxHeight.Value}px;overflow-y:auto");
-            }
         }
     }
 }

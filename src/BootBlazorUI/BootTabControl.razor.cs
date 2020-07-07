@@ -35,25 +35,6 @@ namespace BootBlazorUI
         [Parameter]
         public bool Pills { get; set; }
 
-
-
-        /// <summary>
-        /// 设置最小高度，单位像素。默认 100。
-        /// </summary>
-        [Parameter] public int? MinHeight { get; set; } = 100;
-
-
-        /// <summary>
-        /// 设置最大高度，单位像素。超过该高度则显示滚动条。
-        /// </summary>
-        [Parameter] public int? MaxHeight { get; set; }
-
-
-        /// <summary>
-        /// 设置固定高度，单位像素。超过该高度则显示滚动条。
-        /// </summary>
-        [Parameter] public int? Height { get; set; }
-
         /// <summary>
         /// 设置一个布尔值，表示是否使用代码来切换选项卡。若设置为 <c>true</c>，则需要调用 <see cref="SwitchTo(int)"/> 切换指定索引的选项卡。
         /// </summary>
@@ -138,28 +119,6 @@ namespace BootBlazorUI
             else
             {
                 collection.Add("nav-tabs");
-            }
-        }
-
-        /// <summary>
-        /// 创建组件的样式。
-        /// </summary>
-        /// <param name="collection">样式集合。</param>
-        protected override void CreateComponentStyle(ICollection<string> collection)
-        {
-            if (MinHeight.HasValue)
-            {
-                collection.Add($"min-height:{MinHeight.Value}px");
-            }
-
-            if (MaxHeight.HasValue)
-            {
-                collection.Add($"max-height:{MaxHeight.Value}px;overflow-y:auto");
-            }
-
-            if (Height.HasValue)
-            {
-                collection.Add($"height:{Height.Value}px;overflow-y:auto");
             }
         }
     }

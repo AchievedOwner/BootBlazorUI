@@ -1,0 +1,29 @@
+﻿@page "/utilities/float"
+
+<PageTitle Title="浮动(Float)">
+
+</PageTitle>
+
+<PresentationPart>
+    <Description>
+        <p>设置 <code>FloatLeft="true"</code> 使组件呈现左浮动。</p>
+        <p>设置 <code>FloatRight="true"</code> 使组件呈现右浮动。</p>
+        <p>设置 <code>ClearFix="true"</code> 清除浮动。</p>
+    </Description>
+    <RunTemplate>
+        <Div ClearFix="true" BgColor="BgColor.Info">
+            <BootButton FloatLeft="true" Color="Color.Secondary">向左浮动按钮</BootButton>
+            <BootButton FloatRight="true" Color="Color.Secondary">向右浮动按钮</BootButton>
+        </Div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div ClearFix=""true"" BgColor=""BgColor.Info"">
+    <BootButton FloatLeft=""true"" Color=""Color.Secondary"">向左浮动按钮</BootButton>
+    <BootButton FloatRight=""true"" Color=""Color.Secondary"">向右浮动按钮</BootButton>
+</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>

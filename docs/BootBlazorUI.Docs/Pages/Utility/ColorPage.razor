@@ -1,0 +1,75 @@
+﻿@page "/utilities/colors"
+
+    <PageTitle Title="颜色(Colors)">
+        通过少量的颜色实用工具类来传达颜色的含义。还包括对带有悬浮状态的样式化链接的支持。
+    </PageTitle>
+
+<PresentationPart Title="文本颜色">
+    <Description>
+        设置 <code>TextColor</code> 标记当前元素的文本颜色。对于浅色文字，故意使用深色背景以便能肉眼看到。
+    </Description>
+    <RunTemplate>
+        <Div TextColor="TextColor.Primary">text-primary</Div>
+        <Div TextColor="TextColor.Secondary">text-secondary</Div>
+        <Div TextColor="TextColor.Info">text-info</Div>
+        <Div TextColor="TextColor.Success">text-success</Div>
+        <Div TextColor="TextColor.Warning">text-warning</Div>
+        <Div TextColor="TextColor.Danger">text-danger</Div>
+        <Div TextColor="TextColor.Light" BgColor="BgColor.Dark">text-light</Div>
+        <Div TextColor="TextColor.Dark">text-dark</Div>
+        <Div TextColor="TextColor.Muted">text-muted</Div>
+        <Div TextColor="TextColor.White" BgColor="BgColor.Dark">text-white</Div>
+        <Div TextColor="TextColor.Black50">text-black-50</Div>
+        <Div TextColor="TextColor.White50">text-white-50</Div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div TextColor=""TextColor.Primary"">text-primary</Div>
+<Div TextColor=""TextColor.Secondary"">text-secondary</Div>
+<Div TextColor=""TextColor.Info"">text-info</Div>
+<Div TextColor=""TextColor.Success"">text-success</Div>
+<Div TextColor=""TextColor.Warning"">text-warning</Div>
+<Div TextColor=""TextColor.Danger"">text-danger</Div>
+<Div TextColor=""TextColor.Light"" BgColor=""BgColor.Dark"">text-light</Div>
+<Div TextColor=""TextColor.Dark"">text-dark</Div>
+<Div TextColor=""TextColor.Muted"" BgColor=""BgColor.Dark"">text-muted</Div>
+<Div TextColor=""TextColor.White"" BgColor=""BgColor.Dark"">text-white</Div>
+<Div TextColor=""TextColor.Black50"">text-black-50</Div>
+<Div TextColor=""TextColor.White50"" BgColor=""BgColor.Dark"">text-white-50</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="背景颜色">
+    <Description>
+        设置 <code>BgColor</code> 可改变组件的背景颜色。但是对于深色背景，你需要设置 <code>TestColor</code> 对文字的配色进行相应的调整。
+    </Description>
+    <RunTemplate>
+        <Div BgColor="BgColor.Primary" TextColor="TextColor.Light">bg-primary</Div>
+        <Div BgColor="BgColor.Secondary" TextColor="TextColor.Light">bg-seconday</Div>
+        <Div BgColor="BgColor.Info" TextColor="TextColor.Light">bg-info</Div>
+        <Div BgColor="BgColor.Success" TextColor="TextColor.Light">bg-success</Div>
+        <Div BgColor="BgColor.Warning">bg-warning</Div>
+        <Div BgColor="BgColor.Danger" TextColor="TextColor.Light">bg-danger</Div>
+        <Div BgColor="BgColor.Light">bg-light</Div>
+        <Div BgColor="BgColor.Dark" TextColor="TextColor.Light">bg-dark</Div>
+        <Div BgColor="BgColor.Transparent">bg-transparent</Div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div BgColor=""BgColor.Primary"" TextColor=""TextColor.Light"">bg-primary</Div>
+<Div BgColor=""BgColor.Secondary"" TextColor=""TextColor.Light"">bg-seconday</Div>
+<Div BgColor=""BgColor.Info"" TextColor=""TextColor.Light"">bg-info</Div>
+<Div BgColor=""BgColor.Success"" TextColor=""TextColor.Light"">bg-success</Div>
+<Div BgColor=""BgColor.Warning"">bg-warning</Div>
+<Div BgColor=""BgColor.Danger"" TextColor=""TextColor.Light"">bg-danger</Div>
+<Div BgColor=""BgColor.Light"">bg-light</Div>
+<Div BgColor=""BgColor.Dark"" TextColor=""TextColor.Light"">bg-dark</Div>
+<Div BgColor=""BgColor.Transparent"">bg-transparent</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>

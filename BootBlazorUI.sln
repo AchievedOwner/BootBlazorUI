@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D9E63D6B-FA64-40BE-A2E4-5546B8E8CDFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootBlazorUI.Test", "src\BootBlazorUI.Test\BootBlazorUI.Test.csproj", "{61592CF2-265D-49C8-BCA6-2A89EF7DA337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BootBlazorUI.Test", "src\BootBlazorUI.Test\BootBlazorUI.Test.csproj", "{61592CF2-265D-49C8-BCA6-2A89EF7DA337}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

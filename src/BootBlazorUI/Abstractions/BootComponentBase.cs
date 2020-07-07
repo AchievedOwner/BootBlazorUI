@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace BootBlazorUI.Abstractions
 {
     /// <summary>
-    /// 表示 Boot 组件的基类。这是一个抽象类。
+    /// 表示 Boot 组件的基类，它包含了公共的参数。这是一个抽象类。
     /// </summary>
     public abstract class BootComponentBase : BootComponentParameterBase, IBootComponent
     {
@@ -63,12 +63,12 @@ namespace BootBlazorUI.Abstractions
             var classList = new List<string>();
             
             CreateComponentCssClass(classList);
+            classList.AddRange(this.GetParameterClass());
+
             if (!string.IsNullOrWhiteSpace(AdditionalCssClass))
             {
                 classList.Add(AdditionalCssClass);
             }
-
-            classList.AddRange(this.GetParameterClass());
 
             if (!classList.Any())
             {
@@ -89,7 +89,10 @@ namespace BootBlazorUI.Abstractions
             }
 
             var collection = new List<string>();
+
             CreateComponentStyle(collection);
+            collection.AddRange(GetParameterStyle());
+
             if (!string.IsNullOrWhiteSpace(AdditionalStyle))
             {
                 collection.Add(AdditionalStyle);

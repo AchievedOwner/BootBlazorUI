@@ -1,0 +1,136 @@
+﻿@page "/utilities/border"
+
+<PageTitle Title="边框(Border)">
+    使用边框工具快速设置元素的边框和边框半径。非常适合图像、按钮或任何其他元素。
+</PageTitle>
+
+<PresentationPart Title="示例">
+    <Description>
+        可以分别设置组件的边框。
+    </Description>
+    <RunTemplate>
+        <Div FloatLeft="true" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light">
+            四周
+        </Div>
+        <Div FloatLeft="true" BorderTop="true" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            上
+        </Div>
+        <Div FloatLeft="true" BorderBottom="true" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            下
+        </Div>
+        <Div FloatLeft="true" BorderLeft="true" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            左
+        </Div>
+        <Div FloatLeft="true" BorderRight="true" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            右
+        </Div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div Border=""true"">全部</Div>
+<Div BorderTop=""true"">上</Div>
+<Div BorderBottom=""true"">下</Div>
+<Div BorderLeft=""true"">左</Div>
+<Div BorderRight=""true"">右</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<Div ClearFix="true" />
+<PresentationPart Title="隐藏边框">
+    <Description>
+        设置成 <code>false</code> 可以隐藏边框。
+    </Description>
+    <RunTemplate>
+        <Div FloatLeft="true" Border="false" Width="100px" Height="100px" BgColor="BgColor.Light">
+            四周
+        </Div>
+        <Div FloatLeft="true" Border="true" BorderTop="false" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            上
+        </Div>
+        <Div FloatLeft="true" Border="true" BorderBottom="false" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            下
+        </Div>
+        <Div FloatLeft="true" Border="true" BorderLeft="false" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            左
+        </Div>
+        <Div FloatLeft="true" Border="true" BorderRight="false" Width="100px" Height="100px" BgColor="BgColor.Light" MarginLeft="2">
+            右
+        </Div>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div Border=""false"">全部</Div>
+<Div BorderTop=""false"">上</Div>
+<Div BorderBottom=""false"">下</Div>
+<Div BorderLeft=""false"">左</Div>
+<Div BorderRight=""false"">右</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<Div ClearFix="true" />
+<PresentationPart Title="边框颜色">
+    <Description>
+        设置 <code>BorderColor</code> 显示边框的颜色。
+    </Description>
+    <RunTemplate>
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Primary" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Secondary" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Info" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Success" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Warning" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Danger" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Light" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Light" BorderColor="Color.Dark" />
+
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div Border=""true"" BorderColor=""Color.Primary"">...</Div>
+<Div Border=""true"" BorderColor=""Color.Secondary"">...</Div>
+<Div Border=""true"" BorderColor=""Color.Info"">...</Div>
+<Div Border=""true"" BorderColor=""Color.Success"">...</Div>
+<Div Border=""true"" BorderColor=""Color.Warning"">...</Div>
+<Div Border=""true"" BorderColor=""Color.Danger"">...</Div>
+<Div Border=""true"" BorderColor=""Color.Light"">...</Div>
+<Div Border=""true"" BorderColor=""Color.Dark"">...</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<Div ClearFix="true" />
+
+<PresentationPart Title="圆角">
+    <Description>
+        设置 <code>Rounded</code> 参数可以轻松让边框变为圆角。
+    </Description>
+    <RunTemplate>
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Secondary" Rounded="true" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Secondary" RoundedTop="true" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Secondary" RoundedBottom="true" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Secondary" RoundedLeft="true" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Secondary" RoundedRight="true" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Secondary" RoundedCircle="true" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="200px" Height="100px" BgColor="BgColor.Secondary" RoundedPill="true" />
+        <Div FloatLeft="true" MarginLeft="1" Border="true" Width="100px" Height="100px" BgColor="BgColor.Secondary" Rounded="false" />
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<Div Rounded=""true"">...</Div>
+<Div RoundedTop=""true"">...</Div>
+<Div RoundedBottom=""true"">...</Div>
+<Div RoundedLeft=""true"">...</Div>
+<Div RoundedRight=""true"">...</Div>
+<Div RoundedCircle=""true"">...</Div>
+<Div RoundedPill=""true"">...</Div>
+<Div Rounded=""false"">...</Div>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+<Div ClearFix="true" />

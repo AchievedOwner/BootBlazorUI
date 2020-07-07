@@ -61,12 +61,6 @@ namespace BootBlazorUI
         public bool Striped { get; set; }
 
         /// <summary>
-        /// 设置进度条的高度。单位是px。
-        /// </summary>
-        [Parameter]
-        public int? Height { get; set; }
-
-        /// <summary>
         /// 获取根据设置的 <see cref="Min"/> 和 <see cref="Max"/> 以及当前的 <see cref="Value"/> 计算进度条的百分比。
         /// </summary>
         public decimal Percentage => Math.Round((Value / (Max - Min)) * 100, 0);
@@ -114,10 +108,6 @@ namespace BootBlazorUI
         /// <param name="collection">style 名称集合。</param>
         protected override void CreateComponentStyle(ICollection<string> collection)
         {
-            if (Height.HasValue)
-            {
-                collection.Add($"height:{Height}px");
-            }
         }
     }
 }
