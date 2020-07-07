@@ -184,7 +184,7 @@ namespace BootBlazorUI.Abstractions
         /// <value>
         ///   <see cref="BootBlazorUI.Width" /> 的枚举值或 <c>null</c>。
         /// </value>
-        [Parameter] public Width? WidthPercent { get; set; }
+        [Parameter][CssClass("w-")] public Width? WidthPercent { get; set; }
         /// <summary>
         /// 设置组件的固定宽度。
         /// </summary>
