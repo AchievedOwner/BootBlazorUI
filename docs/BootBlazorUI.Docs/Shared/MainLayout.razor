@@ -3,18 +3,17 @@
 <NavMenu />
 
 
-<div class="container-fluid mt-2 pb-3" style="padding-top:79px">
-    <div class="row">
-        <div class="col-2" style="height:@(height)px;overflow-y:scroll">
+<div class="container-fluid mt-2 pb-3" style="padding-top:79px;">
+    <div class="d-flex flex-fill" style="height:700px; overflow:hidden;">
+        <div class="flex-column" style="height:100%;overflow-y:auto;width:@width">
             <LeftMenu />
         </div>
-        <div class="col-10" style="height:@(height)px;overflow-y:scroll">
+        <div class="flex-column ml-2 flex-fill" style="overflow-x:hidden; overflow-y:auto;width:calc(100% - @(width));">
             @Body
         </div>
     </div>
 </div>
 
-
 @code{
-    int height = 600;
+    string width = "20%";
 }

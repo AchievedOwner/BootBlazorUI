@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI.Forms
 {
+    using Abstractions;
     /// <summary>
     /// 呈现一个将 <see cref="EditContext"/> 级联到后代的表单元素。可配合 <see cref="BootButton"/> 组件提升提交时的交互性。
     /// </summary>

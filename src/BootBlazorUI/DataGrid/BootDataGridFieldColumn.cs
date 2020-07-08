@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI.DataGrid
@@ -20,8 +21,14 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         [Parameter]
         public string Format { get; set; }
-        
 
+        /// <summary>
+        /// Method invoked when the component is ready to start, having received its
+        /// initial parameters from its parent in the render tree.
+        /// </summary>
+        /// <exception cref="ArgumentException">
+        /// 没有设置要绑定的 {Field} 字段
+        /// </exception>
         protected override void OnInitialized()
         {
             if (Parent == null)

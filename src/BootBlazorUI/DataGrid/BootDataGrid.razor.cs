@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI.DataGrid
@@ -42,7 +43,7 @@ namespace BootBlazorUI.DataGrid
         /// <summary>
         /// 设置一个布尔值，表示每一个单元格是否不显示边框。
         /// </summary>
-        [Parameter]public bool Borderless { get; set; }
+        [Parameter] public bool Borderless { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示表格使用深色背景显示。
@@ -127,7 +128,11 @@ namespace BootBlazorUI.DataGrid
         /// </summary>
         /// <returns>若已加载完成，返回 <c>true</c>；否则返回 <c>false</c>。</returns>
         public bool IsCompleted { get; private set; }
-
+        /// <summary>
+        /// Method invoked when the component is ready to start, having received its
+        /// initial parameters from its parent in the render tree.
+        /// </summary>
+        /// <exception cref="ArgumentException">必须设置参数 - DataSourceProvider</exception>
         protected override void OnInitialized()
         {
             if (DataSourceProvider == null)
@@ -135,7 +140,19 @@ namespace BootBlazorUI.DataGrid
                 throw new ArgumentException($"必须设置参数", nameof(DataSourceProvider));
             }
         }
-
+        /// <summary>
+        /// Method invoked after each time the component has been rendered. Note that the component does
+        /// not automatically re-render after the completion of any returned <see cref="T:System.Threading.Tasks.Task" />, because
+        /// that would cause an infinite render loop.
+        /// </summary>
+        /// <param name="firstRender">Set to <c>true</c> if this is the first time <see cref="M:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender(System.Boolean)" /> has been invoked
+        /// on this component instance; otherwise <c>false</c>.</param>
+        /// <remarks>
+        /// The <see cref="M:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender(System.Boolean)" /> and <see cref="M:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync(System.Boolean)" /> lifecycle methods
+        /// are useful for performing interop, or interacting with values recieved from <c>@ref</c>.
+        /// Use the <paramref name="firstRender" /> parameter to ensure that initialization work is only performed
+        /// once.
+        /// </remarks>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
@@ -152,7 +169,10 @@ namespace BootBlazorUI.DataGrid
                 }
             }
         }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("table");
@@ -184,12 +204,16 @@ namespace BootBlazorUI.DataGrid
         }
 
 
-
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         internal void Initialize()
         {
             InitializeRowCss();
         }
-
+        /// <summary>
+        /// Initializes the row CSS.
+        /// </summary>
         private void InitializeRowCss()
         {
             RowCssList = new Dictionary<int, List<string>>();
@@ -200,5 +224,5 @@ namespace BootBlazorUI.DataGrid
         }
     }
 
-   
+
 }

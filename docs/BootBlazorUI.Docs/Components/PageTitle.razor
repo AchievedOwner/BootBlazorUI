@@ -1,14 +1,15 @@
-﻿<h2>@Title</h2>
-<div class="border-bottom m2-1 mb-2"></div>
-<div @attributes="AdditionalAttributes">
-    @if (ChildContent != null)
-    {
-        <blockquote>
-            @ChildContent
-        </blockquote>
-    }
-</div>
-<div class="mb-3"></div>
+﻿
+        <h2>@Title</h2>
+        <div class="border-bottom mb-2"></div>
+        <div @attributes="AdditionalAttributes" style="@(MaxHeight.HasValue?$"max-height:{MaxHeight}px;overflow-y:auto":null)">
+            @if (ChildContent != null)
+            {
+                <blockquote class="pr-1">
+                    @ChildContent
+                </blockquote>
+            }
+        </div>
+        <div class="mb-3"></div>
 
 @code {
     [Parameter]
@@ -16,5 +17,7 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    [Parameter]public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
+    [Parameter] public int? MaxHeight { get; set; }
+
+    [Parameter] public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
 }

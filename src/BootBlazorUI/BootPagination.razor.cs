@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI
@@ -95,7 +96,15 @@ namespace BootBlazorUI
         /// 获取总页数。
         /// </summary>
         public int TotalPages => (TotalCount + PageSize - 1) / PageSize;
-
+        /// <summary>
+        /// Method invoked when the component is ready to start, having received its
+        /// initial parameters from its parent in the render tree.
+        /// </summary>
+        /// <exception cref="ArgumentException">
+        /// 不能小于1 - CurrentPage
+        /// or
+        /// 至少要有1个元素 - PageSizeStakeholders
+        /// </exception>
         protected override void OnInitialized()
         {
             if (CurrentPage <= 0)
@@ -112,7 +121,10 @@ namespace BootBlazorUI
 
             base.OnInitialized();
         }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("pagination");
@@ -158,7 +170,7 @@ namespace BootBlazorUI
             {
                 CurrentPage++;
             }
-           await ChangeCurrentPage(CurrentPage);
+            await ChangeCurrentPage(CurrentPage);
         }
 
         /// <summary>
@@ -222,7 +234,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 计算分页数字并返回开始和结束的索引。
         /// </summary>
-        public (int start,int end) ComputePageNumber()
+        public (int start, int end) ComputePageNumber()
         {
             var start = 0;
             var end = 0;
@@ -241,9 +253,9 @@ namespace BootBlazorUI
             if (end > TotalPages)
             {
                 end = TotalPages;
-                if (start + end != PageNumberCount-2)
+                if (start + end != PageNumberCount - 2)
                 {
-                    start = end - PageNumberCount + 2-1;
+                    start = end - PageNumberCount + 2 - 1;
                 }
             }
             if (end <= PageNumberCount)

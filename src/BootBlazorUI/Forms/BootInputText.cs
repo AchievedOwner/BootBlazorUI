@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
@@ -28,14 +29,21 @@ namespace BootBlazorUI.Forms
         /// <returns>input 字符串。</returns>
         protected override string OpenElement()
         => "input";
-
+        /// <summary>
+        /// 构造输入组件的渲染树。
+        /// </summary>
+        /// <param name="builder">渲染构造器。</param>
+        /// <param name="sequence">系列。</param>
         protected override void BuildInputRenderTree(RenderTreeBuilder builder, int sequence)
         {
             builder.AddAttribute(sequence++, "type", "text");
         }
 
 
-
+        /// <summary>
+        /// 构建组件内置的 class 样式。
+        /// </summary>
+        /// <param name="collection"></param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             if (ReadOnly && ReadOnlyAsText)

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace BootBlazorUI
+namespace BootBlazorUI.Abstractions
 {
     /// <summary>
     /// 表示 Boot 组件的基类。这是一个抽象类。
@@ -51,7 +52,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置将该控件或元素中出现的属性进行合并。
         /// </summary>
-        [Parameter(CaptureUnmatchedValues =true)]
+        [Parameter(CaptureUnmatchedValues = true)]
         public virtual IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, object>();
 
         /// <summary>
@@ -126,6 +127,7 @@ namespace BootBlazorUI
         /// 添加在 <see cref="RenderTreeBuilder"/> 中构造元素的 class 属性。
         /// </summary>
         /// <param name="builder"><see cref="RenderTreeBuilder"/> 实例。</param>
+        /// <param name="sequence">系列号。</param>
         protected virtual void AddCssClassAttribute(RenderTreeBuilder builder, int sequence = 999990)
         {
             var cssClass = BuildCssClassString();
@@ -139,7 +141,8 @@ namespace BootBlazorUI
         /// 添加在 <see cref="RenderTreeBuilder"/> 中构造元素的 style 属性。
         /// </summary>
         /// <param name="builder"><see cref="RenderTreeBuilder"/> 实例。</param>
-        protected virtual void AddStyleAttribute(RenderTreeBuilder builder,int sequence=999991)
+        /// <param name="sequence">系列号。</param>
+        protected virtual void AddStyleAttribute(RenderTreeBuilder builder, int sequence = 999991)
         {
             var styles = BuildStylesString();
             if (!string.IsNullOrEmpty(styles))
@@ -152,7 +155,8 @@ namespace BootBlazorUI
         /// 添加在 <see cref="RenderTreeBuilder"/> 中构造元素未被明确定义的其他属性。
         /// </summary>
         /// <param name="builder"><see cref="RenderTreeBuilder"/> 实例。</param>
-        protected virtual void AddAddtionalAttributes(RenderTreeBuilder builder,int sequence=99992)
+        /// <param name="sequence">系列号。</param>
+        protected virtual void AddAddtionalAttributes(RenderTreeBuilder builder, int sequence = 99992)
         {
             builder.AddMultipleAttributes(sequence, AdditionalAttributes);
         }
@@ -161,7 +165,8 @@ namespace BootBlazorUI
         /// 添加在 <see cref="RenderTreeBuilder"/> 中构造元素的 Id 属性。
         /// </summary>
         /// <param name="builder"><see cref="RenderTreeBuilder"/> 实例。</param>
-        protected virtual void AddIdAttribute(RenderTreeBuilder builder,int sequence=99994)
+        /// <param name="sequence">系列号。</param>
+        protected virtual void AddIdAttribute(RenderTreeBuilder builder, int sequence = 99994)
         {
             if (!string.IsNullOrEmpty(Id))
             {

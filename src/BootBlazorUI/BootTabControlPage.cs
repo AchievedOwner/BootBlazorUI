@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
     /// <summary>
     /// 呈现 <see cref="BootTabControl"/> 组件的标签页面组件。
     /// </summary>

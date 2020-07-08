@@ -1,10 +1,12 @@
 ﻿@page "/"
 
 <PageTitle Title="介绍">
-    BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，
-    可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。
-    <br />
-    BootBlazorUI 更偏向于交互和实用性，而不仅仅是静态的组件。
+    <p>
+        BootBlazorUI 是基于 Bootstrap 4.x 构建于 Blazor 的 UI 框架，它不依赖于 JQuery 和 Bootstrap.js 实现组件之间的交互，并且更偏向于实践而非静态组件。
+    </p>
+    <p>
+        BootBlazorUI 是通过 OOP 的思想对组件进行的封装，目标就是<strong>让后端程序员也能轻松编写前端。</strong>
+    </p>
 </PageTitle>
 <BootTabControl>
     <BootTabControlPage Title="程序包管理控制台(Package Manager)">
@@ -43,9 +45,13 @@ PM> Install-Package BootBlazorUI --Version {Program.GetVersion()}
 * 使用 `@using BootBlazorUI` 引入命名空间
 ")
 </PageTitle>
-<PageTitle Title="更新日志">
+<PageTitle Title="更新日志" MaxHeight="400">
     <h4>当前版本：<BootBadge>v@(Program.GetVersion())</BootBadge></h4>
     @Code.GetCode(@"
+## 1.2
+* 【新增】BootBreadCrumb 面包屑导航组件
+* 【新增】BootCard 卡片组件
+* 【优化】部分重构
 ## 1.1
 * 【新增】BoootButtonGroup 按钮组组件
 * 【新增】BootDropDown 下拉菜单组件

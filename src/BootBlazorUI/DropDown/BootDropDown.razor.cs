@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI
@@ -20,11 +21,11 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置下拉菜单点击按钮的内容。
         /// </summary>
-        [Parameter]public RenderFragment Content { get; set; }
+        [Parameter] public RenderFragment Content { get; set; }
         /// <summary>
         /// 设置下拉菜单的选项。
         /// </summary>
-        [Parameter]public RenderFragment DropDownItems { get; set; }
+        [Parameter] public RenderFragment DropDownItems { get; set; }
         /// <summary>
         /// 设置下拉菜单选项展开的方向。默认 <see cref="Direction.Down"/>。
         /// </summary>
@@ -39,10 +40,13 @@ namespace BootBlazorUI
         /// 获取组件的激活状态。
         /// </summary>
         bool IsActived { get; set; }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            if(DropDirection!= Direction.Down)
+            if (DropDirection != Direction.Down)
             {
                 collection.Add($"drop{DropDirection.ToString().ToLower()}");
             }

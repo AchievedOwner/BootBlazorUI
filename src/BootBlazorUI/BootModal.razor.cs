@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI
@@ -66,7 +67,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 获取一个布尔值，表示模态框是否已经显示。
         /// </summary>
-        public bool IsShown { get;private set; }
+        public bool IsShown { get; private set; }
 
         /// <summary>
         /// 设置模态框显示时触发的事件。事件参数表示模态框是否已显示。
@@ -79,7 +80,10 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public EventCallback<bool> OnHidden { get; set; }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             if (Centered)
@@ -89,7 +93,7 @@ namespace BootBlazorUI
 
             if (Size != Size.Default)
             {
-                collection.Add(ComponentUtil.GetSizeCssClass(Size,"modal-"));
+                collection.Add(ComponentUtil.GetSizeCssClass(Size, "modal-"));
             }
 
             if (Scrollable)

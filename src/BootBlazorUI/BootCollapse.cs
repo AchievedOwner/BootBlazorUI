@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BootBlazorUI
 {
+    using Abstractions;
     /// <summary>
     /// 呈现可进行折叠的 div 元素。
     /// </summary>
-    public class BootCollapse:BootComponentBase
+    public class BootCollapse : BootComponentBase
     {
         /// <summary>
         /// 设置面板的内容。
@@ -48,7 +50,7 @@ namespace BootBlazorUI
         /// 对面板进行收缩操作。
         /// </summary>
         public async Task Collapse()
-        {    
+        {
             IsExpand = false;
             await OnCollapsed.InvokeAsync(IsExpand);
             StateHasChanged();
@@ -68,7 +70,10 @@ namespace BootBlazorUI
                 await Expand();
             }
         }
-
+        /// <summary>
+        /// Renders the component to the supplied <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" />.
+        /// </summary>
+        /// <param name="builder">A <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> that will receive the render output.</param>
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             builder.OpenElement(0, "div");
@@ -76,7 +81,10 @@ namespace BootBlazorUI
             builder.AddContent(1, ChildContent);
             builder.CloseElement();
         }
-
+        /// <summary>
+        /// 创建组件所需要的 class 类。
+        /// </summary>
+        /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("collapse");
