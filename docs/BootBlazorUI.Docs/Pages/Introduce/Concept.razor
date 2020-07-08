@@ -1,0 +1,43 @@
+﻿@page "/info/concept"
+
+<PageTitle Title="概念(Concept)">
+    任何开发人员都需要掌握的组件的基本概念，它包含了命名规范、响应式参数、通用参数以及二次开发的基本定义。
+</PageTitle>
+
+<Div MarginTop="3">
+    <h4>命名规范</h4>
+</Div>
+
+<Div MarginTop="3">
+    <h4>响应式布局</h4>
+   <hr />
+        如果元素含有响应式布局，则会有一个基本的参数 <code>xxx</code> ，而其他带有响应式布局的参数的规范是 <code>xxxSM</code> <code>xxxMD</code> <code>xxxLG</code> <code>xxxXL</code> 
+        来表示相应响应式布局生效的设置。有关在 Bootstrap 中的响应式配置请参考 <Anchor Link="https://v4.bootcss.com/docs/layout/overview/" LinkTarget="LinkTarget.Blank">https://v4.bootcss.com/docs/layout/overview/</Anchor>
+    
+</Div>
+
+<Div MarginTop="3">
+    <h4>样式规范</h4>
+    <hr />
+    组件是基于 Bootstrap 的 css 样式进行研发，如果需要追加自定义的 class 或 style，可以使用 <code>AdditionalCssClass</code> 或 <code>AdditionalStyle</code> 两个参数。
+
+    @Code.GetCode(@"
+```html
+<BootButton AdditionalCssClass=""my-button-text my-button-primary"">提交</BootButton>
+<BootButton AdditionalStyle=""width:200px;height:100px"">提交</BootButton>
+```
+")
+    你也可以直接使用 html 的属性 <code>class</code> 或 <code>style</code> 来覆盖所有的样式。除非你对 Bootstrap 的样式非常熟悉，否则不建议这么做。
+    @Code.GetCode(@"
+```html
+<BootButton class=""my-button-text my-button-primary"">提交</BootButton>
+<BootButton style=""width:200px;height:100px"">提交</BootButton>
+```
+")
+</Div>
+
+<Div MarginTop="3">
+    <h4>二次开发</h4>
+    <hr />
+
+</Div>

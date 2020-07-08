@@ -13,21 +13,21 @@
         /// <summary>
         /// 设置一个布尔值，表示是否在小尺寸的视窗使用阴影。
         /// </summary>
-        public bool? ShadowSmall { get; set; }
+        public bool? ShadowSM { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示是否在中等尺寸的视窗使用阴影。
         /// </summary>
-        public bool? ShadowMedium { get; set; }
+        public bool? ShadowMD{ get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示是否在大尺寸的视窗使用阴影。
         /// </summary>
-        public bool? ShadowLarge { get; set; }
+        public bool? ShadowLG { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示是否在超大尺寸的视窗使用阴影。
         /// </summary>
-        public bool? ShadowExtraLarge { get; set; }
+        public bool? ShadowXL{ get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace BootBlazorUI
     /// <seealso cref="BootBlazorUI.Abstractions.BootComponentBase" />
     /// <seealso cref="BootBlazorUI.Abstractions.Parameters.IHasChildContent" />
     /// <seealso cref="BootBlazorUI.Abstractions.Parameters.IHasViewPoint" />
-    public class BootContainer : BootComponentBase, IHasChildContent,IHasViewPoint
+    public class BootContainer : BootComponentBase, IHasChildContent
     {
         /// <summary>
         /// 样式名称。
@@ -47,7 +47,7 @@ namespace BootBlazorUI
         /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            if (ViewPoint.HasValue && ViewPoint.Value > BootBlazorUI.ViewPoint.ExtraSmall)
+            if (ViewPoint.HasValue && ViewPoint.Value > BootBlazorUI.ViewPoint.XS)
             {
                 collection.Add(ViewPoint.GetEnumCssClass(this,nameof(ViewPoint)));
             }
@@ -56,7 +56,10 @@ namespace BootBlazorUI
                 collection.Add($"{CLASS_NAME}{(Fluid ? "-fluid" : null)}");
             }
         }
-
+        /// <summary>
+        /// Renders the component to the supplied <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" />.
+        /// </summary>
+        /// <param name="builder">A <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> that will receive the render output.</param>
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             builder.OpenElement(0, "div");

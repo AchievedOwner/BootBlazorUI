@@ -11,26 +11,26 @@ namespace BootBlazorUI
         /// 极小尺寸。
         /// </summary>
         [Description("xs")]
-        ExtraSmall = 0,
+        XS = 0,
         /// <summary>
         /// 最小尺寸。
         /// </summary>
         [Description("sm")]
-        Small = 1,
+        SM = 1,
         /// <summary>
         ///  中等尺寸。
         /// </summary>
         [Description("md")]
-        Medium = 2,
+        MD = 2,
         /// <summary>
         ///  较大尺寸。
         /// </summary>
         [Description("lg")]
-        Large = 3,
+        LG = 3,
         /// <summary>
         ///  最大尺寸。
         /// </summary>
         [Description("xl")]
-        ExtraLarge = 4
+        XL = 4
     }
 }

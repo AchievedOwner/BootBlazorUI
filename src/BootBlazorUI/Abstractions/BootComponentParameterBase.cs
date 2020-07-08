@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using BootBlazorUI.Abstractions.Parameters;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI.Abstractions
@@ -89,14 +91,14 @@ namespace BootBlazorUI.Abstractions
         /// <value>
         /// 显示边框则为 <c>true</c>；否则为 <c>false</c>。
         /// </value>
-        [Parameter][CssClass("border")][FalseCssClass("border-0")]public bool? Border { get; set; }
+        [Parameter] [CssClass("border")] [FalseCssClass("border-0")] public bool? Border { get; set; }
         /// <summary>
         /// 设置一个布尔值，表示是否显示组件的顶部边框。
         /// </summary>
         /// <value>
         /// 显示边框则为 <c>true</c>；否则为 <c>false</c>。
         /// </value>
-        [Parameter][CssClass("border-top")] [FalseCssClass("border-top-0")] public bool? BorderTop { get; set; }
+        [Parameter] [CssClass("border-top")] [FalseCssClass("border-top-0")] public bool? BorderTop { get; set; }
         /// <summary>
         /// 设置一个布尔值，表示是否显示组件的底部边框。
         /// </summary>
@@ -158,23 +160,23 @@ namespace BootBlazorUI.Abstractions
         /// <summary>
         /// 设置一个布尔值，表示是否在所有的视窗使用阴影。
         /// </summary>
-        [Parameter] [CssClass("shadow")][FalseCssClass("shadow-none")] public bool? Shadow { get; set; }
+        [Parameter] [CssClass("shadow")] [FalseCssClass("shadow-none")] public bool? Shadow { get; set; }
         /// <summary>
         /// 设置一个布尔值，表示是否在小尺寸的视窗使用阴影。
         /// </summary>
-        [Parameter] [CssClass("shadow-sm")] [FalseCssClass("shadow-sm-none")] public bool? ShadowSmall { get; set; }
+        [Parameter] [CssClass("shadow-sm")] [FalseCssClass("shadow-sm-none")] public bool? ShadowSM { get; set; }
         /// <summary>
         /// 设置一个布尔值，表示是否在中等尺寸的视窗使用阴影。
         /// </summary>
-        [Parameter] [CssClass("shadow-md")] [FalseCssClass("shadow-md-none")] public bool? ShadowMedium { get; set; }
+        [Parameter] [CssClass("shadow-md")] [FalseCssClass("shadow-md-none")] public bool? ShadowMD { get; set; }
         /// <summary>
         /// 设置一个布尔值，表示是否在大尺寸的视窗使用阴影。
         /// </summary>
-        [Parameter] [CssClass("shadow-lg")] [FalseCssClass("shadow-lg-none")] public bool? ShadowLarge { get; set; }
+        [Parameter] [CssClass("shadow-lg")] [FalseCssClass("shadow-lg-none")] public bool? ShadowLG { get; set; }
         /// <summary>
         /// 设置一个布尔值，表示是否在超大尺寸的视窗使用阴影。
         /// </summary>
-        [Parameter] [CssClass("shadow-xl")] [FalseCssClass("shadow-xl-none")] public bool? ShadowExtraLarge { get; set; }
+        [Parameter] [CssClass("shadow-xl")] [FalseCssClass("shadow-xl-none")] public bool? ShadowXL { get; set; }
         #endregion
 
         #region Width
@@ -184,11 +186,11 @@ namespace BootBlazorUI.Abstractions
         /// <value>
         ///   <see cref="BootBlazorUI.Width" /> 的枚举值或 <c>null</c>。
         /// </value>
-        [Parameter][CssClass("w-")] public Width? WidthPercent { get; set; }
+        [Parameter] [CssClass("w-")] public Width? WidthPercent { get; set; }
         /// <summary>
         /// 设置组件的固定宽度。
         /// </summary>
-        [Parameter][Style("width")]public string Width { get; set; }
+        [Parameter] [Style("width")] public string Width { get; set; }
         /// <summary>
         /// 设置组件的最大宽度。
         /// </summary>
@@ -207,7 +209,7 @@ namespace BootBlazorUI.Abstractions
         /// <summary>
         /// 设置组件的固定高度。
         /// </summary>
-        [Parameter][Style("height")]public string Height { get; set; }
+        [Parameter] [Style("height")] public string Height { get; set; }
         /// <summary>
         /// 设置组件的最小高度。
         /// </summary>
@@ -221,7 +223,7 @@ namespace BootBlazorUI.Abstractions
         /// <summary>
         /// 设置组件四个角都是圆角。
         /// </summary>
-        [Parameter][CssClass("rounded")][FalseCssClass("rounded-0")]public bool? Rounded { get; set; }
+        [Parameter] [CssClass("rounded")] [FalseCssClass("rounded-0")] public bool? Rounded { get; set; }
         /// <summary>
         /// 设置组件顶部呈现圆角。
         /// </summary>
@@ -247,7 +249,30 @@ namespace BootBlazorUI.Abstractions
         /// </summary>
         [Parameter] [CssClass("rounded-pill")] public bool? RoundedPill { get; set; }
         #endregion
+        #region Display
+        /// <summary>
+        /// 设置组件的显示方式。
+        /// </summary>
+        [Parameter][CssClass("d-")] public Display? Display { get; set; }
+        /// <summary>
+        /// 设置组件在小视窗尺寸的显示方式。
+        /// </summary>
+        [Parameter] [CssClass("d-sm-")] public Display? DisplaySM { get; set; }
+        /// <summary>
+        /// 设置组件在中视窗尺寸的显示方式。
+        /// </summary>
+        [Parameter] [CssClass("d-md-")] public Display? DisplayMD { get; set; }
+        /// <summary>
+        /// 设置组件在大视窗尺寸的显示方式。
+        /// </summary>
+        [Parameter] [CssClass("d-lg-")] public Display? DisplayLG { get; set; }
+        /// <summary>
+        /// 设置组件在超大视窗尺寸的显示方式。
+        /// </summary>
+        [Parameter] [CssClass("d-xl-")] public Display? DisplayXL { get; set; }
+        #endregion
 
+        #region 方法
         /// <summary>
         /// 返回所有公用参数的 css 名称列表。
         /// </summary>
@@ -326,5 +351,6 @@ namespace BootBlazorUI.Abstractions
             }
             return list;
         }
+        #endregion
     }
 }

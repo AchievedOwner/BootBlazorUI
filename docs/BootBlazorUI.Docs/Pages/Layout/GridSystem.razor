@@ -154,23 +154,111 @@
 
 <PresentationPart Title="响应式布局">
     <Description>
-        <p>设置 <code>ColumnSmall</code> 在小尺寸视窗呈现的比例。</p>
+        <p>设置 <code>ColumnSM</code> 在小尺寸视窗呈现的比例。</p>
         <p>设置 <code>ColumnMedium</code> 在中等尺寸视窗呈现的比例。</p>
-        <p>设置 <code>ColumnLarge</code> 在大尺寸视窗呈现的比例。</p>
-        <p>设置 <code>ColumnExtraLarge</code> 在超大尺寸视窗呈现的比例。</p>
+        <p>设置 <code>ColumnLG</code> 在大尺寸视窗呈现的比例。</p>
+        <p>设置 <code>ColumnXL</code> 在超大尺寸视窗呈现的比例。</p>
         <p>有关尺寸比例，参考 <a href="https://v4.bootcss.com/docs/layout/grid/#grid-options" target="_blank">https://v4.bootcss.com/docs/layout/grid/#grid-options</a></p>
     </Description>
     <RunTemplate>
-        <BootRow BgColor="BgColor.Info">
-            <BootColumn ColumnSmall="8">Column Small 8</BootColumn>
-            <BootColumn ColumnSmall="4">Column Small 4</BootColumn>
-            <BootColumn Column="3">Column 3</BootColumn>
-            <BootColumn Column="3">Column 3</BootColumn>
-            <BootColumn Column="3">Column 3</BootColumn>
-            <BootColumn ColumnLarge="6">Column Large 6</BootColumn>
-            <BootColumn ColumnLarge="6">Column Large 6</BootColumn>
-            <BootColumn ColumnExtraLarge="3">Column Extra Large 3</BootColumn>
-            <BootColumn ColumnExtraLarge="9">Column Extra Large 9</BootColumn>
+        <BootRow BgColor="BgColor.Light" Border="true">
+            <BootColumn ColumnSM="8" Border="true">Column SM 8</BootColumn>
+            <BootColumn ColumnSM="4" Border="true">Column SM 4</BootColumn>
+            <BootColumn Column="3" Border="true">Column 3</BootColumn>
+            <BootColumn Column="3" Border="true">Column 3</BootColumn>
+            <BootColumn Column="3" Border="true">Column 3</BootColumn>
+            <BootColumn ColumnLG="6" Border="true">Column LG 6</BootColumn>
+            <BootColumn ColumnLG="6" Border="true">Column LG 6</BootColumn>
+            <BootColumn ColumnXL="3" Border="true">Column Extra LG 3</BootColumn>
+            <BootColumn ColumnXL="9" Border="true">Column Extra LG 9</BootColumn>
         </BootRow>
     </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<BootRow BgColor=""BgColor.Light"" Border=""true"">
+    <BootColumn ColumnSM=""8"" Border=""true"">Column SM 8</BootColumn>
+    <BootColumn ColumnSM=""4"" Border=""true"">Column SM 4</BootColumn>
+    <BootColumn Column=""3"" Border=""true"">Column 3</BootColumn>
+    <BootColumn Column=""3"" Border=""true"">Column 3</BootColumn>
+    <BootColumn Column=""3"" Border=""true"">Column 3</BootColumn>
+    <BootColumn ColumnLG=""6"" Border=""true"">Column LG 6</BootColumn>
+    <BootColumn ColumnLG=""6"" Border=""true"">Column LG 6</BootColumn>
+    <BootColumn ColumnXL=""3"" Border=""true"">Column Extra LG 3</BootColumn>
+    <BootColumn ColumnXL=""9"" Border=""true"">Column Extra LG 9</BootColumn>
+</BootRow>
+```
+")
+    </CodeTemplate>
+</PresentationPart>
+
+<PresentationPart Title="固定列数">
+    <RunTemplate>
+        <h6>两列</h6>
+        <BootContainer MarginBottom="3">
+            <BootRow Columns="2" BgColor="BgColor.Light">
+                <BootColumn Border="true">列1</BootColumn>
+                <BootColumn Border="true">列2</BootColumn>
+                <BootColumn Border="true">列3</BootColumn>
+                <BootColumn Border="true">列4</BootColumn>
+                <BootColumn Border="true">列5</BootColumn>
+            </BootRow>
+        </BootContainer>
+        <h6>三列</h6>
+        <BootContainer MarginBottom="3">
+            <BootRow Columns="3" BgColor="BgColor.Light">
+                <BootColumn Border="true">列1</BootColumn>
+                <BootColumn Border="true">列2</BootColumn>
+                <BootColumn Border="true">列3</BootColumn>
+                <BootColumn Border="true">列4</BootColumn>
+                <BootColumn Border="true">列5</BootColumn>
+            </BootRow>
+        </BootContainer>
+        <h6>三列，但可以单独设置某一列的占比</h6>
+        <BootContainer>
+            <BootRow Columns="4" BgColor="BgColor.Light">
+                <BootColumn Border="true">列1</BootColumn>
+                <BootColumn Border="true">列2</BootColumn>
+                <BootColumn Column="6" Border="true">列3</BootColumn>
+                <BootColumn Border="true">列4</BootColumn>
+                <BootColumn Border="true">列5</BootColumn>
+            </BootRow>
+        </BootContainer>
+    </RunTemplate>
+    <CodeTemplate>
+        @Code.GetCode(@"
+```html
+<h6>两列</h6>
+<BootContainer MarginBottom=""3"">
+    <BootRow Columns=""2"" BgColor=""BgColor.Light"">
+        <BootColumn Border=""true"">列1</BootColumn>
+        <BootColumn Border=""true"">列2</BootColumn>
+        <BootColumn Border=""true"">列3</BootColumn>
+        <BootColumn Border=""true"">列4</BootColumn>
+        <BootColumn Border=""true"">列5</BootColumn>
+    </BootRow>
+</BootContainer>
+<h6>三列</h6>
+<BootContainer MarginBottom=""3"">
+    <BootRow Columns=""3"" BgColor=""BgColor.Light"">
+        <BootColumn Border=""true"">列1</BootColumn>
+        <BootColumn Border=""true"">列2</BootColumn>
+        <BootColumn Border=""true"">列3</BootColumn>
+        <BootColumn Border=""true"">列4</BootColumn>
+        <BootColumn Border=""true"">列5</BootColumn>
+    </BootRow>
+</BootContainer>
+<h6>三列，但可以单独设置某一列的占比</h6>
+<BootContainer>
+    <BootRow Columns=""4"" BgColor=""BgColor.Light"">
+        <BootColumn Border=""true"">列1</BootColumn>
+        <BootColumn Border=""true"">列2</BootColumn>
+        <BootColumn Column=""6"" Border=""true"">列3</BootColumn>
+        <BootColumn Border=""true"">列4</BootColumn>
+        <BootColumn Border=""true"">列5</BootColumn>
+    </BootRow>
+</BootContainer>
+```
+")
+    </CodeTemplate>
 </PresentationPart>

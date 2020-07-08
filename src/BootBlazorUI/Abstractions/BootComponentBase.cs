@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+
+using BootBlazorUI.Abstractions.Parameters;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -155,5 +158,44 @@ namespace BootBlazorUI.Abstractions
             AddAddtionalAttributes(builder);
         }
         #endregion
+
+        /// <summary>
+        /// Renders the component to the supplied <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" />.
+        /// </summary>
+        /// <param name="builder">A <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> that will receive the render output.</param>
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            var componentType = GetType();
+
+            var element= componentType.GetCustomAttribute<ElementAttribute>(true);
+            if (element != null)
+            {
+                builder.OpenElement(0, element.ElementName);
+                AddCommonAttributes(builder);
+
+                var properties = GetType().GetProperties().Where(m => m.IsDefined(typeof(ParameterAttribute), true));
+
+                var index = 1;
+                foreach (var property in properties)
+                {
+                    var elementAttr = property.GetCustomAttribute<ElementAttrAttribute>(true);
+                    if (elementAttr != null)
+                    {
+                        var name = elementAttr.Name ?? property.Name.ToLower();
+                        var value = property.GetValue(this);
+                        if (value != null)
+                        {
+                            builder.AddAttribute(index++, name, value);
+                        }
+                    }
+                }
+
+                if (this is IHasChildContent childContent)
+                {
+                    builder.AddContent(properties.Count()+1, childContent.ChildContent);
+                }
+                builder.CloseElement();
+            }
+        }
     }
 }

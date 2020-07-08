@@ -17,18 +17,18 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置适配小尺寸视窗的列的占比，值的范围是1-12。
         /// </summary>
-        [Parameter][CssClass("col-sm-")]public int? ColumnSmall { get; set; }
+        [Parameter][CssClass("col-sm-")]public int? ColumnSM { get; set; }
         /// <summary>
         /// 设置适配中等尺寸视窗的列的占比，值的范围是1-12。
         /// </summary>
-        [Parameter] [CssClass("col-md-")] public int? ColumnMedium { get; set; }
+        [Parameter] [CssClass("col-md-")] public int? ColumnMD { get; set; }
         /// <summary>
         /// 设置适配大尺寸视窗的列的占比，值的范围是1-12。
         /// </summary>
-        [Parameter] [CssClass("col-lg-")] public int? ColumnLarge { get; set; }
+        [Parameter] [CssClass("col-lg-")] public int? ColumnLG{ get; set; }
         /// <summary>
         /// 设置适配超大尺寸视窗的列的占比，值的范围是1-12。
         /// </summary>
-        [Parameter] [CssClass("col-xl-")] public int? ColumnExtraLarge { get; set; }
+        [Parameter] [CssClass("col-xl-")] public int? ColumnXL { get; set; }
     }   
 }
