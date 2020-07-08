@@ -118,4 +118,36 @@ namespace BootBlazorUI
         [Description("right")]
         Right = 4
     }
+
+    /// <summary>
+    /// 元素显示的定位。
+    /// </summary>
+    public enum DisplayPosition
+    {
+        /// <summary>
+        /// 默认值。没有定位，元素出现在正常的流中。
+        /// </summary>
+        [Description("static")]
+        Static = 0,
+        /// <summary>
+        /// 生成相对定位的元素，相对于其正常位置进行定位。
+        /// </summary>
+        [Description("relative")]
+        Relative = 1,
+        /// <summary>
+        /// 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
+        /// </summary>
+        [Description("absolute")]
+        Absolute = 2,
+        /// <summary>
+        /// 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+        /// </summary>
+        [Description("fixed")]
+        Fixed = 3,
+        /// <summary>
+        /// 生成吸附性定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+        /// </summary>
+        [Description("sticky")]
+        Sticky=4,
+    }
 }

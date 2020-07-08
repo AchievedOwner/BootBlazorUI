@@ -270,8 +270,44 @@ namespace BootBlazorUI.Abstractions
         /// 设置组件在超大视窗尺寸的显示方式。
         /// </summary>
         [Parameter] [CssClass("d-xl-")] public Display? DisplayXL { get; set; }
-        #endregion
+        /// <summary>
+        /// 设置组件显示的位置参数。
+        /// </summary>
+        [Parameter] [CssClass("position-")] public DisplayPosition? Position { get; set; }
+        /// <summary>
+        /// 设置组件的位置固定在浏览器的顶部。
+        /// </summary>
+        [Parameter][CssClass("fixed-top")]public bool? FixedTop { get; set; }
+        /// <summary>
+        /// 设置组件的位置固定在浏览器的底部。
+        /// </summary>
+        [Parameter] [CssClass("fixed-bottom")] public bool? FixedBottom { get; set; }
+        /// <summary>
+        /// 设置组件相对于 <see cref="Position" /> 参数的设置左边的距离。
+        /// </summary>
+        [Parameter][Style("left")]public string Left { get; set; }
+        /// <summary>
+        /// 设置组件相对于 <see cref="Position" /> 参数的设置右边的距离。
+        /// </summary>
+        [Parameter] [Style("right")] public string Right { get; set; }
+        /// <summary>
+        /// 设置组件相对于 <see cref="Position" /> 参数的设置顶部的距离。
+        /// </summary>
+        [Parameter] [Style("top")] public string Top { get; set; }
+        /// <summary>
+        /// 设置组件相对于 <see cref="Position" /> 参数的设置底部的距离。
+        /// </summary>
+        [Parameter] [Style("bottom")] public string Bottom { get; set; }
+        /// <summary>
+        /// 设置根据正常文档流进行定位。
+        /// </summary>
+        [Parameter] [CssClass("sticky-top")] public bool? StickyTop { get; set; }
+        #endregion        
 
+        /// <summary>
+        /// 设置组件的可见性，但依然占据位置。
+        /// </summary>
+        [Parameter] [CssClass("visible")] [FalseCssClass("invisible")] public bool? Visibility { get; set; }
         #region 方法
         /// <summary>
         /// 返回所有公用参数的 css 名称列表。

@@ -1,0 +1,23 @@
+﻿@page "/utilities/visibility"
+
+    <PageTitle Title="可见性(Visibility)">
+        使用可见性工具类来控制 HTML 元素的可见性，并且不会修改 <code>Display</code> 的设置。
+    </PageTitle>
+
+<PresentationPart Title="简单示例">
+    <Description>
+        设置了 <code>Visibility="false"</code> 则会隐藏组件，但不会对布局产生影响，组件仍然占据页面空间。
+    </Description>
+    <RunTemplate>
+        <Div Visibility="true">元素</Div>
+        <Div Visibility="false">看不见</Div>
+    </RunTemplate>
+   <CodeTemplate>
+       @Code.GetCode(@"
+```html
+<Div Visibility=""true"">元素</Div>
+<Div Visibility=""false"">看不见</Div>
+```
+")
+   </CodeTemplate>
+</PresentationPart>

@@ -1,0 +1,43 @@
+﻿@page "/utilities/position"
+
+<PageTitle Title="定位(Position)">
+
+</PageTitle>
+
+<Div MarginTop="3">
+    <h4>常用值</h4>
+    <hr />
+    @Code.GetCode(@"
+```html
+<Div Position=""DisplayPosition.Absolute"">绝对定位</Div>
+<Div Position=""DisplayPosition.Relative"">相对定位</Div>
+<Div Position=""DisplayPosition.Fixed"">固定定位</Div>
+<Div Position=""DisplayPosition.Sticky"">吸附性定位</Div>
+<Div Position=""DisplayPosition.Static"">静态定位</Div>
+```
+")
+</Div>
+
+<Div MarginTop="3">
+    <h4>固定顶部和底部</h4>
+    <hr />
+    @Code.GetCode(@"
+```html
+<Div FixedTop=""true"">固定在顶部</Div>
+<Div FixedBottom=""true"">固定在底部</Div>
+```
+")
+</Div>
+
+<Div MarginTop="3">
+    <h4>粘附在顶部</h4>
+    <hr />
+    <BlockQuote>
+        不一定所有浏览器支持，例如 IE。
+    </BlockQuote>
+    @Code.GetCode(@"
+```html
+<Div StickyTop=""true"">...</Div>
+```
+")
+</Div>

@@ -20,7 +20,8 @@
         IHasOverflow,
         IHasShadow,
         IHasRounded,
-        IHasDisplay
+        IHasDisplay,
+        IHasVisibility
     {
         /// <summary>
         /// 返回所有公用参数的 css 名称列表。
