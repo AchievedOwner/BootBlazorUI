@@ -1,4 +1,6 @@
-﻿namespace BootBlazorUI
+﻿using YoiBlazor;
+
+namespace BootBlazorUI
 {
     /// <summary>
     /// 组件工具类。
@@ -53,6 +55,6 @@
         /// <param name="alignment">对齐方式。</param>
         /// <param name="prefix">前缀。</param>
         internal static string GetHorizontalAlignCssClass(HorizontalAlignment alignment, string prefix = default)
-            => $"{prefix}{alignment.GetDescription()}";
+            => $"{prefix}{alignment.GetEnumCssClass()}";
     }
 }

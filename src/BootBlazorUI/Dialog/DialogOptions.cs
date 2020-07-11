@@ -28,11 +28,11 @@ namespace BootBlazorUI.Dialog
         /// <summary>
         /// 获取或设置【确定】按钮的主题颜色。
         /// </summary>
-        public Color ConfirmColor { get; set; } 
+        public Color? ConfirmColor { get; set; } 
         /// <summary>
         /// 获取或设置【确定】按钮的尺寸。
         /// </summary>
-        public Size ConfirmSize { get; set; }
+        public Size? ConfirmSize { get; set; }
 
         /// <summary>
         /// 获取或设置对话框取消按钮的文本。
@@ -41,11 +41,11 @@ namespace BootBlazorUI.Dialog
         /// <summary>
         /// 获取或设置【取消】按钮的主题颜色。
         /// </summary>
-        public Color CancelColor { get; set; }
+        public Color? CancelColor { get; set; }
         /// <summary>
         /// 获取或设置【取消】按钮的尺寸。
         /// </summary>
-        public Size CancelSize { get; set; }
+        public Size? CancelSize { get; set; }
 
         /// <summary>
         /// 获取或设置当点击【确定】按钮后的方法。

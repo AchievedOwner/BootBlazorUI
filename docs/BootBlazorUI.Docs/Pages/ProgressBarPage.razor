@@ -84,21 +84,21 @@
 </PresentationPart>
 <PresentationPart Title="设置高度">
     <Description>
-        设置 <code>Height</code> 可以自定义进度条的高度，单位是 px。
+        设置 <code>Height</code> 可以自定义进度条的高度。
     </Description>
     <RunTemplate>        
-        <BootProgressBar  Value="90" Color="Color.Info" />
+        <BootProgressBar Height="5px" Value="90" Color="Color.Info" />
         <br />
-        <BootProgressBar  Value="70" Color="Color.Success" />
+        <BootProgressBar Height="30px" Value="70" Color="Color.Success" />
         <br />
-        <BootProgressBar Value="40" Color="Color.Danger" />
+        <BootProgressBar Height="50px" Value="40" Color="Color.Danger" />
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
-<BootProgressBar Height=""5"" Value=""90"" Color=""Color.Info"" />
-<BootProgressBar Height=""30"" Value=""70"" Color=""Color.Success"" />
-<BootProgressBar Height=""50"" Value=""40"" Color=""Color.Danger"" />
+<BootProgressBar Height=""5px"" Value=""90"" Color=""Color.Info"" />
+<BootProgressBar Height=""30px"" Value=""70"" Color=""Color.Success"" />
+<BootProgressBar Height=""50px"" Value=""40"" Color=""Color.Danger"" />
 ```
         ")
     </CodeTemplate>

@@ -10,7 +10,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>2.0</Version>
     <Authors>William Chow</Authors>
-    <Description>BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。</Description>
+    <CssClass>BootBlazorUI 是基于 Bootstrap 4.x 版本并构建于 ASP.NET CORE 3.1 的 UI 库，不依赖于 JQuery 和 Bootstrap.js 实现所有交互，可应用于 Mvc / Razor Page / Blazor 等 Web 应用程序。</CssClass>
     <PackageProjectUrl>https://github.com/Michael-Pro/BootBlazorUI</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Michael-Pro/BootBlazorUI</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
@@ -64,5 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\YoiBlazor\src\YoiBlazor\YoiBlazor.csproj" />
   </ItemGroup>
 </Project>

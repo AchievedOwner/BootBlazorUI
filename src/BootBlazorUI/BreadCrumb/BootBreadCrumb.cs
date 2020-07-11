@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 表示使用 ol 元素当前页面在自动添加分隔符的导航层次结构中的位置。
     /// </summary>

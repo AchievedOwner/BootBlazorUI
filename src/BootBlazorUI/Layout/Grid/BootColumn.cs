@@ -3,6 +3,8 @@ using BootBlazorUI.Abstractions;
 
 using Microsoft.AspNetCore.Components;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>

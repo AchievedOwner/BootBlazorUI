@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
@@ -10,17 +12,17 @@ namespace BootBlazorUI
         /// <summary>
         /// 左对齐。
         /// </summary>
-        [Description("left")]
+        [CssClass("left")]
         Left,
         /// <summary>
         /// 居中对齐。
         /// </summary>
-        [Description("center")]
+        [CssClass("center")]
         Center,
         /// <summary>
         /// 右对齐。
         /// </summary>
-        [Description("right")]
+        [CssClass("right")]
         Right
     }
 
@@ -100,22 +102,22 @@ namespace BootBlazorUI
         /// <summary>
         /// 顶部。
         /// </summary>
-        [Description("top")]
+        [CssClass("top")]
         Top = 1,
         /// <summary>
         /// 底部。
         /// </summary>
-        [Description("bottom")]
+        [CssClass("bottom")]
         Bottom = 2,
         /// <summary>
         /// 左侧。
         /// </summary>
-        [Description("left")]
+        [CssClass("left")]
         Left = 3,
         /// <summary>
         /// 右侧。
         /// </summary>
-        [Description("right")]
+        [CssClass("right")]
         Right = 4
     }
 
@@ -127,27 +129,27 @@ namespace BootBlazorUI
         /// <summary>
         /// 默认值。没有定位，元素出现在正常的流中。
         /// </summary>
-        [Description("static")]
+        [CssClass("static")]
         Static = 0,
         /// <summary>
         /// 生成相对定位的元素，相对于其正常位置进行定位。
         /// </summary>
-        [Description("relative")]
+        [CssClass("relative")]
         Relative = 1,
         /// <summary>
         /// 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
         /// </summary>
-        [Description("absolute")]
+        [CssClass("absolute")]
         Absolute = 2,
         /// <summary>
         /// 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
         /// </summary>
-        [Description("fixed")]
+        [CssClass("fixed")]
         Fixed = 3,
         /// <summary>
         /// 生成吸附性定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
         /// </summary>
-        [Description("sticky")]
+        [CssClass("sticky")]
         Sticky=4,
     }
 }

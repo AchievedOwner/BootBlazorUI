@@ -67,18 +67,18 @@
 
 <PresentationPart Title="尺寸">
     <Description>
-        设置 <code>Size</code> 改变按钮尺寸，分为 SM、LG 和 Default。
+        设置 <code>Size</code> 改变按钮尺寸，分为 SM、LG。
     </Description>
     <RunTemplate>
         <BootButton Size="Size.LG">大尺寸</BootButton>
-        <BootButton Size="Size.Default">默认尺寸</BootButton>
+        <BootButton>默认尺寸</BootButton>
         <BootButton Size="Size.SM">小尺寸</BootButton>
     </RunTemplate>
     <CodeTemplate>
         @Code.GetCode(@"
 ```html
 <BootButton Size=""Size.LG"">大尺寸</BootButton>
-<BootButton Size=""Size.Default"">默认尺寸</BootButton>
+<BootButton>默认尺寸</BootButton>
 <BootButton Size=""Size.SM"">小尺寸</BootButton>
 ```
 ")

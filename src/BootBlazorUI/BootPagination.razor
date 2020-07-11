@@ -109,7 +109,7 @@
             <div class="d-flex flex-row align-items-center ml-1">
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <select class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"")" @onchange="e => SelectPageSize(e.Value.ToString())">
+                        <select class="form-control@(Size.HasValue? ComponentUtil.GetSizeCssClass(Size.Value," form-control-"):"")" @onchange="e => SelectPageSize(e.Value.ToString())">
                             @foreach (var item in PageSizeStakeholders)
                             {
                                 <option value="@item" selected="@(PageSize == item)">@(item) /页</option>
@@ -120,7 +120,7 @@
                         跳转到
                     </li>
                     <li class="list-inline-item">
-                        <input class="form-control@(Size!= Size.Default? ComponentUtil.GetSizeCssClass(Size," form-control-"):"") text-center" style="width:80px" @bind="NavigateTo" @onblur="GoToPage" @onkeyup="PressEnter"/>
+                        <input class="form-control@(Size.HasValue? ComponentUtil.GetSizeCssClass(Size.Value," form-control-"):"") text-center" style="width:80px" @bind="NavigateTo" @onblur="GoToPage" @onkeyup="PressEnter"/>
                     </li>
                 </ul>
             </div>

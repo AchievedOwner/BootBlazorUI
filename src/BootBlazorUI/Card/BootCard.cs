@@ -8,6 +8,8 @@ namespace BootBlazorUI
 
     using Microsoft.AspNetCore.Components;
 
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现 div 元素并带有 "card" 样式的卡片组件。
     /// </summary>
@@ -28,14 +30,9 @@ namespace BootBlazorUI
         [Parameter] public Color? Color { get; set; }
 
         /// <summary>
-        /// 设置一个布尔值，表示是否使用边框的主题颜色，需要配合 <see cref="Color"/> 属性使用。
-        /// </summary>
-        [Parameter] public bool Bordered { get; set; }
-
-        /// <summary>
         /// 设置一个布尔值，卡片的高度是否为 100%。该属性用于在栅格系统布局中将其他卡片对齐高度。
         /// </summary>
-        [Parameter] public bool AlignHeight { get; set; }
+        [Parameter][CssClass("h-100")] public bool AlignHeight { get; set; }
 
         ///// <summary>
         ///// 使用 <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" /> 创建父组件的 <see cref="T:Microsoft.AspNetCore.Components.CascadingValue`1" /> 组件。
@@ -58,7 +55,7 @@ namespace BootBlazorUI
             collection.Add("card");
             if (Color.HasValue)
             {
-                if (Bordered)
+                if (Border.HasValue && Border.Value)
                 {
                     collection.Add(ComponentUtil.GetColorCssClass(Color.Value, "border-"));
                 }
@@ -67,11 +64,6 @@ namespace BootBlazorUI
                     collection.Add(ComponentUtil.GetColorCssClass(Color.Value, "bg-"));
                     collection.Add(ComponentUtil.GetReverseColorCssClass(Color.Value, "text-"));
                 }
-            }
-
-            if (AlignHeight)
-            {
-                collection.Add("h-100");
             }
         }
     }

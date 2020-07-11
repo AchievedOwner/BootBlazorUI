@@ -7,6 +7,9 @@ using BootBlazorUI.Abstractions;
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现卡片布局的头部元素。
     /// </summary>

@@ -15,7 +15,7 @@ namespace BootBlazorUI.Forms
         /// 设置组件的尺寸，默认是 <see cref="Size.Default"/>。
         /// </summary>
         [Parameter]
-        public Size Size { get; set; } = Size.Default;
+        public Size? Size { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示只读状态是否采用文本形式呈现。
@@ -53,9 +53,9 @@ namespace BootBlazorUI.Forms
             else
             {
                 collection.Add("form-control");
-                if (Size != Size.Default)
+                if (Size.HasValue)
                 {
-                    collection.Add(ComponentUtil.GetSizeCssClass(Size, "form-control-"));
+                    collection.Add(ComponentUtil.GetSizeCssClass(Size.Value, "form-control-"));
                 }
             }
         }

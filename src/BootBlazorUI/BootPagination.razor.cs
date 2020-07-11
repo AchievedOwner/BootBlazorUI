@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
+using BootBlazorUI.Abstractions.Parameters;
+
 using Microsoft.AspNetCore.Components;
+
+using YoiBlazor;
 
 namespace BootBlazorUI
 {
     /// <summary>
     /// 呈现 nav 元素，包含带有分页的组件。
     /// </summary>
-    partial class BootPagination
+    partial class BootPagination:IHasSize
     {
         /// <summary>
         /// 初始化 <see cref="BootPagination"/> 类的新实例。
@@ -48,7 +52,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置分页的尺寸。
         /// </summary>
-        [Parameter] public Size Size { get; set; } = Size.Default;
+        [Parameter][CssClass("pagination-")] public Size? Size { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示是否显示总记录数统计，默认是 <c>true</c>。
@@ -128,12 +132,6 @@ namespace BootBlazorUI
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("pagination");
-
-
-            if (Size != Size.Default)
-            {
-                collection.Add(ComponentUtil.GetSizeCssClass(Size, "pagination-"));
-            }
         }
         #region 方法
         /// <summary>

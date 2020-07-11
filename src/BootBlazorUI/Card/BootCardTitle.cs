@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现卡片布局中的标题元素。
     /// </summary>

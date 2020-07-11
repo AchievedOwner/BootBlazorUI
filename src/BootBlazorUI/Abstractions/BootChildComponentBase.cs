@@ -1,8 +1,9 @@
 ﻿
-using BootBlazorUI.Abstractions.Parameters;
+using System;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using YoiBlazor;
 
 namespace BootBlazorUI.Abstractions
 {
@@ -11,7 +12,6 @@ namespace BootBlazorUI.Abstractions
     /// 表示嵌套组件的子组件的基类。这是一个抽象类。
     /// </summary>
     /// <typeparam name="TParentComponent">父组件的类型。</typeparam>
-    /// <seealso cref="BootBlazorUI.Abstractions.BootComponentBase" />
     public abstract class BootChildComponentBase<TParentComponent> : BootComponentBase,IHasChildContent
         where TParentComponent : BootParentComponentBase<TParentComponent>
     {
@@ -34,12 +34,11 @@ namespace BootBlazorUI.Abstractions
         /// Method invoked when the component is ready to start, having received its
         /// initial parameters from its parent in the render tree.
         /// </summary>
-        /// <exception cref="BootChildNotInParentComponentException"></exception>
         protected override void OnInitialized()
         {
             if (Parent == null)
             {
-                throw new BootChildNotInParentComponentException(typeof(TParentComponent), this.GetType());
+                throw new ArgumentException($"子组件'{GetType().Name}'必须放在父组件'{Parent.GetType().Name}'中");
             }
 
             base.OnInitialized();

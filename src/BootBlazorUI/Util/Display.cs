@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
@@ -10,12 +12,12 @@ namespace BootBlazorUI
         /// <summary>
         /// 元素不会被显示。
         /// </summary>
-        [Description("none")]
+        [CssClass("none")]
         None = 0,
         /// <summary>
         /// 此元素会被显示为内联元素，元素前后没有换行符。
         /// </summary>
-        [Description("inline")]
+        [CssClass("inline")]
         Inline = 1,
         /// <summary>
         /// 行内块元素。
@@ -24,32 +26,32 @@ namespace BootBlazorUI
         /// <summary>
         /// 此元素将显示为块级元素，此元素前后会带有换行符。
         /// </summary>
-        [Description("block")]
+        [CssClass("block")]
         Block = 3,
         /// <summary>
         /// 此元素会作为块级表格来显示（类似 &lt;table>），表格前后带有换行符。
         /// </summary>
-        [Description("table")]
+        [CssClass("table")]
         Table = 4,
         /// <summary>
         /// 此元素会作为一个表格单元格显示（类似 &lt;td> 和 &lt;th>）
         /// </summary>
-        [Description("table-cell")]
+        [CssClass("table-cell")]
         TableCell = 5,
         /// <summary>
         /// 此元素会作为一个表格行显示（类似 &lt;tr>）。
         /// </summary>
-        [Description("table-row")]
+        [CssClass("table-row")]
         TableRow = 6,
         /// <summary>
         /// 此元素会作为弹性伸缩盒显示。
         /// </summary>
-        [Description("flex")]
+        [CssClass("flex")]
         Flex = 7,
         /// <summary>
         /// 此元素会作为内联块级弹性伸缩盒显示。
         /// </summary>
-        [Description("inline-flex")]
+        [CssClass("inline-flex")]
         InlineFlex = 8
     }
 }

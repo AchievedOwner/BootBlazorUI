@@ -16,7 +16,7 @@
         /// <summary>
         /// 获取或设置【确定】按钮的尺寸。
         /// </summary>
-        public Size ConfirmSize { get; set; } = Size.Default;
+        public Size? ConfirmSize { get; set; }
 
         /// <summary>
         /// 获取或设置对话框取消按钮的文本。
@@ -29,6 +29,6 @@
         /// <summary>
         /// 获取或设置【取消】按钮的尺寸。
         /// </summary>
-        public Size CancelSize { get; set; } = Size.Default;
+        public Size? CancelSize { get; set; }
     }
 }

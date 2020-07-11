@@ -3,6 +3,9 @@
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现卡片布局中的文本元素。
     /// </summary>

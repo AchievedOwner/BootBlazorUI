@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
@@ -10,12 +12,12 @@ namespace BootBlazorUI
         /// <summary>
         /// 自动根据溢出内容呈现滚动条。
         /// </summary>
-        [Description("auto")]
+        [CssClass("auto")]
         Auto = 1,
         /// <summary>
         /// 内容会被修剪，并且其余内容是不可见的。
         /// </summary>
-        [Description("hidden")]
+        [CssClass("hidden")]
         Hidden = 2
     }
 
@@ -27,22 +29,22 @@ namespace BootBlazorUI
         /// <summary>
         /// 内容不会被修剪，会呈现在元素框之外。
         /// </summary>
-        [Description("visible")]
+        [CssClass("visible")]
         Visible = 0,
         /// <summary>
         /// 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。
         /// </summary>
-        [Description("auto")]
+        [CssClass("auto")]
         Auto = 1,
         /// <summary>
         /// 内容会被修剪，并且其余内容是不可见的。
         /// </summary>
-        [Description("hidden")]
+        [CssClass("hidden")]
         Hidden = 2,
         /// <summary>
         /// 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。
         /// </summary>
-        [Description("scroll")]
+        [CssClass("scroll")]
         Scroll = 3
     }
 }

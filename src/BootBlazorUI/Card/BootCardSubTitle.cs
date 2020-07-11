@@ -3,6 +3,9 @@
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现卡片布局中的比标题小一号的副标题元素。
     /// </summary>

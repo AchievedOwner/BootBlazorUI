@@ -4,14 +4,15 @@ using BootBlazorUI.Abstractions.Parameters;
 
 using Microsoft.AspNetCore.Components;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
     /// 呈现 div 元素的组件。
     /// </summary>
     /// <seealso cref="BootBlazorUI.Abstractions.BootComponentBase" />
-    /// <seealso cref="BootBlazorUI.Abstractions.Parameters.IHasChildContent" />
-    [Element]
+    [ElementTag]
     public class Div : BootComponentBase, IHasChildContent
     {
         /// <summary>

@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Components;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
@@ -47,13 +49,15 @@ namespace BootBlazorUI
         /// 设置模态框显示在屏幕正中间的位置。
         /// </summary>
         [Parameter]
-        public bool Centered { get; set; }
+        [CssClass("modal-dialog-centered")]
+        public bool? Centered { get; set; }
 
         /// <summary>
         /// 设置 <see cref="BodyTemplate"/> 内容超过屏幕一定高度时是否出现滚动条。
         /// </summary>
         [Parameter]
-        public bool Scrollable { get; set; }
+        [CssClass("modal-dialog-scrollable")]
+        public bool? Scrollable { get; set; }
 
         /// <summary>
         /// 设置模态框的尺寸。仅 <see cref="Size.SM"/> 和 <see cref="Size.LG"/> 有效。
@@ -62,7 +66,8 @@ namespace BootBlazorUI
         /// </para>
         /// </summary>
         [Parameter]
-        public Size Size { get; set; }
+        [CssClass("modal-")]
+        public Size? Size { get; set; }
 
         /// <summary>
         /// 获取一个布尔值，表示模态框是否已经显示。
@@ -80,28 +85,6 @@ namespace BootBlazorUI
         /// </summary>
         [Parameter]
         public EventCallback<bool> OnHidden { get; set; }
-        /// <summary>
-        /// 创建组件所需要的 class 类。
-        /// </summary>
-        /// <param name="collection">css 类名称集合。</param>
-        protected override void CreateComponentCssClass(ICollection<string> collection)
-        {
-            if (Centered)
-            {
-                collection.Add("modal-dialog-centered");
-            }
-
-            if (Size != Size.Default)
-            {
-                collection.Add(ComponentUtil.GetSizeCssClass(Size, "modal-"));
-            }
-
-            if (Scrollable)
-            {
-                collection.Add("modal-dialog-scrollable");
-            }
-        }
-
 
         /// <summary>
         /// 显示模态对话框。

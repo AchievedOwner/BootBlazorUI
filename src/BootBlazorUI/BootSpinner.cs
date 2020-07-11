@@ -6,10 +6,15 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using BootBlazorUI.Abstractions.Parameters;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现可旋转的容器元素。一般用于表示操作正在进行中的状态。
     /// </summary>
-    public class BootSpinner : BootComponentBase
+    public class BootSpinner : BootComponentBase,IHasSize,IHasColor
     {
         /// <summary>
         /// 设置一个布尔值，表示是否使用 Grow 样式。
@@ -23,13 +28,14 @@ namespace BootBlazorUI
         /// 设置旋转容器的主题颜色。
         /// </summary>
         [Parameter]
+        [CssClass("text-")]
         public Color? Color { get; set; }
 
         /// <summary>
         /// 设置旋转容器的尺寸。
         /// </summary>
         [Parameter]
-        public Size Size { get; set; } = Size.Default;
+        public Size? Size { get; set; }
         /// <summary>
         /// Renders the component to the supplied <see cref="T:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder" />.
         /// </summary>
@@ -51,14 +57,9 @@ namespace BootBlazorUI
             var spinnerClass = Grow ? "grow" : "border";
             collection.Add($"spinner-{spinnerClass}");
 
-            if (Color.HasValue)
+            if (Size.HasValue)
             {
-                collection.Add(ComponentUtil.GetColorCssClass(Color.Value, "text-"));
-            }
-
-            if (Size != Size.Default)
-            {
-                collection.Add(ComponentUtil.GetSizeCssClass(Size, $"spinner-{spinnerClass}-"));
+                collection.Add(ComponentUtil.GetSizeCssClass(Size.Value, $"spinner-{spinnerClass}-"));
             }
         }
     }

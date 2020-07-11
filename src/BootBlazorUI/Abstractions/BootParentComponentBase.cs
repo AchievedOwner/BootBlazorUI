@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-using BootBlazorUI.Abstractions.Parameters;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using YoiBlazor;
 
 namespace BootBlazorUI.Abstractions
 {
@@ -11,9 +10,8 @@ namespace BootBlazorUI.Abstractions
     /// 表示嵌套组件的父组件的基类。这是一个抽象类。
     /// </summary>
     /// <typeparam name="TParentComponent">父组件类型。</typeparam>
-    /// <seealso cref="BootComponentBase" />
     public abstract class BootParentComponentBase<TParentComponent>:BootComponentBase,IHasChildContent
-        where TParentComponent: BootComponentBase
+        where TParentComponent: IComponent
     {
         /// <summary>
         /// 设置 <typeparamref name="TParentComponent"/> 组件的内容。
@@ -23,12 +21,12 @@ namespace BootBlazorUI.Abstractions
         /// <summary>
         /// 用于存储子组件的列表。
         /// </summary>
-        private readonly List<BootComponentBase> _childComponents = new List<BootComponentBase>();
+        private readonly List<IComponent> _childComponents = new List<IComponent>();
 
         /// <summary>
         /// 获取该父组件包含的子组件列表。
         /// </summary>
-        public IReadOnlyList<BootComponentBase> ChildComponents => _childComponents;
+        public IReadOnlyList<IComponent> ChildComponents => _childComponents;
 
         /// <summary>
         /// 获取元素的名称。默认是 div。
@@ -55,6 +53,6 @@ namespace BootBlazorUI.Abstractions
         /// 添加指定的子组件。
         /// </summary>
         /// <param name="component">子组件。</param>
-        public void Add(BootComponentBase component) => _childComponents.Add(component);
+        public void Add(IComponent component) => _childComponents.Add(component);
     }
 }

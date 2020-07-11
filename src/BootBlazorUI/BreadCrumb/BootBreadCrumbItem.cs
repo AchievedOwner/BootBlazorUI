@@ -2,17 +2,19 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using BootBlazorUI.Abstractions;
+
+using YoiBlazor;
 
 namespace BootBlazorUI
 {
-    using Abstractions;
     /// <summary>
     /// 呈现面包屑导航的 li 元素。
     /// </summary>
     public class BootBreadCrumbItem : BootChildComponentBase<BootBreadCrumb>
     {
         /// <summary>
-        /// 设置导航元素里的标题。若设置了 <see cref="ChildContent"/> 的内容，则该属性的值将被忽略。
+        /// 设置导航元素里的标题。若设置了 <see cref="BootChildComponentBase{BootBreadCrumb}.ChildContent"/> 的内容，则该属性的值将被忽略。
         /// </summary>
         [Parameter] public string Title { get; set; }
 
@@ -25,11 +27,6 @@ namespace BootBlazorUI
         /// 设置超链接的地址。
         /// </summary>
         [Parameter] public string Link { get; set; }
-
-        /// <summary>
-        /// 设置呈现组件内部的任意内容。若设置，则 <see cref="Title"/> 的值将被忽略。
-        /// </summary>
-        [Parameter] public new RenderFragment ChildContent { get; set; }
 
         /// <summary>
         /// 设置呈现元素的名称。

@@ -8,6 +8,8 @@ namespace BootBlazorUI
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
 
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现卡片组件中的顶部图片元素。
     /// </summary>

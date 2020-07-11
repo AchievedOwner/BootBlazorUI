@@ -8,10 +8,11 @@ namespace BootBlazorUI
 
     using Microsoft.AspNetCore.Components;
 
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现 div 元素以表示卡片的正文内容。
     /// </summary>
-    /// <seealso cref="Abstractions.BootChildComponentBase{BootCard}" />
     public class BootCardBody : BootChildComponentBase<BootCard>
     {
         /// <summary>
@@ -20,7 +21,7 @@ namespace BootBlazorUI
         /// <value>
         ///   如果要叠加在 <see cref="BootCardImage"/> 组件上，则为 <c>true</c>；否则为 <c>false</c>。
         /// </value>
-        [Parameter] public bool Overlay { get; set; }
+        [Parameter][CssClass("card-img-overlay")][FalseCssClass("card-body")] public bool? Overlay { get; set; }
 
         /// <summary>
         /// 设置呈现元素的名称。默认是 div。
@@ -33,16 +34,9 @@ namespace BootBlazorUI
         /// <param name="collection">css 类名称集合。</param>
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
-            if (Overlay)
-            {
-                collection.Add("card-img-overlay");
-            }
-            else
-            {
-                collection.Add("card-body");
-            }
+            collection.Add("card-body");
 
-            if (Parent.Color.HasValue && Parent.Bordered)
+            if (Parent.Color.HasValue && Parent.Border.HasValue)
             {
                 collection.Add(ComponentUtil.GetColorCssClass(Parent.Color.Value, "text-"));
             }

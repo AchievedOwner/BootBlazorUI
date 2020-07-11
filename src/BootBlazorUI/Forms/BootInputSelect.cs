@@ -16,7 +16,7 @@ namespace BootBlazorUI.Forms
         /// 设置组件的尺寸，默认是 <see cref="Size.Default"/>。
         /// </summary>
         [Parameter]
-        public Size Size { get; set; } = Size.Default;
+        public Size? Size { get; set; }
 
         /// <summary>
         /// 设置 select 组件中的 option 项列表。
@@ -82,9 +82,9 @@ namespace BootBlazorUI.Forms
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("form-control");
-            if (Size != Size.Default)
+            if (Size.HasValue)
             {
-                collection.Add(ComponentUtil.GetSizeCssClass(Size, "form-control-"));
+                collection.Add(ComponentUtil.GetSizeCssClass(Size.Value, "form-control-"));
             }
         }
     }

@@ -7,6 +7,8 @@ namespace BootBlazorUI
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Rendering;
 
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现卡片布局中的超链接元素。
     /// </summary>

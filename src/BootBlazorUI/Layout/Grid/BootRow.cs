@@ -6,13 +6,13 @@ using BootBlazorUI.Abstractions.Parameters;
 
 using Microsoft.AspNetCore.Components;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
     /// 呈现 div 元素表示栅格的行。
     /// </summary>
-    /// <seealso cref="BootBlazorUI.Abstractions.BootParentComponentBase{BootGridRow}" />
-    /// <seealso cref="BootBlazorUI.Abstractions.Parameters.IHasChildContent" />
     public class BootRow : BootParentComponentBase<BootRow>, IHasChildContent
     {
         /// <summary>

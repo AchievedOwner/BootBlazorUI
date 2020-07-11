@@ -7,13 +7,15 @@ using BootBlazorUI.Abstractions.Parameters;
 
 using Microsoft.AspNetCore.Components;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
     /// 呈现 div 元素的块状引用组件。
     /// </summary>
     /// <seealso cref="BootBlazorUI.Abstractions.BootComponentBase" />
-    [Element("blockquote")]
+    [ElementTag("blockquote")]
     public class BlockQuote : BootComponentBase, IHasChildContent
     {
         /// <summary>

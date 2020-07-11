@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using BootBlazorUI.Abstractions.Parameters;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BootBlazorUI
@@ -8,7 +10,7 @@ namespace BootBlazorUI
     /// <summary>
     /// 表示使用默认按钮触发下拉菜单的容器。
     /// </summary>
-    partial class BootDropDown
+    partial class BootDropDown:IHasSize
     {
         /// <summary>
         /// 设置下拉菜单的颜色主题。默认 <see cref="Color.Primary"/>。
@@ -17,7 +19,7 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置下拉菜单的尺寸。
         /// </summary>
-        [Parameter] public Size Size { get; set; } = Size.Default;
+        [Parameter] public Size? Size { get; set; }
         /// <summary>
         /// 设置下拉菜单点击按钮的内容。
         /// </summary>

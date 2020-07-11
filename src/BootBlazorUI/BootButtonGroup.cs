@@ -6,10 +6,16 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using BootBlazorUI.Abstractions.Parameters;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 表示将一系列按钮与按钮组分组在同一行上。
     /// </summary>
-    public class BootButtonGroup : BootComponentBase
+    [ElementTag]
+    public class BootButtonGroup : BootComponentBase,IHasChildContent,IHasSize
     {
         /// <summary>
         /// 设置按钮组的内容。
@@ -19,43 +25,11 @@ namespace BootBlazorUI
         /// <summary>
         /// 设置按钮组的尺寸。
         /// </summary>
-        [Parameter] public Size Size { get; set; } = Size.Default;
+        [Parameter][CssClass("btn-group-")] public Size? Size { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示是否垂直显示。
         /// </summary>
-        [Parameter] public bool Vertical { get; set; }
-
-        /// <summary>
-        /// 构建按钮组的组件树。
-        /// </summary>
-        protected override void BuildRenderTree(RenderTreeBuilder builder)
-        {
-            builder.OpenElement(0, "div");
-            AddCommonAttributes(builder);
-            builder.AddAttribute(1, "role", "group");
-            builder.AddContent(2, ChildContent);
-            builder.CloseElement();
-        }
-
-        /// <summary>
-        /// 创建组件所需要的 css Class。
-        /// </summary>
-        protected override void CreateComponentCssClass(ICollection<string> collection)
-        {
-            if(Size!= Size.Default)
-            {
-                collection.Add(ComponentUtil.GetSizeCssClass(Size, "btn-group-"));
-            }
-
-            if (Vertical)
-            {
-                collection.Add("btn-group-vertical");
-            }
-            else
-            {
-                collection.Add("btn-group");
-            }
-        }
+        [Parameter][CssClass("btn-group-vertical")][NullCssClass("btn-group")] public bool? Vertical { get; set; }
     }
 }

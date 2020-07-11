@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
@@ -10,27 +12,27 @@ namespace BootBlazorUI
         /// <summary>
         /// 极小尺寸。
         /// </summary>
-        [Description("xs")]
+        [CssClass("xs")]
         XS = 0,
         /// <summary>
         /// 最小尺寸。
         /// </summary>
-        [Description("sm")]
+        [CssClass("sm")]
         SM = 1,
         /// <summary>
         ///  中等尺寸。
         /// </summary>
-        [Description("md")]
+        [CssClass("md")]
         MD = 2,
         /// <summary>
         ///  较大尺寸。
         /// </summary>
-        [Description("lg")]
+        [CssClass("lg")]
         LG = 3,
         /// <summary>
         ///  最大尺寸。
         /// </summary>
-        [Description("xl")]
+        [CssClass("xl")]
         XL = 4
     }
 }

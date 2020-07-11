@@ -4,14 +4,15 @@ using BootBlazorUI.Abstractions.Parameters;
 
 using Microsoft.AspNetCore.Components;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
     /// 呈现 span 元素的组件。
     /// </summary>
     /// <seealso cref="BootBlazorUI.Abstractions.BootComponentBase" />
-    /// <seealso cref="BootBlazorUI.Abstractions.Parameters.IHasChildContent" />
-    [Element("span")]
+    [ElementTag("span")]
     public class Span : BootComponentBase, IHasChildContent
     {
         /// <summary>

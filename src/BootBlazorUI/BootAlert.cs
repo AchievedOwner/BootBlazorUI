@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace BootBlazorUI
 {
     using Abstractions;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现 div 的元素并且带有警告消息框的组件。
     /// </summary>
-    public class BootAlert : BootComponentBase
+    public class BootAlert : BootComponentBase,IHasChildContent
     {
         /// <summary>
         /// 初始化 <see cref="BootAlert"/> 类的新实例。
@@ -23,6 +26,7 @@ namespace BootBlazorUI
         /// 设置消息框的主题颜色。默认是 <see cref="Color.Primary"/>。
         /// </summary>
         [Parameter]
+        [CssClass("alert-")]
         public Color Color { get; set; } = Color.Primary;
 
         /// <summary>
@@ -81,7 +85,6 @@ namespace BootBlazorUI
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("alert");
-            collection.Add(ComponentUtil.GetColorCssClass(Color, "alert-"));
             collection.Add("fade");
             if (IsShown)
             {

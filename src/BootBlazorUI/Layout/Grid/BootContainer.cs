@@ -6,14 +6,14 @@ using BootBlazorUI.Abstractions.Parameters;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
+using YoiBlazor;
+
 namespace BootBlazorUI
 {
     /// <summary>
     /// 表示使用 div 元素呈现的栅格系统的容器组件。
     /// </summary>
     /// <seealso cref="BootBlazorUI.Abstractions.BootComponentBase" />
-    /// <seealso cref="BootBlazorUI.Abstractions.Parameters.IHasChildContent" />
-    /// <seealso cref="BootBlazorUI.Abstractions.Parameters.IHasViewPoint" />
     public class BootContainer : BootComponentBase, IHasChildContent
     {
         /// <summary>
@@ -49,7 +49,7 @@ namespace BootBlazorUI
         {
             if (ViewPoint.HasValue && ViewPoint.Value > BootBlazorUI.ViewPoint.XS)
             {
-                collection.Add(ViewPoint.GetEnumCssClass(this,nameof(ViewPoint)));
+                collection.Add(ViewPoint.GetEnumCssClass());
             }
             else
             {

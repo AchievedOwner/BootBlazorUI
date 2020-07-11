@@ -5,19 +5,14 @@ using Xunit;
 namespace BootBlazorUI.Test
 {
     using Abstractions;
+
+    using YoiBlazor;
+
     public class ExtensionTest
     {
         [CssClass("bg-")] public Color BgColor { get; set; } = Color.Primary;
         [CssClass("margin")] public int? Margin { get; set; }
 
-        [Fact]
-        public void TestGetParameterPrefix()
-        {
-            var prefix = this.GetParameterPrefix(nameof(BgColor));
-            Assert.Equal($"bg-", prefix);
-
-
-        }
 
         [Theory]
         [InlineData(new object[] { Color.Primary})]
@@ -32,8 +27,8 @@ namespace BootBlazorUI.Test
         {
             BgColor = color;
 
-            var css = BgColor.GetEnumCssClass(this, nameof(BgColor));
-            Assert.Equal($"bg-{color.GetDescription()}", css);
+            var css = BgColor.GetEnumCssClass();
+            Assert.Equal($"bg-{color.GetEnumCssClass()}", css);
         }
     }
 }

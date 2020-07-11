@@ -64,10 +64,7 @@ namespace BootBlazorUI
         /// 获取根据设置的 <see cref="Min"/> 和 <see cref="Max"/> 以及当前的 <see cref="Value"/> 计算进度条的百分比。
         /// </summary>
         public decimal Percentage => Math.Round((Value / (Max - Min)) * 100, 0);
-        /// <summary>
-        /// Gets or sets the js.
-        /// </summary>
-        [Inject] IJSRuntime JS { get; set; }
+
         /// <summary>
         /// Method invoked when the component is ready to start, having received its
         /// initial parameters from its parent in the render tree.

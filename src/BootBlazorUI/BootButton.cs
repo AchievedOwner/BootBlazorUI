@@ -11,11 +11,16 @@ namespace BootBlazorUI
 {
     using Abstractions;
 
+    using BootBlazorUI.Abstractions.Parameters;
+
     using Forms;
+
+    using YoiBlazor;
+
     /// <summary>
     /// 呈现 button 的按钮元素。可配合 <see cref="BootEditForm"/> 组件可实现表单验证和提交的交互模式。
     /// </summary>
-    public class BootButton : BootComponentBase
+    public class BootButton : BootComponentBase,IHasChildContent,IHasSize,IHasColor
     {
         private readonly Func<Task> _handleSubmitDelegate;
 
@@ -25,6 +30,7 @@ namespace BootBlazorUI
         public BootButton()
         {
             _handleSubmitDelegate = Submit;
+            Color = BootBlazorUI.Color.Primary;
         }
 
         #region 参数
@@ -32,19 +38,22 @@ namespace BootBlazorUI
         /// 设置为块状显示，独占一行。
         /// </summary>
         [Parameter]
-        public bool Blocked { get; set; }
+        [CssClass("btn-block")]
+        public bool? Blocked { get; set; }
 
         /// <summary>
         /// 设置按钮的主题配色。默认是 <see cref="Color.Primary"/>。
         /// </summary>
         [Parameter]
-        public Color Color { get; set; } = Color.Primary;
+        [CssClass("btn-")]
+        public Color? Color { get; set; }
 
         /// <summary>
         /// 设置按钮的尺寸。
         /// </summary>
         [Parameter]
-        public Size Size { get; set; } = Size.Default;
+        [CssClass("btn-")]
+        public Size? Size { get; set; }
 
         /// <summary>
         /// 设置按钮的类型。默认是 <see cref="ButtonType.Button"/>
@@ -56,19 +65,21 @@ namespace BootBlazorUI
         /// 设置一个布尔值，表示呈现为边框样式。
         /// </summary>
         [Parameter]
-        public bool Outline { get; set; }
+        [CssClass("bt-outline-")]
+        public bool? Outline { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示按钮呈现为启用状态的样式。
         /// </summary>
         [Parameter]
-        public bool Actived { get; set; }
+        [CssClass("active")]
+        public bool? Actived { get; set; }
 
         /// <summary>
         /// 设置一个布尔值，表示按钮呈现为禁用状态的样式。
         /// </summary>
         [Parameter]
-        public bool Disabled { get; set; }
+        public bool? Disabled { get; set; }
 
         /// <summary>
         /// 设置按钮的内容。
@@ -174,9 +185,7 @@ namespace BootBlazorUI
             
             builder.AddAttribute(2, "type", $"{Type.ToString().ToLower()}");
             builder.AddAttribute(3, "disabled", Disabled);
-            AddCssClassAttribute(builder, 4);
-            AddStyleAttribute(builder, 5);
-            AddAddtionalAttributes(builder, 6);
+            AddCommonAttributes(builder);
 
             if (CascadedEditContext == null || !RelateEditContext)
             {
@@ -197,7 +206,10 @@ namespace BootBlazorUI
                     builder.AddContent(8, content =>
                     {
                         content.OpenComponent<BootSpinner>(12);
-                        content.AddAttribute(13, nameof(Size), Size.SM);
+                        if (Size.HasValue)
+                        {
+                            content.AddAttribute(13, nameof(Size), Size.Value);
+                        }
                         content.AddAttribute(14, nameof(AdditionalCssClass), "mr-1");
                         content.CloseComponent();
                         content.AddContent(15, OnSubmitText);
@@ -231,22 +243,6 @@ namespace BootBlazorUI
         protected override void CreateComponentCssClass(ICollection<string> collection)
         {
             collection.Add("btn");
-
-            if (Blocked)
-            {
-                collection.Add("btn-block");
-            }
-
-            collection.Add(string.Format(" btn{0}-{1}", (Outline ? "-outline" : string.Empty), ComponentUtil.GetColorCssClass(Color)));
-            if (Size != Size.Default)
-            {
-                collection.Add(ComponentUtil.GetSizeCssClass(Size, "btn-"));
-            }
-
-            if (Actived)
-            {
-                collection.Add("active");
-            }
         }
 
         /// <summary>
